@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe5ea4983df3403d8cb0e12c96a374e, type: 3}
+  m_Name: Frage3
+  m_EditorClassIdentifier: 
+  question: "Eine Region im S\xFCden fordert mehr Autonomie und will eigene Wahlen
+    abhalten"
+  answers:
+  - "Wir stationieren dort viele Truppen und sch\xFCchtern das Volk ein"
+  - "Wir starten eine Medienoffensive \xFCber die Bedeutung der Einheit"
+  - "Wir sprechen mit deren Anf\xFChrern - aber \xFCberwachen sie dabei heimlich."
+  - "Wir nehmen den F\xFChrern der Bewegung durch einen von uns ausgedachten Skandal
+    die Glaubhaftigkeit und teilen diesen Skandal mit unseren Social Media Bots."
+  idRightAnswer: 3
+  happiness: f6fffffffffffffffbffffff0a000000
+  video: Frage_7_Antwort_D
+  budget: f8fffffffefffffffcfffffffbffffff
