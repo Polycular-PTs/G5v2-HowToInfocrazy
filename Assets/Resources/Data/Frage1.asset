@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe5ea4983df3403d8cb0e12c96a374e, type: 3}
+  m_Name: Frage1
+  m_EditorClassIdentifier: 
+  question: "Herr Pr\xE4sident, viele Journalisten stellen pl\xF6tzlich kritische
+    Fragen und schreiben \xFCber Missst\xE4nde in unserer Regierung. Das beeinflusst
+    die Stimmung im Land negativ. Was sollen wir tun?"
+  answers:
+  - "Wir finanzieren eine staatliche Zeitung, die die Sichtweisen des Staates verbreitet
+    und kritische Stimmen l\xE4cherlich darstellt."
+  - "Sicherheitschef durchsuchen die beteiligten Redaktionen wegen angeblicher Steuervergehen.
+    Das wird die anderen Journalisten einsch\xFCchtern."
+  - Laden Sie Journalisten zu einer charmanten Pressekonferenz ein - mit gutem Essen
+    und netten Versprechen.
+  - "Wir lassen alle Presseartikel vor der Ver\xF6ffentlichung durch eine neue Pr\xFCfbeh\xF6rde
+    freigeben."
+  idRightAnswer: 0
+  happiness: 0a000000f9fffffffdfffffff8ffffff
+  video: Frage_1_Antwort_A
+  budget: fbfffffff6fffffffdfffffff9ffffff
