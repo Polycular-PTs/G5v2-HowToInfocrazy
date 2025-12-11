@@ -14,17 +14,19 @@ public class AnswerFalseScript : MonoBehaviour
     }
     private void Start()
     {
+        if (PlayerPrefs.GetString("firstAnswerBoolean") == "true")
+        {
+            int curScore = PlayerPrefs.GetInt("currentScore");
+            int addition = PlayerPrefs.GetInt("CurrentHappiness" + PlayerPrefs.GetInt("clickedButtonID"));
+            curScore += addition;
+            PlayerPrefs.SetInt("currentScore", curScore);
 
-
-        int curScore = PlayerPrefs.GetInt("currentScore");
-        int addition = PlayerPrefs.GetInt("CurrentHappiness" + PlayerPrefs.GetInt("clickedButtonID"));
-        curScore += addition;
-        PlayerPrefs.SetInt("currentScore", curScore);
-
-        int statebudget = PlayerPrefs.GetInt("currentStatebudget");
-        int addition2 = PlayerPrefs.GetInt("CurrentBudget" + PlayerPrefs.GetInt("clickedButtonID"));
-        statebudget += addition2;
-        PlayerPrefs.SetInt("currentStatebudget", statebudget);
+            int statebudget = PlayerPrefs.GetInt("currentStatebudget");
+            int addition2 = PlayerPrefs.GetInt("CurrentBudget" + PlayerPrefs.GetInt("clickedButtonID"));
+            statebudget += addition2;
+            PlayerPrefs.SetInt("currentStatebudget", statebudget);
+            PlayerPrefs.SetString("firstAnswerBoolean","false");
+        }
     }
 
 }

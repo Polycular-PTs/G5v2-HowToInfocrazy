@@ -22,6 +22,6 @@ public class PlayerController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = moveInput * movementSpeed;
+        rb.linearVelocity = moveInput * movementSpeed;
     }
 }

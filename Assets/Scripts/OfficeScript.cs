@@ -2,19 +2,22 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using NUnit.Framework.Interfaces;
 
 public class OfficeScript : MonoBehaviour
 {
     public int score = 100;
-    public Slider happinessSlider;
+    //public Slider happinessSlider;
     public GameObject happinessFill;
     public TextMeshProUGUI happinessText;
+    private bool firstAnswer;
 
     public GameObject statebudgetFill;
     public TextMeshProUGUI statebudgetText;
 
     private void Start()
     {
+        
         if (!PlayerPrefs.HasKey("currentScore"))
         {
             PlayerPrefs.SetInt("currentScore", 100);
@@ -22,7 +25,8 @@ public class OfficeScript : MonoBehaviour
             Vector3 scale = fillTransform.localScale;
             scale.x = 1;
             fillTransform.localScale = scale;
-            happinessSlider.maxValue = 1;
+            //happinessSlider.maxValue = 1;
+            PlayerPrefs.SetString("firstAnswerBoolean", "true");
         }
         else
         {
@@ -42,6 +46,12 @@ public class OfficeScript : MonoBehaviour
             //{
             //    happinessSlider.maxValue = curScore / 100;
             //}
+            if (curScore <= 0)
+            {
+                SceneManager.LoadScene("Defeat");
+                //Colour
+                //Text mit Defeat oder Win
+            }
         }
 
 
@@ -55,22 +65,29 @@ public class OfficeScript : MonoBehaviour
         }
         else
         {
-            int curScore = PlayerPrefs.GetInt("currentStatebudget");
-            Debug.Log("currentStatebudget:" + curScore);
+            int curState = PlayerPrefs.GetInt("currentStatebudget");
+            Debug.Log("currentStatebudget:" + curState);
             //happinessSlider.value = curScore / 100f;
 
-            if (curScore < 100f)
+            if (curState < 100f)
             {
                 Transform fillTransform = statebudgetFill.GetComponent<Transform>();
                 Vector3 scale = fillTransform.localScale;
-                scale.x = curScore / 100f;
+                scale.x = curState / 100f;
                 fillTransform.localScale = scale;
             }
-            statebudgetText.text = curScore.ToString();
-            //if (curScore / 100 > happinessSlider.maxValue)
+            statebudgetText.text = curState.ToString();
+            //if (curState / 100 > happinessSlider.maxValue)
             //{
-            //    happinessSlider.maxValue = curScore / 100;
+            //    happinessSlider.maxValue = curState / 100;
             //}
+            if (curState <= 0)
+            {
+                Debug.Log("CurState ist Null");
+                SceneManager.LoadScene("Defeat");
+                //Colour
+                //Text mit Defeat oder Win
+            }
         }
     }
 

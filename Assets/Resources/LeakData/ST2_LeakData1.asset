@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536c7aeda4c464c8182eb4ff8e01d110, type: 3}
+  m_Name: ST2_LeakData1
+  m_EditorClassIdentifier: 
+  inhalt: "Eine Pr\xE4sentationsfolie aus deinem Team taucht auf: \u201EKritische
+    Zahlen m\xF6glichst sp\xE4ter ver\xF6ffentlichen\u201C."
+  answers:
+  - "Wir stoppen die Verbreitung der Folie \u2013 sie ist ein Entwurf ohne Beschluss.
+    Alle Personen, die damit was zu tun haben, werden verhaftet und angeklagt."
+  - "Wir starten sofort eine Informationskampagne \xFCber aktuelle Erfolge."
+  - "Das Dokument ist fachlich falsch eingeordnet \u2013 es dient nur der zeitlichen
+    Strukturierung, nicht der Manipulation."
+  - Wir zeigen den kompletten Kommunikationsplan.
+  idRightAnswer: 2
+  happiness: d8ffffffceffffff00000000c4ffffff
+  budget: c4ffffffbaffffff00000000b0ffffff
+  opposition: 19000000190000000000000019000000
+  functionality: 00000000000000003200000000000000

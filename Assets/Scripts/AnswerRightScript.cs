@@ -5,6 +5,7 @@ using UnityEngine.Video;
 public class AnswerRightScript : MonoBehaviour
 {
     public VideoPlayer a;
+    
 
     public void NextScene()
     {
@@ -12,19 +13,27 @@ public class AnswerRightScript : MonoBehaviour
     }
     private void Start()
     {
-        int curScore = PlayerPrefs.GetInt("currentScore");
-        int addition = PlayerPrefs.GetInt("CurrentHappiness" + PlayerPrefs.GetInt("clickedButtonID"));
-        curScore += addition;
-        PlayerPrefs.SetInt("currentScore", curScore);
+        if (PlayerPrefs.GetString("firstAnswerBoolean") == "true")
+        {
+            int curScore = PlayerPrefs.GetInt("currentScore");
+            int addition = PlayerPrefs.GetInt("CurrentHappiness" + PlayerPrefs.GetInt("clickedButtonID"));
+            curScore += addition;
+            PlayerPrefs.SetInt("currentScore", curScore);
 
-        int statebudget = PlayerPrefs.GetInt("currentStatebudget");
-        int addition2 = PlayerPrefs.GetInt("CurrentBudget" + PlayerPrefs.GetInt("clickedButtonID"));
-        statebudget += addition2;
-        PlayerPrefs.SetInt("currentStatebudget", statebudget);
+            int statebudget = PlayerPrefs.GetInt("currentStatebudget");
+            int addition2 = PlayerPrefs.GetInt("CurrentBudget" + PlayerPrefs.GetInt("clickedButtonID"));
+            statebudget += addition2;
+            PlayerPrefs.SetInt("currentStatebudget", statebudget);
 
-        int id = PlayerPrefs.GetInt("CurrentID");
-        QuestionsWithAnswers CurrentQ = Resources.Load<QuestionsWithAnswers>("Data/Frage" + id);
-        a.clip = Resources.Load<VideoClip>(CurrentQ.video);
+            int id = PlayerPrefs.GetInt("CurrentID");
+            QuestionsWithAnswers CurrentQ = Resources.Load<QuestionsWithAnswers>("Data/Frage" + id);
+            a.clip = Resources.Load<VideoClip>(CurrentQ.video);
+        }
+        if (PlayerPrefs.GetString("firstAnswerBoolean") == "false")
+        {
+            PlayerPrefs.SetString("firstAnswerBoolean", "true");
+        }
+
     }
 
    
