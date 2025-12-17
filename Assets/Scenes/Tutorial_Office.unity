@@ -604,6 +604,7 @@ GameObject:
   - component: {fileID: 250050916}
   - component: {fileID: 250050915}
   - component: {fileID: 250050918}
+  - component: {fileID: 250050919}
   m_Layer: 0
   m_Name: TutorialButtonManager
   m_TagString: Untagged
@@ -623,26 +624,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a6a6d701871b149b897b65d1f9dfa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToAutoDisableAButton: 5
-  player: {fileID: 1447678769}
-  circle: {fileID: 9807740}
-  offsetOfPlayer: 1.5
-  keyForNextScene: 101
-  keyForOneSceneBack: 113
-  textGeneralSceneInfo: {fileID: 2061857310}
-  tutorialProgressSlider: {fileID: 383843696}
-  totalPointsForFullSlider: 3
-  currentSceneImage: {fileID: 658086549}
-  imagesOfScenes:
-  - {fileID: 21300000, guid: 8ee5853d51d16434095e9aba125528f5, type: 3}
-  - {fileID: 21300000, guid: 9d7735140d2d9482a82eb0092db0f604, type: 3}
-  - {fileID: 21300000, guid: d2c9f0bbe4f4b47da955c06fb4d021b9, type: 3}
-  - {fileID: 21300000, guid: 0cc9c26d31bc949dbaaf97119ccae48a, type: 3}
-  buttonsInScene1:
-  - {fileID: 660600362}
-  buttonsInScene2: []
-  buttonsInScene3: []
-  buttonsInScene4: []
 --- !u!224 &250050916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -670,6 +651,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 250050914}
   m_CullTransparentMesh: 1
+--- !u!114 &250050919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250050914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a66802b8e8f2547b696ea22e121cbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToAutoDisableAButton: 5
+  player: {fileID: 1447678769}
+  circle: {fileID: 9807740}
+  offsetOfPlayer: 1.5
+  keyForNextScene: 101
+  keyForOneSceneBack: 113
+  textGeneralSceneInfo: {fileID: 2061857310}
+  tutorialProgressSlider: {fileID: 383843696}
+  totalPointsForFullSlider: 3
+  currentSceneImage: {fileID: 658086549}
+  imagesOfScenes:
+  - {fileID: 21300000, guid: d2c9f0bbe4f4b47da955c06fb4d021b9, type: 3}
+  - {fileID: 21300000, guid: 0cc9c26d31bc949dbaaf97119ccae48a, type: 3}
+  - {fileID: 21300000, guid: d408e4d1edda04d8c92700bcccf3d4c4, type: 3}
+  - {fileID: 21300000, guid: 66fd3d5f576074d198083c9d0f1ea8d6, type: 3}
+  buttonsInScene1:
+  - {fileID: 660600362}
+  buttonsInScene2: []
+  buttonsInScene3: []
+  buttonsInScene4: []
 --- !u!1 &319249128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,15 +1371,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 660600362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c484f503cf5ef7c40b612b63f6efdd4c, type: 3}
+  m_Script: {fileID: 11500000, guid: e00543cd418581349b81195205c8987c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialManager: {fileID: 250050915}
+  tutorialManager: {fileID: 250050919}
   textInButton: {fileID: 2011604960}
   correspondingTextMeshProUGUI: {fileID: 397356777}
   isButtonAttachedToOtherObject: 1
   attachmentObject: {fileID: 1447678769}
-  attachmentOffset: {x: 0, y: -1.4, z: 0}
+  attachmentOffset: {x: 0, y: -1.5, z: 0}
   extraDelayBeforeDisable: 0
   alreadyEnabled: 0
 --- !u!1 &744184019
