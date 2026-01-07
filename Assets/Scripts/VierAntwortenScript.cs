@@ -59,7 +59,7 @@ public class VierAntwortenScript: MonoBehaviour
 
 
 
-        if (correctAnswerID == clickedButtonID)
+        if (correctAnswerID == clickedButtonID) //Noch einbauen, dass Bool true werden muss
         {
             SceneManager.LoadScene(Answer_right_Scene);
         }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536c7aeda4c464c8182eb4ff8e01d110, type: 3}
+  m_Name: ST3_LeakData1
+  m_EditorClassIdentifier: 
+  inhalt: "Ein Datenpaket wird ver\xF6ffentlicht: Journalisten wurden digital beobachtet."
+  answers:
+  - "Wir markieren die Daten als gef\xE4lscht und beantragen L\xF6schung \xFCberall."
+  - "Wir r\xFCcken eine neue Initiative zur Pressefreiheit in den Fokus."
+  - "Die \xDCberwachung diente ausschlie\xDFlich Sicherheitszwecken und wurde falsch
+    interpretiert."
+  - "Wir ver\xF6ffentlichen alle \xDCberwachungsprotokolle."
+  idRightAnswer: 1
+  happiness: baffffff00000000a6ffffffb0ffffff
+  budget: b0ffffff00000000a6ffffff9cffffff
+  opposition: 32000000000000003200000032000000
+  functionality: 00000000640000000000000000000000

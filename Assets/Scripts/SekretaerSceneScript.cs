@@ -48,11 +48,25 @@ public class SekretaerSceneScript : MonoBehaviour
         Debug.Log("ID wurde auf 0 gestellt");
     }
 
-    public void ResetFriendliness()
+    public void Reset()
     {
-        PlayerPrefs.SetInt("currentScore", 100);
+        //PlayerPrefs.SetInt("currentScore", 100);
+        //PlayerPrefs.SetInt("currentStatebudget", 100);
+        PlayerPrefs.DeleteKey("currentScore");
+        PlayerPrefs.DeleteKey("currentStatebudget");
         happinessSlider.maxValue = 1;
-        Debug.Log("Staatsfreundlichkeit wurde zurückgesetzt");
+        
+        Transform fillTransform = happinessFill.GetComponent<Transform>();
+        Vector3 scale = fillTransform.localScale;
+        scale.x = 1;
+        fillTransform.localScale = scale;
+        
+        Transform fillTransform2 = statebudgetFill.GetComponent<Transform>();
+        Vector3 scale2 = fillTransform2.localScale;
+        scale2.x = 1;
+        fillTransform.localScale = scale2;
+
+        Debug.Log("Staatsfreundlichkeit und Budget wurden zurückgesetzt");
     }
 
     private void Start()
