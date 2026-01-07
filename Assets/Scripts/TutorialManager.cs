@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
+using System.Runtime.CompilerServices;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class TutorialManager : MonoBehaviour
     [Header("Tutorial Scenes")]
     [SerializeField] private GameObject currentSceneImage;
     public Sprite[] imagesOfScenes;
+
+    [SerializeField] private string[] sceneSpesificTextArray = new string[4];
 
     [Header("Corresponding Buttons for each Scene")]
     [SerializeField] private GameObject[] buttonsInScene1;
@@ -76,11 +79,11 @@ public class TutorialManager : MonoBehaviour
                     TransitionBackwardInTutorialScnen(currentSceneNumber);
                 }
             }
-            ShowInGeneralSceneInfo("transition Scene with " + keyForOneSceneBack + " and " + keyForNextScene, 12);
+            ShowInGeneralSceneInfo("Transition Scene with " + keyForOneSceneBack + " and " + keyForNextScene);
         }
         else
         {
-            ShowInGeneralSceneInfo("Hier bekommen sie bla erklärt",12);
+            ShowInGeneralSceneInfo("");
         }
 
         UpdateTutorialProgress();
@@ -88,10 +91,12 @@ public class TutorialManager : MonoBehaviour
         //Debug.Log("x= " + xPos + "y= " + yPos);
     }
 
-    public void ShowInGeneralSceneInfo(string sceneInfoText, int fontSize)
+    public void ShowInGeneralSceneInfo(string sceneInfoText)
     {
-        textGeneralSceneInfo.text = "Current Scene: " + currentSceneNumber +" von "+ imagesOfScenes.Length.ToString() + "\n" + sceneInfoText;
-        textGeneralSceneInfo.fontSize = 12;
+        string generalText = "Current Scene: " + currentSceneNumber + " von "+ imagesOfScenes.Length.ToString() + "\n" + sceneInfoText;
+        string sceneSpesificText = sceneSpesificTextArray[currentSceneNumber-1];
+        
+        textGeneralSceneInfo.text = generalText + "\n" + "\n" + sceneSpesificText;
     }
 
     private void TransitionBackwardInTutorialScnen(int sceneNumber)
