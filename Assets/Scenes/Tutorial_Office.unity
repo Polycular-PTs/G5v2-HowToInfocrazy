@@ -705,17 +705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &66075554 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2975464388030823841, guid: be48de609b0544bff982ab46dc123370, type: 3}
-  m_PrefabInstance: {fileID: 66075551}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &66075555 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1057813822619622564, guid: be48de609b0544bff982ab46dc123370, type: 3}
@@ -2455,7 +2444,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 100
-  happinessSlider: {fileID: 66075554}
   happinessFill: {fileID: 66075555}
   happinessText: {fileID: 66075553}
   statebudgetFill: {fileID: 1909470279}
@@ -2910,7 +2898,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1651903749}
         m_TargetAssemblyTypeName: StartSceneScript, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
