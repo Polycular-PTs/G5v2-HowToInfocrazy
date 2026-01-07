@@ -11,7 +11,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject circle;
     [SerializeField] private float offsetOfPlayer;
 
-    [Header("User Input")]
+    [Header("User Inputs")]
     [SerializeField] private KeyCode keyForNextScene = KeyCode.E;
     [SerializeField] private KeyCode keyForOneSceneBack = KeyCode.Q;
 
@@ -29,16 +29,21 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject currentSceneImage;
     public Sprite[] imagesOfScenes;
 
-    [Header("Corresponding Buttons for Scene")]
+    [Header("Corresponding Buttons for each Scene")]
     [SerializeField] private GameObject[] buttonsInScene1;
     [SerializeField] private GameObject[] buttonsInScene2;
     [SerializeField] private GameObject[] buttonsInScene3;
     [SerializeField] private GameObject[] buttonsInScene4;
 
+    [Header("Butten that starts the Game")]
+    [SerializeField] private GameObject buttonForStartingTheGame;
+
     private int currentSceneNumber = 0;
 
     private void Start()
     {
+        buttonForStartingTheGame.SetActive(false);
+
         currentSceneNumber = 0;
         TransitionForwardInTutorialScene(currentSceneNumber);
 
@@ -148,8 +153,22 @@ public class TutorialManager : MonoBehaviour
 
     private void UpdateTutorialProgress()
     {
-        tutorialProgressSlider.GetComponent<UnityEngine.UI.Slider>().value = tutorialPoints / totalPointsForFullSlider;
-        tutorialProgressSlider.GetComponentInChildren<TextMeshProUGUI>().text = "You have found " + tutorialPoints + " of " + totalPointsForFullSlider + " hints";
+        string progressText = " ";
+        float sliderValue = 0f;
+        if(tutorialPoints < totalPointsForFullSlider)
+        {
+            sliderValue = tutorialPoints / totalPointsForFullSlider;
+            progressText = "You have found " + tutorialPoints + " of " + totalPointsForFullSlider + " hints";
+        }
+        if(tutorialPoints >= totalPointsForFullSlider)
+        {
+            sliderValue = 1;
+            progressText = "You have found all the hints. You can now start the game:";
+
+            buttonForStartingTheGame.SetActive(true);
+        }
+        tutorialProgressSlider.GetComponent<UnityEngine.UI.Slider>().value = sliderValue;
+        tutorialProgressSlider.GetComponentInChildren<TextMeshProUGUI>().text = progressText;
     }
 
     private void UpdateButtonsForCorresponingScene()

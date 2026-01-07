@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class ScriptOnButton : MonoBehaviour
 {
+    [Header("Needed references")]
     [SerializeField] private TutorialManager tutorialManager;
+
+    [Header("Text fields")]
     [SerializeField] private TextMeshProUGUI textInButton;
     [SerializeField] private TextMeshProUGUI correspondingTextMeshProUGUI;
 
-    [Header("If you want to follow an other objects movement")]
+    [Header("Not nedded -> If you want to follow an other objects movement")]
     [SerializeField] private bool isButtonAttachedToOtherObject = false;
     [SerializeField] private GameObject attachmentObject;
     [SerializeField] private Vector3 attachmentOffset;

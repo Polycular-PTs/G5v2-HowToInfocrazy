@@ -13,8 +13,12 @@ public class StartSceneScript : MonoBehaviour
         PlayerPrefs.DeleteKey("currentStatebudget");
     }
 
-    public void ChangeScene()
+    public void StartGame()
     {
         SceneManager.LoadScene("Office");
+    }
+    public void StartTutorial()
+    {
+        SceneManager.LoadScene("Tutorial_Office");
     }
 }
