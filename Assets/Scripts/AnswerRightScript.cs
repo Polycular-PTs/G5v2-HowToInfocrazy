@@ -25,6 +25,16 @@ public class AnswerRightScript : MonoBehaviour
             statebudget += addition2;
             PlayerPrefs.SetInt("currentStatebudget", statebudget);
 
+            int opposition = PlayerPrefs.GetInt("currentOpposition");
+            int addition3 = PlayerPrefs.GetInt("addOpposition" + PlayerPrefs.GetInt("clickedButtonID"));
+            opposition += addition3;
+            PlayerPrefs.SetInt("currentOpposition", opposition);
+
+            int functionality = PlayerPrefs.GetInt("currentFunctionality");
+            int addition4 = PlayerPrefs.GetInt("addFunctionality" + PlayerPrefs.GetInt("clickedButtonID"));
+            functionality += addition4; 
+            PlayerPrefs.SetInt("currentFunctionality", functionality);
+
             int id = PlayerPrefs.GetInt("CurrentID");
             QuestionsWithAnswers CurrentQ = Resources.Load<QuestionsWithAnswers>("Data/Frage" + id);
             a.clip = Resources.Load<VideoClip>(CurrentQ.video);

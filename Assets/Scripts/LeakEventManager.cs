@@ -66,8 +66,8 @@ public class LeakEventManager : MonoBehaviour
 
     void Start()
     {
-        PlayerPrefs.SetInt("currentOpposition", 0);
-        PlayerPrefs.SetInt("currentFunctionality", 0);
+       // PlayerPrefs.SetInt("currentOpposition", 100);
+        //PlayerPrefs.SetInt("currentFunctionality", 100);
 
         leakPanel.SetActive(false);
         StartCoroutine(LeakChecker());
@@ -185,12 +185,12 @@ public class LeakEventManager : MonoBehaviour
             //Updaten, was bei PlayerDecision gesetzt wird
             int curScore = PlayerPrefs.GetInt("currentScore");
             int addition = happinessValueOfThisLeak;
-            curScore -= addition;
+            curScore += addition;
             PlayerPrefs.SetInt("currentScore", curScore);
 
             int curStatebudget = PlayerPrefs.GetInt("currentStatebudget");
             int addition2 = budgetValueOfThisLeak;
-            curStatebudget -= addition2;
+            curStatebudget += addition2;
             PlayerPrefs.SetInt("currentStatebudget", curStatebudget);
 
             int curOpposition = PlayerPrefs.GetInt("currentOpposition");
@@ -201,7 +201,7 @@ public class LeakEventManager : MonoBehaviour
 
             int curFunctionality = PlayerPrefs.GetInt("currentFunctionality");
             int addition4 = functionalityValueOfThisLeak;
-            curFunctionality -= addition4;
+            curFunctionality += addition4;
             PlayerPrefs.SetInt("currentFunctionality", curFunctionality);
             Debug.Log("CurrentFunctionalityValue" + curFunctionality);
 
@@ -451,6 +451,7 @@ public class LeakEventManager : MonoBehaviour
             }
             functionalityText.text = curFunctionality.ToString();
 
+           
         }
     }
 }

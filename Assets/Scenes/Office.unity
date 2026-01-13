@@ -785,11 +785,14 @@ MonoBehaviour:
   colorBG_ST1: {r: 0, g: 0, b: 0, a: 0}
   attentionPerSecondST1: 10
   minusWhenTimeIsUpST1: 50
-  BudgetMinusST1: 60
   timeST2: 20
   colorBG_ST2: {r: 0, g: 0, b: 0, a: 0}
+  attentionPerSecondST2: 100
+  minusWhenTimeIsUpST2: 80
   timeST3: 10
   colorBG_ST3: {r: 0, g: 0, b: 0, a: 0}
+  attentionPerSecondST3: 1000
+  minusWhenTimeIsUpST3: 100
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2503,6 +2506,10 @@ MonoBehaviour:
   happinessText: {fileID: 66075553}
   statebudgetFill: {fileID: 1909470279}
   statebudgetText: {fileID: 66075556}
+  oppositionFill: {fileID: 66075559}
+  oppositionText: {fileID: 66075558}
+  functionalityFill: {fileID: 66075557}
+  functionalityText: {fileID: 66075554}
 --- !u!1 &1447678769
 GameObject:
   m_ObjectHideFlags: 0

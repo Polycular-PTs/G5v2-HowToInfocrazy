@@ -21,6 +21,12 @@ public class SekretaerSceneScript : MonoBehaviour
     public GameObject statebudgetFill;
     public TextMeshProUGUI statebudgetText;
 
+    public GameObject oppositionFill;
+    public TextMeshProUGUI oppositionText;
+
+    public GameObject functionalityFill;
+    public TextMeshProUGUI functionalityText;
+
     public void ShowQuestion()
     {
         id = PlayerPrefs.GetInt("CurrentID");
@@ -96,6 +102,28 @@ public class SekretaerSceneScript : MonoBehaviour
 
         statebudgetText.text = stateBudget.ToString();
 
+        int opposition = PlayerPrefs.GetInt("currentOpposition");
+        if (opposition < 100f)
+        {
+            Transform fillTransform = oppositionFill.GetComponent<Transform>();
+            Vector3 scale = fillTransform.localScale;
+            scale.x = opposition / 100f;
+            fillTransform.localScale = scale;
+        }
+
+        oppositionText.text = opposition.ToString();
+
+        int functionality = PlayerPrefs.GetInt("currentFunctionality");
+        if (functionality < 100f)
+        {
+            Transform fillTransform = oppositionFill.GetComponent<Transform>();
+            Vector3 scale = fillTransform.localScale;
+            scale.x = functionality / 100f;
+            fillTransform.localScale = scale;
+        }
+
+        functionalityText.text = functionality.ToString();
+
         //staatsfreundlichkeitText.text = PlayerPrefs.GetInt("staatsfriendliness").ToString();
 
         //if (!PlayerPrefs.HasKey("statefriendliness"))
@@ -127,6 +155,8 @@ public class SekretaerSceneScript : MonoBehaviour
                 PlayerPrefs.SetString("CurrentAnswer" + i, allQuestions[id].answers[i]);
                 PlayerPrefs.SetInt("CurrentHappiness" + i, allQuestions[id].happiness[i]);
                 PlayerPrefs.SetInt("CurrentBudget" + i, allQuestions[id].budget[i]);
+                PlayerPrefs.SetInt("addOpposition" + i, allQuestions[id].opposition[i]);
+                PlayerPrefs.SetInt("addFunctionality" + i, allQuestions[id].functionality[i]);
             }
 
 

@@ -69,8 +69,8 @@ public class LeakEventManager_Stand_10Dez_V01 : MonoBehaviour
 
     void Start()
     {
-        PlayerPrefs.SetInt("currentOpposition", 0);
-        PlayerPrefs.SetInt("currentFunctionality", 0);
+        //PlayerPrefs.SetInt("currentOpposition", 0);
+        //PlayerPrefs.SetInt("currentFunctionality", 0);
 
         leakPanel.SetActive(false);
         StartCoroutine(LeakChecker());

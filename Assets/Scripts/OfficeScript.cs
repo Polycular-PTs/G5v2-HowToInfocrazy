@@ -15,9 +15,14 @@ public class OfficeScript : MonoBehaviour
     public GameObject statebudgetFill;
     public TextMeshProUGUI statebudgetText;
 
+    public GameObject oppositionFill;
+    public TextMeshProUGUI oppositionText;
+
+    public GameObject functionalityFill;
+    public TextMeshProUGUI functionalityText;
+
     private void Start()
     {
-        
         if (!PlayerPrefs.HasKey("currentScore"))
         {
             PlayerPrefs.SetInt("currentScore", 100);
@@ -88,6 +93,68 @@ public class OfficeScript : MonoBehaviour
                 //Colour
                 //Text mit Defeat oder Win
             }
+
+
+        }
+
+        if (!PlayerPrefs.HasKey("currentOpposition"))
+        {
+            PlayerPrefs.SetInt("currentOpposition", 100);
+            Transform fillTransform = oppositionFill.GetComponent<Transform>();
+            Vector3 scale = fillTransform.localScale;
+            scale.x = 1;
+            fillTransform.localScale = scale;
+        }
+        else
+        {
+            int curState = PlayerPrefs.GetInt("currentOpposition");
+            Debug.Log("currentOpposition:" + curState);
+
+            if (curState < 100f)
+            {
+                Transform fillTransform = oppositionFill.GetComponent<Transform>();
+                Vector3 scale = fillTransform.localScale;
+                scale.x = curState / 100f;
+                fillTransform.localScale = scale;
+            }
+            oppositionText.text = curState.ToString();
+            if (curState <= 0)
+            {
+                Debug.Log("CurState ist Null");
+                SceneManager.LoadScene("Defeat");
+            }
+
+
+        }
+
+        if (!PlayerPrefs.HasKey("currentFunctionality"))
+        {
+            PlayerPrefs.SetInt("currentFunctionality", 100);
+            Transform fillTransform = statebudgetFill.GetComponent<Transform>();
+            Vector3 scale = fillTransform.localScale;
+            scale.x = 1;
+            fillTransform.localScale = scale;
+        }
+        else
+        {
+            int curState = PlayerPrefs.GetInt("currentFunctionality");
+            Debug.Log("currentFunctionality:" + curState);
+
+            if (curState < 100f)
+            {
+                Transform fillTransform = functionalityFill.GetComponent<Transform>();
+                Vector3 scale = fillTransform.localScale;
+                scale.x = curState / 100f;
+                fillTransform.localScale = scale;
+            }
+            functionalityText.text = curState.ToString();
+            if (curState <= 0)
+            {
+                Debug.Log("CurState ist Null");
+                SceneManager.LoadScene("Defeat");
+            }
+
+
         }
     }
 

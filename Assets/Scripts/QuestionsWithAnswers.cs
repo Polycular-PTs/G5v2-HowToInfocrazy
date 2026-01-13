@@ -9,4 +9,6 @@ public class QuestionsWithAnswers : ScriptableObject
     public int[] happiness;
     public string video;
     public int[] budget;
+    public int[] opposition;
+    public int[] functionality;
 }

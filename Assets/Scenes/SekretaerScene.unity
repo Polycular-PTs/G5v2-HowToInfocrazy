@@ -173,6 +173,10 @@ MonoBehaviour:
   happinessText: {fileID: 327064895}
   statebudgetFill: {fileID: 327064898}
   statebudgetText: {fileID: 327064897}
+  oppositionFill: {fileID: 2056169718}
+  oppositionText: {fileID: 2056169717}
+  functionalityFill: {fileID: 2056169716}
+  functionalityText: {fileID: 2056169715}
 --- !u!1001 &327064892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2066,6 +2070,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936712155}
   m_CullTransparentMesh: 1
+--- !u!114 &2056169715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2322215387622313375, guid: be48de609b0544bff982ab46dc123370, type: 3}
+  m_PrefabInstance: {fileID: 327064892}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2056169716 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3441176446642790405, guid: be48de609b0544bff982ab46dc123370, type: 3}
+  m_PrefabInstance: {fileID: 327064892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2056169717 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6678416793976939785, guid: be48de609b0544bff982ab46dc123370, type: 3}
+  m_PrefabInstance: {fileID: 327064892}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2056169718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3251337438937402451, guid: be48de609b0544bff982ab46dc123370, type: 3}
+  m_PrefabInstance: {fileID: 327064892}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2143361749
 GameObject:
   m_ObjectHideFlags: 0

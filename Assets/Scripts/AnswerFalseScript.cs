@@ -26,6 +26,16 @@ public class AnswerFalseScript : MonoBehaviour
             statebudget += addition2;
             PlayerPrefs.SetInt("currentStatebudget", statebudget);
             PlayerPrefs.SetString("firstAnswerBoolean","false");
+
+            int opposition = PlayerPrefs.GetInt("currentOpposition");
+            int addition3 = PlayerPrefs.GetInt("addOpposition" + PlayerPrefs.GetInt("clickedButtonID"));
+            opposition += addition3;
+            PlayerPrefs.SetInt("currentOpposition", opposition);
+
+            int functionality = PlayerPrefs.GetInt("currentFunctionality");
+            int addition4 = PlayerPrefs.GetInt("addFunctionality" + PlayerPrefs.GetInt("clickedButtonID"));
+            functionality += addition4;
+            PlayerPrefs.SetInt("currentFunctionality", functionality);
         }
     }
 

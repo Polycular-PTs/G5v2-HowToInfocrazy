@@ -20,6 +20,12 @@ public class VierAntwortenScript: MonoBehaviour
     public GameObject statebudgetFill;
     public TextMeshProUGUI statebudgetText;
 
+    public GameObject oppositionFill;
+    public TextMeshProUGUI oppositionText;
+
+    public GameObject functionalityFill;
+    public TextMeshProUGUI functionalityText;
+
     // Answer_Right Build Index: 3
     // Answer_Wrong Build Index: 4
 
@@ -105,6 +111,31 @@ public class VierAntwortenScript: MonoBehaviour
         }
 
         statebudgetText.text = stateBudget.ToString();
+
+        int opposition = PlayerPrefs.GetInt("currentOpposition");
+        if (opposition < 100f)
+        {
+            Transform fillTransform = oppositionFill.GetComponent<Transform>();
+            Vector3 scale = fillTransform.localScale;
+            scale.x = opposition / 100f;
+            fillTransform.localScale = scale;
+        }
+
+        oppositionText.text = opposition.ToString();
+
+
+        int functionality = PlayerPrefs.GetInt("currentFunctionality");
+        if (functionality < 100f)
+        {
+            Transform fillTransform = functionalityFill.GetComponent<Transform>();
+            Vector3 scale = fillTransform.localScale;
+            scale.x = functionality / 100f;
+            fillTransform.localScale = scale;
+        }
+
+        functionalityText.text = functionality.ToString();
+
+
 
         //Debug.Log(PlayerPrefs.GetInt("CurrentID"));
         //int id2 = PlayerPrefs.GetInt("CurrentID");
