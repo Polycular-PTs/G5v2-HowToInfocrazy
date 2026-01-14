@@ -31,6 +31,8 @@ public class LeakEventManager : MonoBehaviour
     private int stufe;          // 1-3
     private bool inputReceived;    // ob Spieler reagiert hat
     //private float maxTime = 10f;   // 10 Sekunden Reaktionszeit
+    float waitTimeMin=4f;
+    float waitTimeMax = 5f;
 
     private bool leakActive;
     public int id = 0;
@@ -81,7 +83,7 @@ public class LeakEventManager : MonoBehaviour
         while (true)
         {
             // Warte zufällige Zeit bevor geprüft wird
-            float wait = Random.Range(4f, 5f);
+            float wait = Random.Range(waitTimeMin, waitTimeMax);
             yield return new WaitForSeconds(wait);
 
 
@@ -115,8 +117,8 @@ public class LeakEventManager : MonoBehaviour
         // Generate new leak stufe
         stufe = Random.Range(1, 4);
         leakPanel.SetActive(true);
-        int[] timeTable = { timeST1, timeST2, timeST3 };
-        float timeLeft = timeTable[stufe - 1];
+        int[] timeTable = { timeST1, timeST2, timeST3 }; //zuweisen der Zeit, die man bei den unterschiedlichen Stufen hat
+        float timeLeft = timeTable[stufe - 1]; //je nachdem welche Stufe gerade ist, wird sie (-1, damit es mit 123 und 012 zusammenpasst) rausgesucht und der timeLeft variable zugewiesen 
         stufeText.text = "Stufe: " + stufe;
 
 
@@ -128,7 +130,7 @@ public class LeakEventManager : MonoBehaviour
                 if (!PlayerPrefs.HasKey("CurrentLeakID" + stufe))
                 {
                     
-                    PlayerPrefs.SetInt("CurrentLeakID" + stufe, 0);
+                    PlayerPrefs.SetInt("CurrentLeakID" + stufe, 0); //besetzen des CurrentLeakID der Stufe mit dem jeweiligen Fragenwert
                     id = PlayerPrefs.GetInt("CurrentLeakID" + stufe);
                 }
                 else
@@ -138,9 +140,9 @@ public class LeakEventManager : MonoBehaviour
                 }
 
                 LeakData[] currentLeakData = allLeaks;
-                if (stufe == 1)
+                if (stufe == 1) //bei Stufe 1 wird dem currentLeakData die richtige Stufe zugewiesen und unten mit der jeweiligen ID den aktuellen Leak abgefragt.
                 {
-                    currentLeakData = allLeaksStufe1;
+                    currentLeakData = allLeaksStufe1; //alle Leaks der Stufe 1 werden hier dem currentLeakData zugewiesen
                     Debug.Log("AllLeakStufe1");
                 }
                 if (stufe == 2)
@@ -154,7 +156,7 @@ public class LeakEventManager : MonoBehaviour
                     Debug.Log("AllLeakStufe3");
                 }
 
-                if (allLeaks.Length > id)
+                if (allLeaks.Length > id) //besetzen des Leakfensters mit Werten, nur wenn die ID von der bestimmten Stufe unter der Länge von 1 ist, weil wir nicht meht als 1 Scriptable Object haben. AllLeaks hat als Inhalt die aktuelle Menge an Leaks zur bestimmten Stufe.
                 {
                     titleText.text = currentLeakData[id].inhalt;
                     PlayerPrefs.SetInt("rightAnswerID", currentLeakData[id].idRightAnswer);
@@ -168,13 +170,13 @@ public class LeakEventManager : MonoBehaviour
 
         while (timeLeft > 0 && !inputReceived)
         {
-            timeLeft -= Time.deltaTime;
+            timeLeft -= Time.deltaTime; //die bestimmte Zeit (20s) wird minus der aktuellen Zeit/Frames gerechnet, nach 60 Frames -> 1s weniger
             countdownText.text = "Zeit: " + timeLeft.ToString("0.0") + "s";
-            yield return null;
+            yield return null; //-> Pause bis zum nächsten Frame/1 Durchlauf pro Frame
         }
 
         // Timeout oder Spieler hat reagiert
-        if (!inputReceived)
+        if (!inputReceived) //wenn kein Input kommt/Zeit abläuft
         {
             Debug.Log("Timeout → stärkster Negativeffekt!");
             ApplyEffects("Timeout");
@@ -195,7 +197,7 @@ public class LeakEventManager : MonoBehaviour
 
             int curOpposition = PlayerPrefs.GetInt("currentOpposition");
             int addition3 = oppositionValueOfThisLeak;
-            curOpposition += addition3;
+            curOpposition -= addition3;
             PlayerPrefs.SetInt("currentOpposition", curOpposition);
             Debug.Log("currentOppositionValue" + curOpposition);
 
@@ -238,7 +240,7 @@ public class LeakEventManager : MonoBehaviour
             }
 
 
-            if (curOpposition < 100f)
+            if (curOpposition < 100f) //bei mehr wie 100 darf sich die Grafik nicht verändern
             {
                 Transform fillTransform = oppositionFill.GetComponent<Transform>();
                 Vector3 scale = fillTransform.localScale;
@@ -259,9 +261,9 @@ public class LeakEventManager : MonoBehaviour
             functionalityText.text = curFunctionality.ToString();
         }
 
-        leakPanel.SetActive(false);
-        //id += 1;
-        PlayerPrefs.SetInt("CurrentLeakID"+stufe, id);
+        //leakPanel.SetActive(false);
+        //id += 1; 
+        //PlayerPrefs.SetInt("CurrentLeakID"+stufe, id);
     }
 
     // Wird von Buttons aufgerufen
@@ -345,7 +347,7 @@ public class LeakEventManager : MonoBehaviour
         }
 
         leakPanel.SetActive(false);
-        id += 1;
+        id += 1; //Steigerung des ID Wertes, damit andere Fragen kommen
         PlayerPrefs.SetInt("CurrentLeakID" + stufe, id);
     }
 
