@@ -6,11 +6,11 @@ using System.Runtime.CompilerServices;
 
 public class TutorialManager : MonoBehaviour
 {
-    [SerializeField] private float timeToAutoDisableAButton = 5f;
+    [SerializeField] private float timeToAutoDisableAButton = 5f;   //After how much time the Butten changes to closed automatically
 
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject circle;
-    [SerializeField] private float offsetOfPlayer;
+    [SerializeField] private GameObject player;     //The figure the user can intercat with and controll
+    [SerializeField] private GameObject placeOfSceneChange;     //The GameObject that is at the position the plyer has to be to change the TutorialScene
+    [SerializeField] private float offsetOfPlayer;      //How far the player can be away of the position 
 
     [Header("User Inputs")]
     [SerializeField] private KeyCode keyForNextScene = KeyCode.E;
@@ -59,8 +59,8 @@ public class TutorialManager : MonoBehaviour
         float xPos = player.transform.position.x;
         float yPos = player.transform.position.y;
 
-        float xPosCirc = circle.transform.position.x;
-        float yPosCirc = circle.transform.position.y;
+        float xPosCirc = placeOfSceneChange.transform.position.x;
+        float yPosCirc = placeOfSceneChange.transform.position.y;
 
         if (xPos < xPosCirc +offsetOfPlayer && xPos > xPosCirc -offsetOfPlayer && yPos < yPosCirc +offsetOfPlayer && yPos > yPosCirc -offsetOfPlayer)
         {
