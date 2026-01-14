@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
+public enum Stufe { stufe1, stufe2, stufe3}
+
 public class LeakEventManager : MonoBehaviour
 {
     [Header("UI Office")]
@@ -29,6 +31,9 @@ public class LeakEventManager : MonoBehaviour
     public TextMeshProUGUI[] answerButtonsText;
 
     private int stufe;          // 1-3
+    //Generate Stufe:
+    private int stufeGeneratingMinimumInclusive = 1;
+    private int stufeGeneratingMaximumExclusive = 4;
     private bool inputReceived;    // ob Spieler reagiert hat
     //private float maxTime = 10f;   // 10 Sekunden Reaktionszeit
     float waitTimeMin=4f;
@@ -47,35 +52,49 @@ public class LeakEventManager : MonoBehaviour
     public int oppositionValueOfThisLeak;
     public int functionalityValueOfThisLeak;
 
+    public Color colorBG_ST;
     //stufe1
-    public int timeST1 = 30;
-    public Color colorBG_ST1;
-    public int attentionPerSecondST1 = 10;
-    public int minusWhenTimeIsUpST1 = 50; //minus
+    //public int timeST1 = 30;
+    //public int attentionPerSecondST1 = 10;
+    //public int minusWhenTimeIsUpST1 = 50; //minus
+    //private StufeVorlage stufe1;
+    private StufeVorlage[] stufen = new StufeVorlage[3];
 
     //stufe2
-    public int timeST2 = 20;
-    public Color colorBG_ST2;
-    public int attentionPerSecondST2 = 100;
-    public int minusWhenTimeIsUpST2 = 80;
+    //public int timeST2 = 20;
+    //public int attentionPerSecondST2 = 100;
+    //public int minusWhenTimeIsUpST2 = 80;
+    //private StufeVorlage stufe2;
 
     //stufe3
-    public int timeST3 = 10;
-    public Color colorBG_ST3;
-    public int attentionPerSecondST3 = 1000;
-    public int minusWhenTimeIsUpST3 = 100;
+    //public int timeST3 = 10;
+    //public int attentionPerSecondST3 = 1000;
+    //public int minusWhenTimeIsUpST3 = 100;
+    //private StufeVorlage stufe3;
 
 
     void Start()
     {
-       // PlayerPrefs.SetInt("currentOpposition", 100);
+        for(int i=0; i<stufen.Length; i++)
+        {
+            stufen[i] = new StufeVorlage();
+        }
+        stufen[(int)Stufe.stufe1].InitiateStufeValues(30, 10, 50, 50);
+        stufen[(int)Stufe.stufe2].InitiateStufeValues(20, 100, 80, 80);
+        stufen[(int)Stufe.stufe3].InitiateStufeValues(10, 1000, 100, 100);
+
+        // PlayerPrefs.SetInt("currentOpposition", 100);
         //PlayerPrefs.SetInt("currentFunctionality", 100);
 
         leakPanel.SetActive(false);
         StartCoroutine(LeakChecker());
-        PlayerPrefs.DeleteKey("CurrentLeakID1");
-        PlayerPrefs.DeleteKey("CurrentLeakID2");
-        PlayerPrefs.DeleteKey("CurrentLeakID3");
+        for(int a = 0; a<3; a++)
+        {
+            PlayerPrefs.DeleteKey("CurrentLeakID"+a+1);
+        }
+        //PlayerPrefs.DeleteKey("CurrentLeakID1");
+        //PlayerPrefs.DeleteKey("CurrentLeakID2");
+        //PlayerPrefs.DeleteKey("CurrentLeakID3");
     }
 
     IEnumerator LeakChecker()
@@ -85,7 +104,6 @@ public class LeakEventManager : MonoBehaviour
             // Warte zufällige Zeit bevor geprüft wird
             float wait = Random.Range(waitTimeMin, waitTimeMax);
             yield return new WaitForSeconds(wait);
-
 
             // Wahrscheinlichkeit, dass jetzt ein Leak passiert
             
@@ -110,14 +128,13 @@ public class LeakEventManager : MonoBehaviour
 
     private IEnumerator LeakEventRoutine()
     {
-        
         // Reset
         inputReceived = false;
 
         // Generate new leak stufe
-        stufe = Random.Range(1, 4);
+        stufe = Random.Range(stufeGeneratingMinimumInclusive, stufeGeneratingMaximumExclusive);
         leakPanel.SetActive(true);
-        int[] timeTable = { timeST1, timeST2, timeST3 }; //zuweisen der Zeit, die man bei den unterschiedlichen Stufen hat
+        int[] timeTable = { stufen[(int)Stufe.stufe1].timeST, stufen[(int)Stufe.stufe2].timeST, stufen[(int)Stufe.stufe3].timeST }; //zuweisen der Zeit, die man bei den unterschiedlichen Stufen hat
         float timeLeft = timeTable[stufe - 1]; //je nachdem welche Stufe gerade ist, wird sie (-1, damit es mit 123 und 012 zusammenpasst) rausgesucht und der timeLeft variable zugewiesen 
         stufeText.text = "Stufe: " + stufe;
 
@@ -362,24 +379,24 @@ public class LeakEventManager : MonoBehaviour
             // Schlimmster Schaden
             if (stufe == 1)
             {
-                happinessValueOfThisLeak = -minusWhenTimeIsUpST1;
-                budgetValueOfThisLeak = -minusWhenTimeIsUpST1;
-                oppositionValueOfThisLeak = 50;
-                functionalityValueOfThisLeak = -minusWhenTimeIsUpST1;
+                happinessValueOfThisLeak = -stufen[(int)Stufe.stufe1].minusWhenTimeIsUpST;
+                budgetValueOfThisLeak = -stufen[(int)Stufe.stufe1].minusWhenTimeIsUpST;
+                oppositionValueOfThisLeak = stufen[(int)Stufe.stufe1].oppositionWhenTimeIsUpST;
+                functionalityValueOfThisLeak = -stufen[(int)Stufe.stufe1].minusWhenTimeIsUpST;
             }
             if (stufe == 2)
             {
-                happinessValueOfThisLeak = -minusWhenTimeIsUpST2;
-                budgetValueOfThisLeak = -minusWhenTimeIsUpST2;
-                oppositionValueOfThisLeak = 80;
-                functionalityValueOfThisLeak = -minusWhenTimeIsUpST2;
+                happinessValueOfThisLeak = -stufen[(int)Stufe.stufe2].minusWhenTimeIsUpST;
+                budgetValueOfThisLeak = -stufen[(int)Stufe.stufe2].minusWhenTimeIsUpST;
+                oppositionValueOfThisLeak = stufen[(int)Stufe.stufe2].oppositionWhenTimeIsUpST;
+                functionalityValueOfThisLeak = -stufen[(int)Stufe.stufe2].minusWhenTimeIsUpST;
             }
             if (stufe == 3)
             {
-                happinessValueOfThisLeak = -minusWhenTimeIsUpST3;
-                budgetValueOfThisLeak = -minusWhenTimeIsUpST3;
-                oppositionValueOfThisLeak = 100;
-                functionalityValueOfThisLeak = -minusWhenTimeIsUpST3;
+                happinessValueOfThisLeak = -stufen[(int)Stufe.stufe3].minusWhenTimeIsUpST;
+                budgetValueOfThisLeak = -stufen[(int)Stufe.stufe3].minusWhenTimeIsUpST;
+                oppositionValueOfThisLeak = stufen[(int)Stufe.stufe3].oppositionWhenTimeIsUpST;
+                functionalityValueOfThisLeak = -stufen[(int)Stufe.stufe3].minusWhenTimeIsUpST;
             }
 
             int curScore = PlayerPrefs.GetInt("currentScore");

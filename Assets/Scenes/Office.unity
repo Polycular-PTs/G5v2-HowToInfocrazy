@@ -781,18 +781,7 @@ MonoBehaviour:
   budgetValueOfThisLeak: 0
   oppositionValueOfThisLeak: 0
   functionalityValueOfThisLeak: 0
-  timeST1: 30
-  colorBG_ST1: {r: 0, g: 0, b: 0, a: 0}
-  attentionPerSecondST1: 10
-  minusWhenTimeIsUpST1: 50
-  timeST2: 20
-  colorBG_ST2: {r: 0, g: 0, b: 0, a: 0}
-  attentionPerSecondST2: 100
-  minusWhenTimeIsUpST2: 80
-  timeST3: 10
-  colorBG_ST3: {r: 0, g: 0, b: 0, a: 0}
-  attentionPerSecondST3: 1000
-  minusWhenTimeIsUpST3: 100
+  colorBG_ST: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2753,7 +2742,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1495490881
 Transform:
   m_ObjectHideFlags: 0
