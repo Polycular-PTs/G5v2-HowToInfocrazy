@@ -19,6 +19,7 @@ public class TutorialManager : MonoBehaviour
     private TextMeshProUGUI textInButtonToChange;
     private TextMeshProUGUI textMeshToDisable;
 
+    [Header("TMP Pro Objects")]
     [SerializeField] TextMeshProUGUI textGeneralSceneInfo;
     
     [Header("Progress Bar Settings")]
@@ -27,18 +28,11 @@ public class TutorialManager : MonoBehaviour
     private int tutorialPoints;
 
     [Header("Tutorial Scenes")]
-    [SerializeField] private GameObject currentSceneImage;
-    public Sprite[] imagesOfScenes;
-
-    public GameObject[] tutorialScene;
+    [SerializeField] private UnityEngine.UI.Image currentSceneImage;
+    
+    [SerializeField] private GameObject[] tutorialScenes;
 
     [SerializeField] private string[] sceneSpesificTextArray = new string[4];
-
-    [Header("Corresponding Buttons for each Scene")]
-    [SerializeField] private GameObject[] buttonsInScene1;
-    [SerializeField] private GameObject[] buttonsInScene2;
-    [SerializeField] private GameObject[] buttonsInScene3;
-    [SerializeField] private GameObject[] buttonsInScene4;
 
     [Header("Butten that starts the Game")]
     [SerializeField] private GameObject buttonForStartingTheGame;
@@ -69,7 +63,7 @@ public class TutorialManager : MonoBehaviour
             Debug.Log("Player is in Box" + "Click E to next scene");
             if (Input.GetKeyDown(keyForNextScene))
             {
-                if (currentSceneNumber < imagesOfScenes.Length)
+                if (currentSceneNumber < tutorialScenes.Length)
                 {
                     TransitionForwardInTutorialScene(currentSceneNumber);
                 }
@@ -89,13 +83,11 @@ public class TutorialManager : MonoBehaviour
         }
 
         UpdateTutorialProgress();
-        
-        //Debug.Log("x= " + xPos + "y= " + yPos);
     }
 
     public void ShowInGeneralSceneInfo(string sceneInfoText)
     {
-        string generalText = "Current Scene: " + currentSceneNumber + " von "+ imagesOfScenes.Length.ToString() + "\n" + sceneInfoText;
+        string generalText = "Current Scene: " + currentSceneNumber + " von "+ tutorialScenes.Length.ToString() + "\n" + sceneInfoText;
         string sceneSpesificText = sceneSpesificTextArray[currentSceneNumber-1];
         
         textGeneralSceneInfo.text = generalText + "\n" + "\n" + sceneSpesificText;
@@ -104,7 +96,6 @@ public class TutorialManager : MonoBehaviour
     private void TransitionBackwardInTutorialScnen(int sceneNumber)
     {
         Debug.Log("Transition to the Scene before");
-        currentSceneImage.GetComponent<UnityEngine.UI.Image>().sprite = imagesOfScenes[sceneNumber-2];
         currentSceneNumber -= 1;
 
         ObjectsForCorresponingScene();
@@ -112,7 +103,6 @@ public class TutorialManager : MonoBehaviour
     private void TransitionForwardInTutorialScene(int sceneNumber)
     {
         Debug.Log("Transition to next Scene");
-        currentSceneImage.GetComponent<UnityEngine.UI.Image>().sprite = imagesOfScenes[sceneNumber];
         currentSceneNumber += 1;
 
         ObjectsForCorresponingScene();
@@ -180,25 +170,18 @@ public class TutorialManager : MonoBehaviour
 
     private void ObjectsForCorresponingScene()
     {
-        foreach (GameObject scenes in tutorialScene)
+        foreach (GameObject scenes in tutorialScenes)
         {
             if (scenes != null)
             {
                 scenes.SetActive(false);
             }      
         }
-
-        if (tutorialScene[currentSceneNumber - 1] != null)
+        if (tutorialScenes[currentSceneNumber - 1] != null)
         {
-            GameObject currentScene = tutorialScene[currentSceneNumber - 1];
-            currentScene.SetActive(true);
-                    
+            tutorialScenes[currentSceneNumber - 1].SetActive(true);                 
         }
 
-        if (tutorialScene[currentSceneNumber - 1] == null)
-        {
-            ShowInGeneralSceneInfo("No hints in this scene");
-            Debug.Log("No hints in this scene");
-        }
+        currentSceneImage.sprite = tutorialScenes[currentSceneNumber - 1].GetComponentInChildren<UnityEngine.UI.Image>().sprite;
     }
 }
