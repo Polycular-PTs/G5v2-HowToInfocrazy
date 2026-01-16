@@ -30,6 +30,8 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject currentSceneImage;
     public Sprite[] imagesOfScenes;
 
+    public GameObject[] tutorialScene;
+
     [SerializeField] private string[] sceneSpesificTextArray = new string[4];
 
     [Header("Corresponding Buttons for each Scene")]
@@ -105,7 +107,7 @@ public class TutorialManager : MonoBehaviour
         currentSceneImage.GetComponent<UnityEngine.UI.Image>().sprite = imagesOfScenes[sceneNumber-2];
         currentSceneNumber -= 1;
 
-        UpdateButtonsForCorresponingScene();
+        ObjectsForCorresponingScene();
     }
     private void TransitionForwardInTutorialScene(int sceneNumber)
     {
@@ -113,7 +115,7 @@ public class TutorialManager : MonoBehaviour
         currentSceneImage.GetComponent<UnityEngine.UI.Image>().sprite = imagesOfScenes[sceneNumber];
         currentSceneNumber += 1;
 
-        UpdateButtonsForCorresponingScene();
+        ObjectsForCorresponingScene();
     }
 
     public void ShowInfo(TextMeshProUGUI textMeshInfo, TextMeshProUGUI textInButton, float extraDelayForLongText, bool alreadyEnabled)
@@ -158,7 +160,7 @@ public class TutorialManager : MonoBehaviour
 
     private void UpdateTutorialProgress()
     {
-        string progressText = " ";
+        string progressText = "";
         float sliderValue = 0f;
         if(tutorialPoints < totalPointsForFullSlider)
         {
@@ -176,89 +178,27 @@ public class TutorialManager : MonoBehaviour
         tutorialProgressSlider.GetComponentInChildren<TextMeshProUGUI>().text = progressText;
     }
 
-    private void UpdateButtonsForCorresponingScene()
+    private void ObjectsForCorresponingScene()
     {
-        switch (currentSceneNumber)
+        foreach (GameObject scenes in tutorialScene)
         {
-            case 1:
-                Debug.Log("Switch to Buttons of Scene 1");
-                foreach (GameObject obj in buttonsInScene1)
-                {
-                    obj.SetActive(true);
-                }
-                foreach (GameObject obj in buttonsInScene2)
-                {
-                    obj.SetActive(false);
-                }
-                foreach (GameObject obj in buttonsInScene3)
-                {
-                    obj.SetActive(false);
-                }
-                foreach (GameObject obj in buttonsInScene4)
-                {
-                    obj.SetActive(false);
-                }
-                break;
+            if (scenes != null)
+            {
+                scenes.SetActive(false);
+            }      
+        }
 
-            case 2:
-                Debug.Log("Switch to Buttons of Scene 2");
-                foreach (GameObject obj in buttonsInScene2)
-                {
-                    obj.SetActive(true);
-                }
-                foreach (GameObject obj in buttonsInScene1)
-                {
-                    obj.SetActive(false);
-                }
-                foreach (GameObject obj in buttonsInScene3)
-                {
-                    obj.SetActive(false);
-                }
-                foreach (GameObject obj in buttonsInScene4)
-                {
-                    obj.SetActive(false);
-                }
-                break;
+        if (tutorialScene[currentSceneNumber - 1] != null)
+        {
+            GameObject currentScene = tutorialScene[currentSceneNumber - 1];
+            currentScene.SetActive(true);
+                    
+        }
 
-            case 3:
-                Debug.Log("Switch to Buttons of Scene 3");
-                foreach (GameObject obj in buttonsInScene3)
-                {
-                    obj.SetActive(true);
-                }
-                foreach (GameObject obj in buttonsInScene1)
-                {
-                    obj.SetActive(false);
-                }
-                foreach (GameObject obj in buttonsInScene2)
-                {
-                    obj.SetActive(false);
-                }
-                foreach (GameObject obj in buttonsInScene4)
-                {
-                    obj.SetActive(false);
-                }
-                break;
-
-            case 4:
-                Debug.Log("Switch to Buttons of Scene 4");
-                foreach (GameObject obj in buttonsInScene4)
-                {
-                    obj.SetActive(true);
-                }
-                foreach (GameObject obj in buttonsInScene1)
-                {
-                    obj.SetActive(false);
-                }
-                foreach (GameObject obj in buttonsInScene2)
-                {
-                    obj.SetActive(false);
-                }
-                foreach (GameObject obj in buttonsInScene3)
-                {
-                    obj.SetActive(false);
-                }
-                break;
+        if (tutorialScene[currentSceneNumber - 1] == null)
+        {
+            ShowInGeneralSceneInfo("No hints in this scene");
+            Debug.Log("No hints in this scene");
         }
     }
 }
