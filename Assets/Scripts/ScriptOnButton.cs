@@ -6,21 +6,22 @@ public class ScriptOnButton : MonoBehaviour
     [Header("Reference to the: TutorialButtonManager")]
     [SerializeField] private TutorialManager tutorialManager;
 
-    [Header("Text field1: TextMeshPro inside the button")]
+    [Header("Text field inside the button")]
     [SerializeField] private TextMeshProUGUI textInButton;
-    [Header("Text field2: TextMeshPro that is shown when clicked")]
-    [SerializeField] private TextMeshProUGUI correspondingTextMeshProUGUI;
 
-    [Header("Only needed if you want to follow an other objects movement")]
-    [SerializeField] private bool isButtonAttachedToOtherObject = false;
-    [SerializeField] private GameObject attachmentObject;
+    [Header("TextMeshPro that is shown when clicked")]
+    [SerializeField] private TextMeshProUGUI infoText;
+
+    [Header("Optional attachment")]
+    [SerializeField] private bool attachToObject;
+    [SerializeField] private Transform attachmentTarget;
     [SerializeField] private Vector3 attachmentOffset;
 
-    [Header("Time the text takes longer to auto disable")]
-    [SerializeField] private float extraDelayBeforeDisable;
+    [Header("Auto Hide Delay")]
+    [SerializeField] private float autoHideDelay = 5f;
 
-    [Header("The butten has already been used?")]
-    public bool alreadyEnabled;
+    public bool alreadyDiscovered;
+    private bool showing;
 
     private void Start()
     {
@@ -28,8 +29,8 @@ public class ScriptOnButton : MonoBehaviour
     }
     private void StartHandler()
     {
-        correspondingTextMeshProUGUI.enabled = false;
-        alreadyEnabled = false;
+        infoText.enabled = false;
+        alreadyDiscovered = false;
 
         if (tutorialManager == null)
         {
@@ -38,18 +39,18 @@ public class ScriptOnButton : MonoBehaviour
     }
     public void GiveInfoToTutorialManager()
     {
-            tutorialManager.ShowInfo(correspondingTextMeshProUGUI, textInButton, extraDelayBeforeDisable, alreadyEnabled);      
+            tutorialManager.ShowInfo(infoText, textInButton, autoHideDelay, alreadyDiscovered);      
     }
     private void Update()
     {
-        if (isButtonAttachedToOtherObject)
+        if (attachToObject)
         {
             AttachButtonToObject();
         }
     }
     private void AttachButtonToObject()
     {
-        GetComponent<Transform>().position = attachmentObject.GetComponentInParent<Transform>().position + attachmentOffset;
+        GetComponent<Transform>().position = attachmentTarget.position + attachmentOffset;
     }
     private void FindGameObjectByName(string nameOfTheObject)
     {

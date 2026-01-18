@@ -119,9 +119,9 @@ public class TutorialManager : MonoBehaviour
             {
                 tutorialPoints += 1;
             }
-            textMeshInfo.GetComponentInParent<ScriptOnButton>().alreadyEnabled = true;
+            textMeshInfo.GetComponentInParent<ScriptOnButton>().alreadyDiscovered = true;
 
-            Debug.Log("already enabled: " + textMeshInfo.GetComponentInParent<ScriptOnButton>().alreadyEnabled);
+            Debug.Log("already enabled: " + textMeshInfo.GetComponentInParent<ScriptOnButton>().alreadyDiscovered);
             Debug.Log("TutorialPoints: " + tutorialPoints);
             Debug.Log("Text Object was enabled");
         }

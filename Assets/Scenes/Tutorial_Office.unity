@@ -1690,14 +1690,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00543cd418581349b81195205c8987c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialManager: {fileID: 0}
+  tutorialManager: {fileID: 250050919}
   textInButton: {fileID: 1724338274}
-  correspondingTextMeshProUGUI: {fileID: 695947274}
-  isButtonAttachedToOtherObject: 0
-  attachmentObject: {fileID: 1447678769}
+  infoText: {fileID: 695947274}
+  attachToObject: 0
+  attachmentTarget: {fileID: 695947273}
   attachmentOffset: {x: 0, y: -1.5, z: 0}
-  extraDelayBeforeDisable: 0
-  alreadyEnabled: 0
+  autoHideDelay: 5
+  alreadyDiscovered: 0
 --- !u!114 &798056927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1958,12 +1958,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialManager: {fileID: 250050919}
   textInButton: {fileID: 1473534975}
-  correspondingTextMeshProUGUI: {fileID: 338425064}
-  isButtonAttachedToOtherObject: 0
-  attachmentObject: {fileID: 1447678769}
+  infoText: {fileID: 338425064}
+  attachToObject: 0
+  attachmentTarget: {fileID: 0}
   attachmentOffset: {x: 0, y: -1.5, z: 0}
-  extraDelayBeforeDisable: 0
-  alreadyEnabled: 0
+  autoHideDelay: 5
+  alreadyDiscovered: 0
 --- !u!114 &1051940469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2516,7 +2516,7 @@ GameObject:
   - component: {fileID: 1473534976}
   - component: {fileID: 1473534975}
   m_Layer: 5
-  m_Name: info_text_in-Button
+  m_Name: text_in-Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2873,7 +2873,7 @@ GameObject:
   - component: {fileID: 1724338275}
   - component: {fileID: 1724338274}
   m_Layer: 5
-  m_Name: info_text_in-Button
+  m_Name: text_in-Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3201,6 +3201,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061857308}
   m_CullTransparentMesh: 1
+--- !u!114 &2075351473 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4845636562364696738, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
+  m_PrefabInstance: {fileID: 4523642602397462069}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4523642602397462069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3209,6 +3220,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 711357102}
     m_Modifications:
+    - target: {fileID: 394116006231022008, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
+      propertyPath: m_Name
+      value: text_in-Button
+      objectReference: {fileID: 0}
     - target: {fileID: 748487253632099982, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3302,6 +3317,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
+      propertyPath: infoText
+      value: 
+      objectReference: {fileID: 2075351473}
+    - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
+      propertyPath: attachToObject
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
       propertyPath: tutorialManager
       value: 
       objectReference: {fileID: 0}
@@ -3309,6 +3332,10 @@ PrefabInstance:
       propertyPath: attachmentObject
       value: 
       objectReference: {fileID: 1447678769}
+    - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
+      propertyPath: attachmentTarget
+      value: 
+      objectReference: {fileID: 1447678773}
     - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
       propertyPath: isButtonAttachedToOtherObject
       value: 1
