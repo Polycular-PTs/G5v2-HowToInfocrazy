@@ -13,31 +13,31 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private float offsetOfPlayer;      //How far the player can be away of the position 
 
     [Header("User Inputs")]
-    [SerializeField] private KeyCode keyForNextScene = KeyCode.E;
-    [SerializeField] private KeyCode keyForOneSceneBack = KeyCode.Q;
-
-    private TextMeshProUGUI textInButtonToChange;
-    private TextMeshProUGUI textMeshToDisable;
+    [SerializeField] private KeyCode keyForNextScene = KeyCode.E;       //The key that has to be pressed to get to the next tutorialScene
+    [SerializeField] private KeyCode keyForOneSceneBack = KeyCode.Q;        //The key that has to be pressed to get to the tutorialScene before the current
 
     [Header("TMP Pro Objects")]
-    [SerializeField] TextMeshProUGUI textGeneralSceneInfo;
+    [SerializeField] TextMeshProUGUI textGeneralSceneInfo;      //The TMPro object in the scene that should have the info for the current scene in it
     
     [Header("Progress Bar Settings")]
-    [SerializeField] private GameObject tutorialProgressSlider;
-    [SerializeField] private float totalPointsForFullSlider;
-    private int tutorialPoints;
+    [SerializeField] private GameObject tutorialProgressSlider;     //The UI slider that shows how many hints of the total amount the user has already found
+    [SerializeField] private float totalPointsForFullSlider;        //How many hints the user has to find to be able to start the game and have a full slider
+    private int tutorialPoints;     //How many hints the user has found
 
     [Header("Tutorial Scenes")]
-    [SerializeField] private UnityEngine.UI.Image currentSceneImage;
+    [SerializeField] private UnityEngine.UI.Image currentSceneImage;        //The image component in the scene that gets the image for the current scene
     
-    [SerializeField] private GameObject[] tutorialScenes;
+    [SerializeField] private GameObject[] tutorialScenes;       //The different images that are needed for the scenes
 
-    [SerializeField] private string[] sceneSpesificTextArray = new string[4];
+    [SerializeField] private string[] sceneSpesificTextArray = new string[4];       //The text that explains the user something general about the scene he is in
 
     [Header("Butten that starts the Game")]
-    [SerializeField] private GameObject buttonForStartingTheGame;
+    [SerializeField] private GameObject buttonForStartingTheGame;       //The button the user has to press to get to the game
 
-    private int currentSceneNumber = 0;
+    private int currentSceneNumber = 0;     //The tutorial scene the user is currently in (first scene = 1)
+
+    private TextMeshProUGUI textInButtonToChange;       //The text in every clickable hint-button that changes between: two states ("Show Info" and "Hide Info") when clicked
+    private TextMeshProUGUI textMeshToDisable;      //The TMPro of every clickable hint-button that contains the info of the button that is shown when clicked
 
     private void Start()
     {
