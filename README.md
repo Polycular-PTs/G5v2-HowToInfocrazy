@@ -10,14 +10,14 @@ In unserem Spiel ist der Spieler der fiktive Herrscher über ein Land. Im Spielv
 B:
 1)	Interaktion mit dem Projekt:
 •	Startscene: 2 Optionen: 1. Starte das Spiel und 2. Starte das Tutorial
-o	Spielstart: Du kommst in die Office Szene. Hier kannst du dich frei in deinem Büro als Präsident bewegen. Rechts oben siehst du deine Regierungswerte: Grün ist der Wert der Bevölkerungszufriedenheit, Braun ist dein Staatsbudget, Lila ist der Wert der Opposition (also wie sehr die Bevölkerung zur Opposition tendiert) und Blau der Wert, wie gut deine Antworten funktionieren (Funktionalität). Bei dem Klick auf “Start” kommt dein/e Sekretär/in mit einem Problem in dein Büro. Mit einem Klick auf „Answer” kommen deine 4 Berater mit jeweils einem Lösungsvorschlag hinein. Aber: Die Lösungsvorschläge unterscheiden sich in dem, wie sehr sie die Bevölkerung zufriedenstellen, wie viel Geld sie kosten, wie sehr die Opposition dadurch an Aufschwung und Abschwung erhält und wie gut dieser Vorschlag funktioniert. Du musst dich als Präsident für einen dieser Vorschläge entscheiden (durch Klicken auf die Antwort). Danach siehst du, ob du dich richtig oder falsch entschieden hast. Je nachdem verändern sich deine Werte rechts oben und bei der richtigen Antwort bekommst du ein Video gezeigt, warum es die richtige Antwort ist bzw. warum diese Antwort als infokratisch gilt, der Sinn: Es soll gezeigt werden, wie sehr wir bereits in der Infokratie leben. Beim Wählen der falschen Antwort kommst du so oft zur gleichen Frage, bis du die richtige Antwort wählst. Die Werte verändern sich aber nur bei der ersten Antwort. Nachdem du die Richtige gefunden hast, kommst du wieder in dein Büro zurück. Während du im Büro bist, kann es passieren, dass Informationen über dich geleakt werden. Da poppt plötzlich ein Fenster auf und je nach Stufe (1-3) ist die Gewichtung des Leaks unterschiedlich stark, also es hat unterschiedlich starke Auswirkungen und du hast unterschiedlich lange Zeit. Du musst dich schnell für die richtige Antwort entscheiden, je nachdem, was du wählst, hat es unterschiedliche Auswirkungen.
-o	Tutorial: Dir wird in 4 Abschnitten erklärt, wie das Spiel funktioniert, was die Werte bedeuten, und es werden Tipps zum Spiel gegeben. Im Office werden beispielsweise die Steuerung des Charakters, die verschiedenen Werte und das Ziel erläutert. Sobald man genügend Informationen erhalten hat, kann man das Spiel starten.
+    o	Spielstart: Du kommst in die Office Szene. Hier kannst du dich frei in deinem Büro als Präsident bewegen. Rechts oben siehst du deine Regierungswerte: Grün ist der Wert der Bevölkerungszufriedenheit, Braun ist dein Staatsbudget, Lila ist der Wert der Opposition (also wie sehr die Bevölkerung zur Opposition tendiert) und Blau der Wert, wie gut deine Antworten funktionieren (Funktionalität). Bei dem Klick auf “Start” kommt dein/e Sekretär/in mit einem Problem in dein Büro. Mit einem Klick auf „Answer” kommen deine 4 Berater mit jeweils einem Lösungsvorschlag hinein. Aber: Die Lösungsvorschläge unterscheiden sich in dem, wie sehr sie die Bevölkerung zufriedenstellen, wie viel Geld sie kosten, wie sehr die Opposition dadurch an Aufschwung und Abschwung erhält und wie gut dieser Vorschlag funktioniert. Du musst dich als Präsident für einen dieser Vorschläge entscheiden (durch Klicken auf die Antwort). Danach siehst du, ob du dich richtig oder falsch entschieden hast. Je nachdem verändern sich deine Werte rechts oben und bei der richtigen Antwort bekommst du ein Video gezeigt, warum es die richtige Antwort ist bzw. warum diese Antwort als infokratisch gilt, der Sinn: Es soll gezeigt werden, wie sehr wir bereits in der Infokratie leben. Beim Wählen der falschen Antwort kommst du so oft zur gleichen Frage, bis du die richtige Antwort wählst. Die Werte verändern sich aber nur bei der ersten Antwort. Nachdem du die Richtige gefunden hast, kommst du wieder in dein Büro zurück. Während du im Büro bist, kann es passieren, dass Informationen über dich geleakt werden. Da poppt plötzlich ein Fenster auf und je nach Stufe (1-3) ist die Gewichtung des Leaks unterschiedlich stark, also es hat unterschiedlich starke Auswirkungen und du hast unterschiedlich lange Zeit. Du musst dich schnell für die richtige Antwort entscheiden, je nachdem, was du wählst, hat es unterschiedliche Auswirkungen.
+    o	Tutorial: Dir wird in 4 Abschnitten erklärt, wie das Spiel funktioniert, was die Werte bedeuten, und es werden Tipps zum Spiel gegeben. Im Office werden beispielsweise die Steuerung des Charakters, die verschiedenen Werte und das Ziel erläutert. Sobald man genügend Informationen erhalten hat, kann man das Spiel starten.
 
 2)	Inputs für das Game:
 •	Maus für sämtliche Auswahlen bzw. für den Videoplayer;
 •	Tastatur:
-o	W/A/S/D, um den Charakter zu steuern
-o	Q/E in dem Tutorial, um die Szene zu wechseln
+    o	W/A/S/D, um den Charakter zu steuern
+    o	Q/E in dem Tutorial, um die Szene zu wechseln
 
 3)	Als Nutzer/in befindest du dich als Präsident/in in deinem Büro, kannst durch Knopfdruck deine/n Sekretär/in hineinlassen, die hat immer eine gewisse Problemstellung, die es zu lösen gilt, aber als Präsident musst du natürlich nicht alles selbst entscheiden, du kannst also danach Assistenten hineinlassen, mit Lösungsvorschlägen. Danach befindest du dich wieder im Büro. Dort kann es zufällig passieren, dass ein Leak Event passiert, also etwas über deine Regierung wurde geleakt und du musst in kurzer Zeit je nach Intensität bzw. Härte/Level des Leaks das Problem schnell lösen. 
 
@@ -40,11 +40,11 @@ C: Screenshots aus dem Spiel
 
 D:
 Entwicklungsplattform:
-•	Unity Version: 6000.0.57f
-•	Programmiersprache: C#
-•	Betriebssystem (z. B. Windows 11, macOS Sequoia 15.6.1)
+    •	Unity Version: 6000.0.57f
+    •	Programmiersprache: C#
+    •	Betriebssystem (z. B. Windows 11, macOS Sequoia 15.6.1)
 
 E:
 Zielplattformen:
-•	Windows Standalone
-•	WebGL
+    •	Windows Standalone
+    •	WebGL
