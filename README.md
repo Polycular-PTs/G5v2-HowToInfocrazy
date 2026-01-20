@@ -38,6 +38,10 @@ C: Screenshots aus dem Spiel
 <img width="2852" height="1606" alt="Bildschirmfoto 2026-01-18 um 15 52 59" src="https://github.com/user-attachments/assets/c67d941a-e012-4882-b74b-44489cdc021b" />
 <img width="2843" height="1601" alt="Bildschirmfoto 2026-01-18 um 15 19 27" src="https://github.com/user-attachments/assets/485cf1c3-05fb-443b-ac5b-b2a7edbc0ec7" />
 
+
+Playthrough Video:
+https://github.com/user-attachments/assets/51d89087-2dcf-43e5-86e7-e6402eeeb8f5
+
 D:
 Entwicklungsplattform:
     •	Unity Version: 6000.0.57f
