@@ -15,12 +15,22 @@ public class PlayerController2D : MonoBehaviour
 
     private void Update()
     {
+        ReadInput();
+    }
+
+    private void ReadInput()
+    {
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
         moveInput.Normalize();
     }
 
     private void FixedUpdate()
+    {
+        Move();
+    }
+
+    private void Move()
     {
         rb.linearVelocity = moveInput * movementSpeed;
     }
