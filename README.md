@@ -12,7 +12,7 @@ Tom:
 2) Verlustbedingung: „Wenn ein Wert 0 erreicht, bist du verloren“
 Wenn einer der zentralen Werte (z. B. Bevölkerungszufriedenheit, Budget, Funktionalität, Opposition) auf 0 fällt, endet das Spiel sofort mit einer Niederlage. 
 Umsetzung: Permanente Prüfung der Metriken nach jeder Entscheidung; bei <= 0 GameOver auslösen und Endscreen zeigen. 
-3) Sieg & Reflektion: Endbildschirm über die eigenen infokratischen Entscheidungen
+3) IN PROGRESS: Sieg & Reflektion: Endbildschirm über die eigenen infokratischen Entscheidungen
 Beim Spielende (Sieg) bekommt der/die Spieler:in einen reflektierenden Endscreen: 
 Zusammenfassung aller wichtigen Entscheidungen, die man selbst getroffen hat und die zeigen, dass wir bereits anfangen im Stil der Infokratie zu denken 
 Umsetzung: Die jeweiligen Antworten abspeichern und die, die Antworten einer Infokratie entsprechen, am Ende auswerten und als Grafiken/Text darstellen. 
