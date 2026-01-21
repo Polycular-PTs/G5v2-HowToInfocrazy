@@ -1,7 +1,26 @@
 # G5v2-HowToInfocrazy
 
+ReadMe als PDF für schönere Formatierung: https://htlsalzburg.sharepoint.com/:b:/s/MTIN_HowToInfokratie/IQCMjk9nSglpRpU2fNtGxHwhAYOuY9JrAfH_Ra8F0jEFA-w?e=5Pqac0
+Playthrough Video besser aufgelöst: https://htlsalzburg.sharepoint.com/:v:/s/MTIN_HowToInfokratie/IQDhWJXAQIvmRImV6jcw-L5fAQcz8QyUGHRErSN27t4AA3c?e=e7Q7T2
+
 Read Me
 Fuchs Paul, Ziegler Jakob, Aichhorn Tom
+
+Arbeitsaufteilung:
+Tom:
+1) Vorher: Es sollen nur die ersten Antworten zählen
+2) Verlustbedingung: „Wenn ein Wert 0 erreicht, bist du verloren“
+Wenn einer der zentralen Werte (z. B. Bevölkerungszufriedenheit, Budget, Funktionalität, Opposition) auf 0 fällt, endet das Spiel sofort mit einer Niederlage. 
+Umsetzung: Permanente Prüfung der Metriken nach jeder Entscheidung; bei <= 0 GameOver auslösen und Endscreen zeigen. 
+3) Sieg & Reflektion: Endbildschirm über die eigenen infokratischen Entscheidungen
+Beim Spielende (Sieg) bekommt der/die Spieler:in einen reflektierenden Endscreen: 
+Zusammenfassung aller wichtigen Entscheidungen, die man selbst getroffen hat und die zeigen, dass wir bereits anfangen im Stil der Infokratie zu denken 
+Umsetzung: Die jeweiligen Antworten abspeichern und die, die Antworten einer Infokratie entsprechen, am Ende auswerten und als Grafiken/Text darstellen. 
+4) Leak-Event im Internet: Schnellentscheidung (1–10) innerhalb 10 Sekunden
+Ein Leak-Event wird zufällig ausgelöst. Etwas über dich oder deine Regierung wurde geleaked. Je schneller und besser du reagierst, desto weniger bekommen etwas davon mit und desto besser wirst du dastehen. Das Leak hat eine Gewichtung von 1–10 und der Spieler muss innerhalb von 10 Sekunden reagieren (z. B. Optionen: „Leugnen“, „Ablenken“, „Unterdrücken“, „Transparenz“). Nur die infokratische Reaktion hat den gewünschten Effekt. Auswirkungen sind viel stärker, bei Wertveränderung.  
+Umsetzung: Event-Coroutine erzeugt das Leak-Problem (1–10), zeigt Countdown-UI (10s). Bei Timeout gilt: keine Aktion → stärkster Negativeffekt.  
+
+
 
 A:
 Unser Projekt versucht auf spielerischer Weise auf reale Probleme aufmerksam zu machen. Als Inspiration für unsere interaktive Anwendung dient zu einem großen Teil das Buch „Infokratie“ von Byung-Chul Han. In dem Buch beschreibt er wie man mit der Kontrolle von Informationen die Kontrolle über die Menschen gewinnt und somit den Willen der Menschen beeinflussen und missbrauchen kann. Wir greifen diese Thematik auf und wollen sie mit einem interaktiven Medium einem breiteren Publikum näherbringen.
