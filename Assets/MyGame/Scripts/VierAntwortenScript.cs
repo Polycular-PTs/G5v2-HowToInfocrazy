@@ -33,43 +33,20 @@ public class VierAntwortenScript: MonoBehaviour
     string correctAnswerIDPlayerPrefName = "CorrectRightAnswerID";
     string currentAnswerPlayerPrefName = "CurrentAnswer";
     string clickedButtonIDPlayerPrefName = "clickedButtonID";
-    //string sekretarianSceneName = "SekretaerScene";
-    //string defeatSceneName = "Defeat";
-
-    // Answer_Right Build Index: 3
-    // Answer_Wrong Build Index: 4
-
-    //public void ShowQuestion()
-    //{
-    //    PlayerPrefs.GetString("CurrentQuestion", allQuestions[id].question);
-    //    Debug.Log(allQuestions[id].question);
-    //    id += 1;
-    //    if (allQuestions.Length > id)
-    //    {
-    //        PlayerPrefs.SetString("CurrentQuestion", allQuestions[id].question);
-    //        Debug.Log("Next question loaded");
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("No more questions");
-    //    }
-    //}
 
     public void AnswerButton()
     {
         int correctAnswerID = PlayerPrefs.GetInt(correctAnswerIDPlayerPrefName);
-        //Debug.Log(correctAnswerID);
         GameObject clicked = EventSystem.current.currentSelectedGameObject;
-        //Debug.Log(clicked.name);
-        int clickedButtonID=0;
-        for(int i=0; i<4; i++)
-        {
-            if (clicked.name == answer[i].name)
-            {
-                clickedButtonID = i;
-                //Debug.Log("NewClickedButtonID");
-            }
-        }
+        //int clickedButtonID=0;
+        int clickedButtonID = System.Array.IndexOf(answer, clicked);
+        //for (int i=0; i<4; i++)
+        //{
+        //    if (clicked.name == answer[i].name)
+        //    {
+        //        clickedButtonID = i;
+        //    }
+        //}
 
         PlayerPrefs.SetInt(clickedButtonIDPlayerPrefName, clickedButtonID);
 
@@ -81,19 +58,6 @@ public class VierAntwortenScript: MonoBehaviour
         {
             SceneManager.LoadScene(Answer_wrong_Scene);
         }
-
-        //PlayerPrefs.GetString("CurrentQuestion", allQuestions[id].question);
-        //Debug.Log(allQuestions[id].question);
-        //id += 1;
-        //if (allQuestions.Length > id)
-        //{
-        //    PlayerPrefs.SetString("CurrentQuestion", allQuestions[id].question);
-        //    Debug.Log("Next question loaded");
-        //}
-        //else
-        //{
-        //    Debug.Log("No more questions");
-        //}
     }
 
     private void Start()
@@ -143,44 +107,10 @@ public class VierAntwortenScript: MonoBehaviour
 
         functionalityText.text = functionality.ToString();
 
-
-
-        //Debug.Log(PlayerPrefs.GetInt("CurrentID"));
-        //int id2 = PlayerPrefs.GetInt("CurrentID");
-        //string currentQuestion = PlayerPrefs.GetString("CurrentQuestion");
-        //Debug.Log(currentQuestion);
         for (int i = 0; i < 4; i++)
         {
-            //Debug.Log(answer[i].GetComponentInChildren<TextMeshProUGUI>().name);
             answer[i].GetComponentInChildren<TextMeshProUGUI>().text = PlayerPrefs.GetString(currentAnswerPlayerPrefName + i);
             
         }
     }
-
-    //void Awake()
-    //{
-    //    LoadAllVideos();
-    //}
-
-    //void LoadAllVideos()
-    //{
-    //    allQuestions = Resources.LoadAll<QuestionsWithAnswers>("Data");
-    //    Debug.Log($"Geladene Fragen: {allQuestions.Length}");
-    //}
-
-
-    //public void GoToQuestions()
-    //{
-    //    SceneManager.LoadScene(AnswersName);
-    //}
-
-    //public void ShowAnswers()
-    //{
-    //    Debug.Log(x[id].answers);
-    //    for(int x=0; x>4; x++)
-    //    {
-            
-    //    }
-    //    id += 1;
-    //}
 }
