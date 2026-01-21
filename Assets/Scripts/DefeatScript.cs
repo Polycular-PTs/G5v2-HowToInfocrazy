@@ -5,7 +5,7 @@ using TMPro;
 
 public class DefeatScript : MonoBehaviour
 {
-    string scoreDownText = "Deine Bevölkerung ist unzufrieden und hat dein Büro gestürmt.Deine Amtszeit ist damit zu Ende.";
+    string scoreDownText = "Deine Bevölkerung ist unzufrieden und hat dein Büro gestürmt. Deine Amtszeit ist damit zu Ende.";
     string budgetDownText = "Dein Budget ist leer und du kannst deinen Staat nicht mehr aufrecht erhalten. Deine Amtszeit ist damit zu Ende.";
     string functionalityDownText = "Die bürger sehen keinen Sinn mehr für ein korruptes System wie ihres zu arbeiten, jeder Arbeiter legt die Werkzeuge nieder und geht schlafen";
     string oppositionDownText = "Die Bürger sehen in ihren Politischen gegnern mehr als in ihnen, in den nächsten wahlen erzielen Sie ganze 0,5% und werden von der gesellschaft als extremistischer faschist verspottet";
@@ -44,7 +44,7 @@ public class DefeatScript : MonoBehaviour
         PlayerPrefs.DeleteKey("currentScore");
         PlayerPrefs.DeleteKey("currentStatebudget");
         PlayerPrefs.DeleteKey("currentOpposition");
-        PlayerPrefs.DeleteKey("currentFuntionality");
+        PlayerPrefs.DeleteKey("currentFunctionality");
 
     }
 
