@@ -10,7 +10,7 @@ public class SekretaerSceneScript : MonoBehaviour
     public TextMeshProUGUI Questiontxt;
     public QuestionsWithAnswers[] allQuestions;
     public int id = 0;
-    public Button AnswerButton;
+    public Button answerButton;
     //private int statefriendliness = 100;
     public TextMeshProUGUI staatsfreundlichkeitText;
 
@@ -26,6 +26,22 @@ public class SekretaerSceneScript : MonoBehaviour
 
     public GameObject functionalityFill;
     public TextMeshProUGUI functionalityText;
+    private string whenOutOfQuestion = "You are out of questions";
+
+    private const string vierAntwortenSzene = "4Antworten";
+    private const string currentIDPlayerPrefName = "CurrentID";
+    private const string currentQuestionPlayerPrefName = "CurrentQuestion";
+    private const string currentScorePlayerPrefName = "currentScore";
+    private const string currentStatebudgetPlayerPrefName = "currentStatebudget";
+    private const string currentOppositionPlayerPrefName = "currentOpposition";
+    private const string currentFunctionalityPlayerPrefName = "currentFunctionality";
+
+    private const string currentAnswerForQuestionPlayerPrefName = "CurrentAnswer";
+    private const string currentHappinessForQuestionPlayerPrefName = "CurrentHappiness";
+    private const string currentBudgetForQuestionPlayerPrefName = "CurrentBudget";
+    private const string currentOppositionForQuestionPlayerPrefName = "addOpposition";
+    private const string currentFunctionalityForQuestionPlayerPrefName = "addFunctionality";
+    private const string currentRightAnswerForQuestionPlayerPrefName = "CorrectRightAnswerID";
 
     public void ShowQuestion()
     {
@@ -33,12 +49,12 @@ public class SekretaerSceneScript : MonoBehaviour
         //Debug.Log(id);
         if (allQuestions.Length > id)
         {
-            PlayerPrefs.SetString("CurrentQuestion", allQuestions[id].question);
+            PlayerPrefs.SetString(currentQuestionPlayerPrefName, allQuestions[id].question);
             //Debug.Log("Next question loaded");
-            SceneManager.LoadScene("4Antworten");
+            SceneManager.LoadScene(vierAntwortenSzene);
             id += 1;
             //Debug.Log(id);
-            PlayerPrefs.SetInt("CurrentID", id);
+            PlayerPrefs.SetInt(currentIDPlayerPrefName, id);
             //Debug.Log(PlayerPrefs.GetInt("CurrentID"));
         }
         else
@@ -50,31 +66,17 @@ public class SekretaerSceneScript : MonoBehaviour
 
     public void IDNullStellen()
     {
-        PlayerPrefs.SetInt("CurrentID", 0);
+        PlayerPrefs.SetInt(currentIDPlayerPrefName, 0);
         Debug.Log("ID wurde auf 0 gestellt");
     }
 
     public void Reset()
     {
-        //PlayerPrefs.SetInt("currentScore", 100);
-        //PlayerPrefs.SetInt("currentStatebudget", 100);
-        PlayerPrefs.DeleteKey("currentScore");
-        PlayerPrefs.DeleteKey("currentStatebudget");
-        //happinessSlider.maxValue = 1;
+        PlayerPrefs.DeleteKey(currentScorePlayerPrefName);
+        PlayerPrefs.DeleteKey(currentStatebudgetPlayerPrefName);
 
         ResetGraphic(happinessFill.GetComponent<Transform>());
-        //Transform fillTransform = happinessFill.GetComponent<Transform>();
-        //Vector3 scale = fillTransform.localScale;
-        //scale.x = 1;
-        //fillTransform.localScale = scale;
-
         ResetGraphic(statebudgetFill.GetComponent<Transform>());
-        //Transform fillTransform2 = statebudgetFill.GetComponent<Transform>();
-        //Vector3 scale2 = fillTransform2.localScale;
-        //scale2.x = 1;
-        //fillTransform.localScale = scale2;
-
-        Debug.Log("Staatsfreundlichkeit und Budget wurden zurückgesetzt");
     }
 
     private void ResetGraphic(Transform fillTransform)
@@ -103,48 +105,48 @@ public class SekretaerSceneScript : MonoBehaviour
 
     private void InitPlayerPrefsDefaults()
     {
-        int curScore = PlayerPrefs.GetInt("currentScore");
+        int curScore = PlayerPrefs.GetInt(currentScorePlayerPrefName);
         ChangeGraphicAndText(curScore, happinessFill.GetComponent<Transform>(), happinessText);
 
-        int stateBudget = PlayerPrefs.GetInt("currentStatebudget");
+        int stateBudget = PlayerPrefs.GetInt(currentStatebudgetPlayerPrefName);
         ChangeGraphicAndText(stateBudget, statebudgetFill.GetComponent<Transform>(), statebudgetText);
 
-        int opposition = PlayerPrefs.GetInt("currentOpposition");
+        int opposition = PlayerPrefs.GetInt(currentOppositionPlayerPrefName);
         ChangeGraphicAndText(opposition, oppositionFill.GetComponent<Transform>(), oppositionText);
 
-        int functionality = PlayerPrefs.GetInt("currentFunctionality");
+        int functionality = PlayerPrefs.GetInt(currentFunctionalityPlayerPrefName);
         ChangeGraphicAndText(functionality, functionalityFill.GetComponent<Transform>(), functionalityText);
     }
 
     private void LoadQuestionsToUI()
     {
-        id = PlayerPrefs.GetInt("CurrentID");
+        id = PlayerPrefs.GetInt(currentIDPlayerPrefName);
 
-        if (!PlayerPrefs.HasKey("CurrentID"))
+        if (!PlayerPrefs.HasKey(currentIDPlayerPrefName))
         {
-            PlayerPrefs.SetInt("CurrentID", 0);
+            PlayerPrefs.SetInt(currentIDPlayerPrefName, 0);
         }
         if (allQuestions.Length > id)
         {
-            PlayerPrefs.SetString("CurrentQuestion", allQuestions[id].question);
-            PlayerPrefs.SetInt("CorrectRightAnswerID", allQuestions[id].idRightAnswer);
+            PlayerPrefs.SetString(currentQuestionPlayerPrefName, allQuestions[id].question);
+            PlayerPrefs.SetInt(currentRightAnswerForQuestionPlayerPrefName, allQuestions[id].idRightAnswer);
 
 
             for (int i = 0; i < 4; i++)
             {
-                PlayerPrefs.SetString("CurrentAnswer" + i, allQuestions[id].answers[i]);
-                PlayerPrefs.SetInt("CurrentHappiness" + i, allQuestions[id].happiness[i]);
-                PlayerPrefs.SetInt("CurrentBudget" + i, allQuestions[id].budget[i]);
-                PlayerPrefs.SetInt("addOpposition" + i, allQuestions[id].opposition[i]);
-                PlayerPrefs.SetInt("addFunctionality" + i, allQuestions[id].functionality[i]);
+                PlayerPrefs.SetString(currentAnswerForQuestionPlayerPrefName + i, allQuestions[id].answers[i]);
+                PlayerPrefs.SetInt(currentHappinessForQuestionPlayerPrefName + i, allQuestions[id].happiness[i]);
+                PlayerPrefs.SetInt(currentBudgetForQuestionPlayerPrefName + i, allQuestions[id].budget[i]);
+                PlayerPrefs.SetInt(currentOppositionForQuestionPlayerPrefName + i, allQuestions[id].opposition[i]);
+                PlayerPrefs.SetInt(currentFunctionalityForQuestionPlayerPrefName + i, allQuestions[id].functionality[i]);
             }
-            Questiontxt.text = PlayerPrefs.GetString("CurrentQuestion");
+            Questiontxt.text = PlayerPrefs.GetString(currentQuestionPlayerPrefName);
         }
         else
         {
             Debug.Log("No more questions");
-            Questiontxt.text = "You are out of questions";
-            AnswerButton.enabled = false;
+            Questiontxt.text = whenOutOfQuestion;
+            answerButton.enabled = false;
         }
     }
 
