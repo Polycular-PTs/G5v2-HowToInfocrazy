@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class StartSceneScript : MonoBehaviour
 {
+    private const string SCENE_OFFICE = "Office";
+    private const string SCENE_TUTORIAL_OFFICE = "Tutorial_Office";
     private string[] keysToDelete = { "currentScore", "CurrentID", "currentStatebudget", "currentOpposition", "currentFunctionality", "CurrentLeakID1", "CurrentLeakID2", "CurrentLeakID3" };
 
     private void Start()
@@ -23,10 +25,15 @@ public class StartSceneScript : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Office");
+        LoadScenes(SCENE_OFFICE);
     }
     public void StartTutorial()
     {
-        SceneManager.LoadScene("Tutorial_Office");
+        LoadScenes(SCENE_TUTORIAL_OFFICE);
+    }
+
+    private void LoadScenes(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
