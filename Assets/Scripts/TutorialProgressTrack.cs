@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TutorialProgressTrack : MonoBehaviour
 {
-    public int tutorialPoints;     //How many hints the user has found
+    private int tutorialPoints;     //How many hints the user has found
 
     [Header("Butten that starts the Game")]
     [SerializeField] private GameObject buttonForStartingTheGame;       //The button the user has to press to get to the game
@@ -11,6 +11,7 @@ public class TutorialProgressTrack : MonoBehaviour
     [Header("Progress Bar Settings")]
     [SerializeField] private GameObject tutorialProgressSlider;     //The UI slider that shows how many hints of the total amount the user has already found
 
+    [Header("How many hints the user has to find to be able to start the game")]
     [SerializeField] private float totalPointsForFullSlider;        //How many hints the user has to find to be able to start the game and have a full slider
 
     private void Start()

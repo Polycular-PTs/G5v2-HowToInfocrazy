@@ -806,7 +806,7 @@ MonoBehaviour:
   tutorialSceneController: {fileID: 250050920}
   timeToAutoDisableAButton: 5
   player: {fileID: 1447678769}
-  placeOfSceneChange: {fileID: 9807740}
+  placeOfSceneTransition: {fileID: 9807740}
   offsetOfPlayer: 1.5
   keyForNextScene: 101
   keyForOneSceneBack: 113
@@ -1719,7 +1719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00543cd418581349b81195205c8987c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialProgress: {fileID: 250050921}
+  tutorialProgressManager: {fileID: 250050921}
   tutorialManager: {fileID: 250050919}
   textInButton: {fileID: 1724338274}
   infoText: {fileID: 695947274}
@@ -1986,7 +1986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00543cd418581349b81195205c8987c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialProgress: {fileID: 250050921}
+  tutorialProgressManager: {fileID: 250050921}
   tutorialManager: {fileID: 250050919}
   textInButton: {fileID: 1473534975}
   infoText: {fileID: 338425064}
@@ -3352,6 +3352,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2075351473}
     - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
+      propertyPath: autoHideDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
       propertyPath: attachToObject
       value: 1
       objectReference: {fileID: 0}
@@ -3369,6 +3373,10 @@ PrefabInstance:
       objectReference: {fileID: 1447678773}
     - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
       propertyPath: tutorialProgress
+      value: 
+      objectReference: {fileID: 250050921}
+    - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
+      propertyPath: tutorialProgressManager
       value: 
       objectReference: {fileID: 250050921}
     - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}

@@ -1,10 +1,10 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ScriptOnButton : MonoBehaviour
 {
-    public TutorialProgressTrack tutorialProgress;
+    [Header("Reference to the: TutorialProgressManagerr")]
+    public TutorialProgressTrack tutorialProgressManager;
 
     [Header("Reference to the: TutorialButtonManager")]
     [SerializeField] private TutorialManager tutorialManager;
@@ -23,7 +23,7 @@ public class ScriptOnButton : MonoBehaviour
     [Header("Auto Hide Delay")]
     [SerializeField] private float autoHideDelay = 5f;
 
-    public bool alreadyDiscovered;
+    private bool alreadyDiscovered;
     private bool showing;
     private float hideTimer;
 
@@ -38,6 +38,16 @@ public class ScriptOnButton : MonoBehaviour
     private void Update()
     {
         HandleAttachment();
+        AutoHideTimer();
+    }
+
+    private void AutoHideTimer()
+    {
+        if (showing)
+        {
+            hideTimer -= Time.deltaTime;
+            if (hideTimer <= 0f) { Hide(); }
+        }
     }
 
     private void HandleAttachment()
@@ -61,14 +71,13 @@ public class ScriptOnButton : MonoBehaviour
         infoText.enabled = true;
         textInButton.text = "Hide Info";
         showing = true;
+        hideTimer = tutorialManager.timeToAutoDisableAButton + autoHideDelay;
 
         if (!alreadyDiscovered)
         {
             alreadyDiscovered = true;
             NotifyTutorialManager();
         }
-
-        Invoke("Hide", tutorialManager.timeToAutoDisableAButton + autoHideDelay);
     }
 
     private void Hide()
@@ -80,7 +89,7 @@ public class ScriptOnButton : MonoBehaviour
 
     private void NotifyTutorialManager()
     {
-        tutorialProgress.HintDiscovered();
+        tutorialProgressManager.HintDiscovered();
     }
 
     private void ResolveTutorialManager()
@@ -90,9 +99,9 @@ public class ScriptOnButton : MonoBehaviour
             tutorialManager = GameObject.Find("TutorialButtonManager").GetComponent<TutorialManager>();
         }
 
-        if (tutorialProgress == null)
+        if (tutorialProgressManager == null)
         {
-            tutorialProgress = GameObject.Find("TutorialButtonManager").GetComponent<TutorialProgressTrack>();
+            tutorialProgressManager = GameObject.Find("TutorialButtonManager").GetComponent<TutorialProgressTrack>();
         }
     }
 }

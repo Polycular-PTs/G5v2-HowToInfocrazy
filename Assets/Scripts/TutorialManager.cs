@@ -1,8 +1,5 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UIElements;
-using UnityEngine.UI;
-using System.Runtime.CompilerServices;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -11,7 +8,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] public float timeToAutoDisableAButton = 5f;   //After how much time the Butten changes to closed automatically
 
     [SerializeField] private GameObject player;     //The figure the user can intercat with and controll
-    [SerializeField] private GameObject placeOfSceneChange;     //The GameObject that is at the position the plyer has to be to change the TutorialScene
+    [SerializeField] private GameObject placeOfSceneTransition;     //The GameObject that is at the position the plyer has to be to change the TutorialScene
     [SerializeField] private float offsetOfPlayer;      //How far the player can be away of the position 
 
     [Header("User Inputs")]
@@ -22,16 +19,6 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI textGeneralSceneInfo;      //The TMPro object in the scene that should have the info for the current scene in it
 
     [SerializeField] private string[] sceneSpesificTextArray = new string[4];       //The text that explains the user something general about the scene he is in
-
-    
-
-    //private TextMeshProUGUI textInButtonToChange;       //The text in every clickable hint-button that changes between: two states ("Show Info" and "Hide Info") when clicked
-    //private TextMeshProUGUI textMeshToDisable;      //The TMPro of every clickable hint-button that contains the info of the button that is shown when clicked
-
-    private void Start()
-    {
-
-    }
 
     private void Update()
     {
@@ -68,7 +55,7 @@ public class TutorialManager : MonoBehaviour
 
     private bool IsPlayerInTransitionArea()
     {
-        return Vector2.Distance(player.transform.position, placeOfSceneChange.transform.position)
+        return Vector2.Distance(player.transform.position, placeOfSceneTransition.transform.position)
         <= offsetOfPlayer;
     }
 
