@@ -8,7 +8,7 @@ Fuchs Paul, Ziegler Jakob, Aichhorn Tom
 
 Arbeitsaufteilung:
 Tom:
-1) Vorher: Es sollen nur die ersten Antworten zählen
+1) Es sollen nur die ersten Antworten bei den Sekretärproblemen zählen
 2) Verlustbedingung: „Wenn ein Wert 0 erreicht, bist du verloren“
 Wenn einer der zentralen Werte (z. B. Bevölkerungszufriedenheit, Budget, Funktionalität, Opposition) auf 0 fällt, endet das Spiel sofort mit einer Niederlage. 
 Umsetzung: Permanente Prüfung der Metriken nach jeder Entscheidung; bei <= 0 GameOver auslösen und Endscreen zeigen. 
