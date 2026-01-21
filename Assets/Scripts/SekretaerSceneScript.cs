@@ -97,68 +97,23 @@ public class SekretaerSceneScript : MonoBehaviour
 
     private void Start()
     {
+        InitPlayerPrefsDefaults();
+        LoadQuestionsToUI();
+    }
+
+    private void InitPlayerPrefsDefaults()
+    {
         int curScore = PlayerPrefs.GetInt("currentScore");
-        //Debug.Log("CurrentScore2:" + curScore);
         ChangeGraphicAndText(curScore, happinessFill.GetComponent<Transform>(), happinessText);
-        //if (curScore < 100f)
-        //{
-        //    Transform fillTransform = happinessFill.GetComponent<Transform>();
-        //    Vector3 scale = fillTransform.localScale;
-        //    scale.x = curScore / 100f;
-        //    fillTransform.localScale = scale;
-        //}
-
-        //happinessSlider.value = curScore / 100f;
-        //happinessText.text = curScore.ToString();
-
 
         int stateBudget = PlayerPrefs.GetInt("currentStatebudget");
         ChangeGraphicAndText(stateBudget, statebudgetFill.GetComponent<Transform>(), statebudgetText);
-        //if (stateBudget < 100f)
-        //{
-        //    Transform fillTransform = statebudgetFill.GetComponent<Transform>();
-        //    Vector3 scale = fillTransform.localScale;
-        //    scale.x = stateBudget / 100f;
-        //    fillTransform.localScale = scale;
-        //}
-        //statebudgetText.text = stateBudget.ToString();
 
         int opposition = PlayerPrefs.GetInt("currentOpposition");
         ChangeGraphicAndText(opposition, oppositionFill.GetComponent<Transform>(), oppositionText);
-        //if (opposition < 100f)
-        //{
-        //    Transform fillTransform = oppositionFill.GetComponent<Transform>();
-        //    Vector3 scale = fillTransform.localScale;
-        //    scale.x = opposition / 100f;
-        //    fillTransform.localScale = scale;
-        //}
-        //oppositionText.text = opposition.ToString();
 
         int functionality = PlayerPrefs.GetInt("currentFunctionality");
         ChangeGraphicAndText(functionality, functionalityFill.GetComponent<Transform>(), functionalityText);
-        //if (functionality < 100f)
-        //{
-        //    Transform fillTransform = oppositionFill.GetComponent<Transform>();
-        //    Vector3 scale = fillTransform.localScale;
-        //    scale.x = functionality / 100f;
-        //    fillTransform.localScale = scale;
-        //}
-        //functionalityText.text = functionality.ToString();
-
-        //staatsfreundlichkeitText.text = PlayerPrefs.GetInt("staatsfriendliness").ToString();
-
-        //if (!PlayerPrefs.HasKey("statefriendliness"))
-        //{
-        //    PlayerPrefs.SetInt("statefriendliness", statefriendliness);
-        //}
-
-        //if (!PlayerPrefs.HasKey("currentScore"))
-        //{
-        //    PlayerPrefs.SetInt("currentScore", score);
-        //}
-
-
-        LoadQuestionsToUI();
     }
 
     private void LoadQuestionsToUI()
