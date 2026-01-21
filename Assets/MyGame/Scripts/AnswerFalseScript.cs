@@ -21,25 +21,6 @@ public class AnswerFalseScript : MonoBehaviour
             ChangeValues("currentStatebudget", "CurrentBudget");
             ChangeValues("currentOpposition", "addOpposition");
             ChangeValues("currentFunctionality", "addFunctionality");
-            //int curScore = PlayerPrefs.GetInt("currentScore");
-            //int addition = PlayerPrefs.GetInt("CurrentHappiness" + PlayerPrefs.GetInt("clickedButtonID"));
-            //curScore += addition;
-            //PlayerPrefs.SetInt("currentScore", curScore);
-
-            //int statebudget = PlayerPrefs.GetInt("currentStatebudget");
-            //int addition2 = PlayerPrefs.GetInt("CurrentBudget" + PlayerPrefs.GetInt("clickedButtonID"));
-            //statebudget += addition2;
-            //PlayerPrefs.SetInt("currentStatebudget", statebudget);
-
-            //int opposition = PlayerPrefs.GetInt("currentOpposition");
-            //int addition3 = PlayerPrefs.GetInt("addOpposition" + PlayerPrefs.GetInt("clickedButtonID"));
-            //opposition += addition3;
-            //PlayerPrefs.SetInt("currentOpposition", opposition);
-
-            //int functionality = PlayerPrefs.GetInt("currentFunctionality");
-            //int addition4 = PlayerPrefs.GetInt("addFunctionality" + PlayerPrefs.GetInt("clickedButtonID"));
-            //functionality += addition4;
-            //PlayerPrefs.SetInt("currentFunctionality", functionality);
         }
     }
 
