@@ -31,10 +31,10 @@ Dises Werte werden mit jeder Frage und Leakevent bearbeitet und verändert(je na
 
 Jakob:
 1) Die komplette Tutorialszene
-    2) Buttons die mit verschiedenen Hintergrundbildern aktiviert und deaktiviert werden und so das Spiel erklären klönnen
-    3) Der Playercharactr wird eingebunden und kann in den Tutorial bewegt werden um den User beser zu unterhalten
-    4) Einfaches erweitern, kürzen und verändern des Tutorials durch den Gamedesigner
-    5) Nach abschließen eine direkte Verbindung zum restlichen Spiel
+2) Buttons die mit verschiedenen Hintergrundbildern aktiviert und deaktiviert werden und so das Spiel erklären klönnen
+3) Der Playercharactr wird eingebunden und kann in den Tutorial bewegt werden um den User beser zu unterhalten
+4) Einfaches erweitern, kürzen und verändern des Tutorials durch den Gamedesigner
+5) Nach abschließen eine direkte Verbindung zum restlichen Spiel
 
 A:
 Unser Projekt versucht auf spielerischer Weise auf reale Probleme aufmerksam zu machen. Als Inspiration für unsere interaktive Anwendung dient zu einem großen Teil das Buch „Infokratie“ von Byung-Chul Han. In dem Buch beschreibt er wie man mit der Kontrolle von Informationen die Kontrolle über die Menschen gewinnt und somit den Willen der Menschen beeinflussen und missbrauchen kann. Wir greifen diese Thematik auf und wollen sie mit einem interaktiven Medium einem breiteren Publikum näherbringen.
