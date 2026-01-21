@@ -26,6 +26,14 @@ public class VierAntwortenScript: MonoBehaviour
     public GameObject functionalityFill;
     public TextMeshProUGUI functionalityText;
 
+    string scorePlayerPrefName = "currentScore";
+    string budgetPlayerPrefName = "currentStatebudget";
+    string oppositionPlayerPrefName = "currentOpposition";
+    string functionalityPlayerPrefName = "currentFunctionality";
+    string correctAnswerIDPlayerPrefName = "CorrectRightAnswerID";
+    //string sekretarianSceneName = "SekretaerScene";
+    //string defeatSceneName = "Defeat";
+
     // Answer_Right Build Index: 3
     // Answer_Wrong Build Index: 4
 
@@ -47,7 +55,7 @@ public class VierAntwortenScript: MonoBehaviour
 
     public void AnswerButton()
     {
-        int correctAnswerID = PlayerPrefs.GetInt("CorrectRightAnswerID");
+        int correctAnswerID = PlayerPrefs.GetInt(correctAnswerIDPlayerPrefName);
         //Debug.Log(correctAnswerID);
         GameObject clicked = EventSystem.current.currentSelectedGameObject;
         //Debug.Log(clicked.name);
