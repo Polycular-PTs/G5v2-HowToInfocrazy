@@ -62,55 +62,69 @@ public class VierAntwortenScript: MonoBehaviour
 
     private void Start()
     {
-        int curScore = PlayerPrefs.GetInt(scorePlayerPrefName);
-        if (curScore / 100f <= 1)
-        {
-            Transform fillTransform = happinessFill.GetComponent<Transform>();
-            Vector3 scale = fillTransform.localScale;
-            scale.x = curScore / 100f;
-            fillTransform.localScale = scale;
-        }
-        happinessSlider.value = curScore / 100f;
-        happinessText.text = curScore.ToString();
+        UpdateStatBar(scorePlayerPrefName, happinessFill, happinessText);
 
-        int stateBudget = PlayerPrefs.GetInt(budgetPlayerPrefName);
-        if (stateBudget < 100f)
-        {
-            Transform fillTransform = statebudgetFill.GetComponent<Transform>();
-            Vector3 scale = fillTransform.localScale;
-            scale.x = stateBudget / 100f;
-            fillTransform.localScale = scale;
-        }
+        //int curScore = PlayerPrefs.GetInt(scorePlayerPrefName);
+        //if (curScore / 100f <= 1)
+        //{
+        //    Transform fillTransform = happinessFill.GetComponent<Transform>();
+        //    Vector3 scale = fillTransform.localScale;
+        //    scale.x = curScore / 100f;
+        //    fillTransform.localScale = scale;
+        //}
+        //happinessText.text = curScore.ToString();
 
-        statebudgetText.text = stateBudget.ToString();
+        UpdateStatBar(budgetPlayerPrefName, statebudgetFill, statebudgetText);
+        //int stateBudget = PlayerPrefs.GetInt(budgetPlayerPrefName);
+        //if (stateBudget < 100f)
+        //{
+        //    Transform fillTransform = statebudgetFill.GetComponent<Transform>();
+        //    Vector3 scale = fillTransform.localScale;
+        //    scale.x = stateBudget / 100f;
+        //    fillTransform.localScale = scale;
+        //}
+        //statebudgetText.text = stateBudget.ToString();
 
-        int opposition = PlayerPrefs.GetInt(oppositionPlayerPrefName);
-        if (opposition < 100f)
-        {
-            Transform fillTransform = oppositionFill.GetComponent<Transform>();
-            Vector3 scale = fillTransform.localScale;
-            scale.x = opposition / 100f;
-            fillTransform.localScale = scale;
-        }
+        UpdateStatBar(oppositionPlayerPrefName, oppositionFill, oppositionText);
+        //int opposition = PlayerPrefs.GetInt(oppositionPlayerPrefName);
+        //if (opposition < 100f)
+        //{
+        //    Transform fillTransform = oppositionFill.GetComponent<Transform>();
+        //    Vector3 scale = fillTransform.localScale;
+        //    scale.x = opposition / 100f;
+        //    fillTransform.localScale = scale;
+        //}
+        //oppositionText.text = opposition.ToString();
 
-        oppositionText.text = opposition.ToString();
+        UpdateStatBar(functionalityPlayerPrefName, functionalityFill, functionalityText);
+        //int functionality = PlayerPrefs.GetInt(functionalityPlayerPrefName);
+        //if (functionality < 100f)
+        //{
+        //    Transform fillTransform = functionalityFill.GetComponent<Transform>();
+        //    Vector3 scale = fillTransform.localScale;
+        //    scale.x = functionality / 100f;
+        //    fillTransform.localScale = scale;
+        //}
+        //functionalityText.text = functionality.ToString();
 
-
-        int functionality = PlayerPrefs.GetInt(functionalityPlayerPrefName);
-        if (functionality < 100f)
-        {
-            Transform fillTransform = functionalityFill.GetComponent<Transform>();
-            Vector3 scale = fillTransform.localScale;
-            scale.x = functionality / 100f;
-            fillTransform.localScale = scale;
-        }
-
-        functionalityText.text = functionality.ToString();
 
         for (int i = 0; i < 4; i++)
         {
             answer[i].GetComponentInChildren<TextMeshProUGUI>().text = PlayerPrefs.GetString(currentAnswerPlayerPrefName + i);
             
         }
+    }
+
+    private void UpdateStatBar(string prefKey, GameObject fill, TextMeshProUGUI textObj)
+    {
+        int curValue = PlayerPrefs.GetInt(prefKey);
+        if (curValue <= 100f)
+        {
+            Transform fillTransform = fill.GetComponent<Transform>();
+            Vector3 scale = fillTransform.localScale;
+            scale.x = curValue / 100f;
+            fillTransform.localScale = scale;
+        }
+        textObj.text = curValue.ToString();
     }
 }

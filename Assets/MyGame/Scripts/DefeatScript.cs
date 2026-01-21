@@ -56,26 +56,6 @@ public class DefeatScript : MonoBehaviour
         {
             ZuweisenDesExplainTexts(functionalityDownText);
         }
-        //if (curScore <= 0 && curState <= 0 && curOpp <= 0 && curFunc <= 0)
-        //{
-        //    explainationText.text = alleWerteSindNullText;
-        //}
-        //else if (curScore <= 0 && curOpp <= 0 && curFunc <= 0 && curState > 0)
-        //{
-        //    explainationText.text = scoreDownText;
-        //}
-        //else if (curScore > 0 && curOpp > 0 && curFunc > 0 && curState <= 0)
-        //{
-        //    explainationText.text = budgetDownText;
-        //}
-        //else if (curScore > 0 && curOpp > 0 && curFunc <= 0 && curState > 0)
-        //{
-        //    explainationText.text = functionalityDownText;
-        //}
-        //else if (curScore > 0 && curOpp <= 0 && curFunc > 0 && curState > 0)
-        //{
-        //    explainationText.text = oppositionDownText;
-        //}
     }
 
     private bool AlleWerteNull()
