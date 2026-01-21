@@ -1,15 +1,12 @@
 using UnityEngine.Video;
 using UnityEngine.UI;
 using UnityEngine;
-using JetBrains.Annotations;
 using TMPro;
 
 public class VideoPlayerControll : MonoBehaviour
 {
     private VideoPlayer videoPlayer;
 
-    public Material playButtonMat;
-    public Material pauseButtonMat;
     public Text currentMinutes;
     public Text currentSeconds;
     public Text totalMinutes;
@@ -24,13 +21,8 @@ public class VideoPlayerControll : MonoBehaviour
     [SerializeField]
     private float jumpForwardSeconds;
 
-    private bool toggle = false;
-
-    [SerializeField]
-    private float timeBetweenClicks;
-
     private bool isDragging = false;
-    private bool videoStopTextGo;
+    private bool showEndscreen;
 
     public TextMeshProUGUI budgetUndZufriedenheitText;
     public GameObject Background;
@@ -71,8 +63,8 @@ public class VideoPlayerControll : MonoBehaviour
 
     public void OnSliderEndDrag()
     {
-        isDragging = false;
         videoPlayer.time = currentSlider.value * (float)videoPlayer.clip.length;
+        isDragging = false;
     }
 
     public void OnSliderValueChanged()
@@ -83,49 +75,31 @@ public class VideoPlayerControll : MonoBehaviour
         }
     }
 
+    private void UpdatePlayPauseUI()
+    {
+        if (videoPlayer.isPlaying)
+            ShowPauseButton();
+        else
+            ShowPlayButton();
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && toggle == false)
-        {
-           PauseOrPlay();
-        }
-        
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            backAFewSeconds();
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            forwardAFewSeconds();
-        }
+        HandleInput();
 
+        UpdatePlaybackUI();
 
-        if (videoPlayer.isPlaying && !isDragging)
-        {
-            Debug.Log("A1");
-            SetCurrentTimeUI();
-            SetTotalTimeUI();
-            PlayBarSlider();
-            videoStopTextGo = false;
-        }
-        if (videoPlayer.isPlaying)
-        {
+        HandleEndscreen();
+    }
 
-            Debug.Log("A2");
-            PauseButton.SetActive(true);
-        }
-        if (videoPlayer.isPaused && currentTime < videoPlayer.clip.length)
-        {
-            Debug.Log("A3");
-            PlayButton.SetActive(true);
-        }
-
-        if (videoStopTextGo == true)
+    private void HandleEndscreen()
+    {
+        if (showEndscreen == true)
         {
             Debug.Log("1");
-            string happiness = PlayerPrefs.GetInt("currentScore").ToString();
+            //string happiness = PlayerPrefs.GetInt("currentScore").ToString();
             string happinessAdded = PlayerPrefs.GetInt("CurrentHappiness" + PlayerPrefs.GetInt("clickedButtonID")).ToString();
-            string budget = PlayerPrefs.GetInt("currentStatebudget").ToString();
+            //string budget = PlayerPrefs.GetInt("currentStatebudget").ToString();
             string budgetAdded = PlayerPrefs.GetInt("CurrentBudget" + PlayerPrefs.GetInt("clickedButtonID")).ToString();
             Debug.Log(happinessAdded + budgetAdded);
             budgetUndZufriedenheitText.text = "Du verlierst " + happinessAdded + "% an Zufriedenheit der Bevölkerung und " + budgetAdded + "% vom Budget";
@@ -134,17 +108,55 @@ public class VideoPlayerControll : MonoBehaviour
             Debug.Log("2");
             Background.SetActive(true);
             Debug.Log("3");
-            
+
+        }
+    }
+
+    private void UpdatePlaybackUI()
+    {
+        if (videoPlayer.isPlaying && !isDragging)
+        {
+            Debug.Log("A1");
+            SetCurrentTimeUI();
+            SetTotalTimeUI();
+            PlayBarSlider();
+            showEndscreen = false;
+        }
+        if (videoPlayer.isPlaying)
+        {
+            Debug.Log("A2");
+            PauseButton.SetActive(true);
+        }
+        if (videoPlayer.isPaused && currentTime < videoPlayer.clip.length)
+        {
+            Debug.Log("A3");
+            UpdatePlayPauseUI();
+        }
+    }
+
+    private void HandleInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PauseOrPlay();
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            backAFewSeconds();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            forwardAFewSeconds();
         }
     }
 
     private void OnVideoEnd(VideoPlayer vp)
     {
         Debug.Log("A4");
-        PlayButton.SetActive(false);
-        PauseButton.SetActive(false);
+        UpdatePlayPauseUI();
         RestartButton.SetActive(true);
-        videoStopTextGo = true;
+        showEndscreen = true;
     }
 
     public void RestartedAction()
@@ -152,71 +164,81 @@ public class VideoPlayerControll : MonoBehaviour
         RestartButton.SetActive(false);
         videoPlayer.Play();
         Debug.Log("B1");
-        videoStopTextGo = false;
+        showEndscreen = false;
     }
 
     public void PlayedAction()
     {
-        PlayButton.SetActive(false);
         videoPlayer.Play();
-        Debug.Log("B2");
+        ShowPauseButton();
     }
 
     public void PausedAction()
     {
-        PauseButton.SetActive(false);
         videoPlayer.Pause();
-        Debug.Log("B2");
+        ShowPlayButton();
     }
 
     public void backAFewSeconds()
     {
         if (videoPlayer.time > jumpBackSeconds)
         {
+            Debug.Log("forward 5");
             double newTime = videoPlayer.time - jumpBackSeconds;
             videoPlayer.time = Mathf.Max(0, (float)newTime);
 
-            currentSlider.value = (currentTime - 5f) / totalLength;
+            currentSlider.value = (float)videoPlayer.time / totalLength;
+        }
+        else
+        {
+            double newTime = 0;
+            videoPlayer.time = Mathf.Min((float)newTime, (float)videoPlayer.length);
+
+            currentSlider.value = 0;
         }
     }
     public void forwardAFewSeconds()
     {
-        double newTime = videoPlayer.time + jumpForwardSeconds;
-        videoPlayer.time = Mathf.Min((float)newTime, (float)videoPlayer.length);
+        if ((videoPlayer.clip.length - videoPlayer.time) > jumpForwardSeconds)
+        {
+            double newTime = videoPlayer.time + jumpForwardSeconds;
+            videoPlayer.time = Mathf.Min((float)newTime, (float)videoPlayer.length);
 
-        currentSlider.value = (currentTime + 5f) / totalLength;
+            currentSlider.value = (float)videoPlayer.time / totalLength;
+        }
+        else
+        {
+            double newTime = videoPlayer.clip.length;
+            videoPlayer.time = Mathf.Min((float)newTime, (float)videoPlayer.length);
+
+            currentSlider.value = 1;
+        }
     }
 
     public void PauseOrPlay()
     {
-        toggle = true;
-
         if (videoPlayer.isPlaying)
         {
             videoPlayer.Pause();
             ShowPlayButton();
-            Debug.Log("Video should have stopped");
         }
-        else
+        else if (videoPlayer.isPaused && currentTime < videoPlayer.clip.length)
         {
             videoPlayer.Play();
             ShowPauseButton();
-            SetTotalTimeUI();
-            Debug.Log("Video should play");
         }
-
-        Invoke(nameof(ToggleReset), timeBetweenClicks); //nameof = Konvertierung zu String
     }
-
 
 
     private void ShowPlayButton()
     {
-
+        PlayButton.SetActive(true);
+        PauseButton.SetActive(false);
     }
     private void ShowPauseButton()
     {
-
+        PlayButton.SetActive(false);
+        PauseButton.SetActive(true);
     }
 
     private void SetCurrentTimeUI()
@@ -242,10 +264,5 @@ public class VideoPlayerControll : MonoBehaviour
         currentTime = Mathf.Floor((int)videoPlayer.time);
 
         currentSlider.value = currentTime / totalLength;
-    }
-
-    private void ToggleReset()
-    {
-        toggle = false;
     }
 }
