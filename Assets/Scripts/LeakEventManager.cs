@@ -56,25 +56,7 @@ public class LeakEventManager : MonoBehaviour
     public int functionalityValueOfThisLeak;
 
     public Color colorBG_ST;
-    //stufe1
-    //public int timeST1 = 30;
-    //public int attentionPerSecondST1 = 10;
-    //public int minusWhenTimeIsUpST1 = 50; //minus
-    //private StufeVorlage stufe1;
     private StufeVorlage[] stufen = new StufeVorlage[3];
-
-    //stufe2
-    //public int timeST2 = 20;
-    //public int attentionPerSecondST2 = 100;
-    //public int minusWhenTimeIsUpST2 = 80;
-    //private StufeVorlage stufe2;
-
-    //stufe3
-    //public int timeST3 = 10;
-    //public int attentionPerSecondST3 = 1000;
-    //public int minusWhenTimeIsUpST3 = 100;
-    //private StufeVorlage stufe3;
-
 
     void Start()
     {
@@ -86,18 +68,12 @@ public class LeakEventManager : MonoBehaviour
         stufen[(int)Stufe.stufe2].InitiateStufeValues(20, 100, 80, 80);
         stufen[(int)Stufe.stufe3].InitiateStufeValues(10, 1000, 100, 100);
 
-        // PlayerPrefs.SetInt("currentOpposition", 100);
-        //PlayerPrefs.SetInt("currentFunctionality", 100);
-
         leakPanel.SetActive(false);
         StartCoroutine(LeakChecker());
         for(int a = 0; a<3; a++)
         {
             PlayerPrefs.DeleteKey("CurrentLeakID"+a+1);
         }
-        //PlayerPrefs.DeleteKey("CurrentLeakID1");
-        //PlayerPrefs.DeleteKey("CurrentLeakID2");
-        //PlayerPrefs.DeleteKey("CurrentLeakID3");
     }
 
     IEnumerator LeakChecker()

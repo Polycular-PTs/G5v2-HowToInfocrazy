@@ -12,9 +12,9 @@ public class AnswerFalseScript : MonoBehaviour
         PlayerPrefs.SetInt("CurrentID", id);
         SceneManager.LoadScene("SekretaerScene");
     }
-    private void Start()
+    private void Start() //0 ist false und 1 ist true
     {
-        if (PlayerPrefs.GetString("firstAnswerBoolean") == "true")
+        if (PlayerPrefs.GetInt("firstAnswerBoolean") == 1)
         {
             int curScore = PlayerPrefs.GetInt("currentScore");
             int addition = PlayerPrefs.GetInt("CurrentHappiness" + PlayerPrefs.GetInt("clickedButtonID"));
@@ -25,7 +25,7 @@ public class AnswerFalseScript : MonoBehaviour
             int addition2 = PlayerPrefs.GetInt("CurrentBudget" + PlayerPrefs.GetInt("clickedButtonID"));
             statebudget += addition2;
             PlayerPrefs.SetInt("currentStatebudget", statebudget);
-            PlayerPrefs.SetString("firstAnswerBoolean","false");
+            PlayerPrefs.SetInt("firstAnswerBoolean", 0);
 
             int opposition = PlayerPrefs.GetInt("currentOpposition");
             int addition3 = PlayerPrefs.GetInt("addOpposition" + PlayerPrefs.GetInt("clickedButtonID"));

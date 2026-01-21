@@ -14,7 +14,11 @@ public class OfficeScript : MonoBehaviour
     string budgetPlayerPrefName = "currentStatebudget";
     string oppositionPlayerPrefName = "currentOpposition";
     string functionalityPlayerPrefName = "currentFunctionality";
-    //private bool firstAnswer; //später für Antwortauswertung
+    string firstAnswerBoolName = "firstAnswerBoolean";
+    string sekretarianSceneName = "SekretaerScene";
+    string defeatSceneName = "Defeat";
+
+    //private bool firstAnswer;
 
     public GameObject statebudgetFill;
     public TextMeshProUGUI statebudgetText;
@@ -29,7 +33,7 @@ public class OfficeScript : MonoBehaviour
     {
         if (whenThisNumberIsZero <= 0)
         {
-            SceneManager.LoadScene("Defeat");
+            SceneManager.LoadScene(defeatSceneName);
         }
     }
 
@@ -56,7 +60,7 @@ public class OfficeScript : MonoBehaviour
             ResetPlayerPrefsValue(scorePlayerPrefName, happinessFill.GetComponent<Transform>());
             //PlayerPrefs.SetInt("currentScore", 100);
             //ChangeGraphic(100, happinessFill.GetComponent<Transform>());
-            //PlayerPrefs.SetString("firstAnswerBoolean", "true"); //später für Antwortauswertung
+            PlayerPrefs.SetInt(firstAnswerBoolName, 1);
         }
         else
         {
@@ -76,14 +80,14 @@ public class OfficeScript : MonoBehaviour
         }
         else
         {
-            int curState = PlayerPrefs.GetInt("currentStatebudget");
+            int curState = PlayerPrefs.GetInt(budgetPlayerPrefName);
             ChangeGraphic(curState, statebudgetFill.GetComponent<Transform>());
             statebudgetText.text = curState.ToString();
             LoadDefeatScene(curState);
             //if (curState <= 0) { LoadDefeatScene(); }
         }
 
-        if (!PlayerPrefs.HasKey("currentOpposition"))
+        if (!PlayerPrefs.HasKey(oppositionPlayerPrefName))
         {
             ResetPlayerPrefsValue(oppositionPlayerPrefName, oppositionFill.GetComponent<Transform>());
             //PlayerPrefs.SetInt("currentOpposition", 100);
@@ -91,14 +95,14 @@ public class OfficeScript : MonoBehaviour
         }
         else
         {
-            int curOppo = PlayerPrefs.GetInt("currentOpposition");
+            int curOppo = PlayerPrefs.GetInt(oppositionPlayerPrefName);
             ChangeGraphic(curOppo, oppositionFill.GetComponent<Transform>());
             oppositionText.text = curOppo.ToString();
             LoadDefeatScene(curOppo);
             //if (curOppo <= 0) { SceneManager.LoadScene("Defeat"); }
         }
 
-        if (!PlayerPrefs.HasKey("currentFunctionality"))
+        if (!PlayerPrefs.HasKey(functionalityPlayerPrefName)) 
         {
             ResetPlayerPrefsValue(functionalityPlayerPrefName, functionalityFill.GetComponent<Transform>());
             //PlayerPrefs.SetInt("currentFunctionality", 100);
@@ -106,7 +110,7 @@ public class OfficeScript : MonoBehaviour
         }
         else
         {
-            int curFunc = PlayerPrefs.GetInt("currentFunctionality");
+            int curFunc = PlayerPrefs.GetInt(functionalityPlayerPrefName);
             ChangeGraphic(curFunc, functionalityFill.GetComponent<Transform>());
             functionalityText.text = curFunc.ToString();
             LoadDefeatScene(curFunc);
@@ -116,6 +120,6 @@ public class OfficeScript : MonoBehaviour
 
     public void ChangeScene()
     {
-        SceneManager.LoadScene("SekretaerScene");
+        SceneManager.LoadScene(sekretarianSceneName);
     }
 }

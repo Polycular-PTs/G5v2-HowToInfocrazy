@@ -13,7 +13,7 @@ public class AnswerRightScript : MonoBehaviour
     }
     private void Start()
     {
-        if (PlayerPrefs.GetString("firstAnswerBoolean") == "true")
+        if (PlayerPrefs.GetInt("firstAnswerBoolean") == 1)
         {
             int curScore = PlayerPrefs.GetInt("currentScore");
             int addition = PlayerPrefs.GetInt("CurrentHappiness" + PlayerPrefs.GetInt("clickedButtonID"));
@@ -39,9 +39,9 @@ public class AnswerRightScript : MonoBehaviour
             QuestionsWithAnswers CurrentQ = Resources.Load<QuestionsWithAnswers>("Data/Frage" + id);
             a.clip = Resources.Load<VideoClip>(CurrentQ.video);
         }
-        if (PlayerPrefs.GetString("firstAnswerBoolean") == "false")
+        if (PlayerPrefs.GetInt("firstAnswerBoolean") == 0)
         {
-            PlayerPrefs.SetString("firstAnswerBoolean", "true");
+            PlayerPrefs.SetInt("firstAnswerBoolean", 1);
         }
 
     }
