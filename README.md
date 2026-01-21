@@ -21,7 +21,7 @@ Ein Leak-Event wird zufällig ausgelöst. Etwas über dich oder deine Regierung 
 Umsetzung: Event-Coroutine erzeugt das Leak-Problem (1–10), zeigt Countdown-UI (10s). Bei Timeout gilt: keine Aktion → stärkster Negativeffekt.  
 
 Paul:
-5) Fixen des Scores und hinzufügen von 2 neuen Werten.
+5. Fixen des Scores und hinzufügen von 2 neuen Werten.
 Bestehende Werte
 STAATSKASSE) Dieser beschreibt wie viel geld der spieler noch hat
 HAPPIENESS) Dieser zeigt dem Spieler wie glücklich die Bevölkerung ist
