@@ -425,7 +425,9 @@ public class LeakEventManager : MonoBehaviour
             }
             functionalityText.text = curFunctionality.ToString();
 
-           
+            leakPanel.SetActive(false);
+            id += 1; //Steigerung des ID Wertes, damit andere Fragen kommen
+            PlayerPrefs.SetInt("CurrentLeakID" + stufe, id);
         }
     }
 }

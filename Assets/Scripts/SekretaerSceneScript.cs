@@ -14,7 +14,7 @@ public class SekretaerSceneScript : MonoBehaviour
     //private int statefriendliness = 100;
     public TextMeshProUGUI staatsfreundlichkeitText;
 
-    public Slider happinessSlider;
+    //public Slider happinessSlider;
     public GameObject happinessFill;
     public TextMeshProUGUI happinessText;
 
@@ -60,69 +60,90 @@ public class SekretaerSceneScript : MonoBehaviour
         //PlayerPrefs.SetInt("currentStatebudget", 100);
         PlayerPrefs.DeleteKey("currentScore");
         PlayerPrefs.DeleteKey("currentStatebudget");
-        happinessSlider.maxValue = 1;
-        
-        Transform fillTransform = happinessFill.GetComponent<Transform>();
+        //happinessSlider.maxValue = 1;
+
+        ResetGraphic(happinessFill.GetComponent<Transform>());
+        //Transform fillTransform = happinessFill.GetComponent<Transform>();
+        //Vector3 scale = fillTransform.localScale;
+        //scale.x = 1;
+        //fillTransform.localScale = scale;
+
+        ResetGraphic(statebudgetFill.GetComponent<Transform>());
+        //Transform fillTransform2 = statebudgetFill.GetComponent<Transform>();
+        //Vector3 scale2 = fillTransform2.localScale;
+        //scale2.x = 1;
+        //fillTransform.localScale = scale2;
+
+        Debug.Log("Staatsfreundlichkeit und Budget wurden zurückgesetzt");
+    }
+
+    private void ResetGraphic(Transform fillTransform)
+    {
         Vector3 scale = fillTransform.localScale;
         scale.x = 1;
         fillTransform.localScale = scale;
-        
-        Transform fillTransform2 = statebudgetFill.GetComponent<Transform>();
-        Vector3 scale2 = fillTransform2.localScale;
-        scale2.x = 1;
-        fillTransform.localScale = scale2;
+    }
 
-        Debug.Log("Staatsfreundlichkeit und Budget wurden zurückgesetzt");
+    private void ChangeGraphicAndText(int curValue, Transform fillTransform, TextMeshProUGUI text)
+    {
+        if (curValue <= 100f)
+        {
+            Vector3 scale = fillTransform.localScale;
+            scale.x = curValue / 100f;
+            fillTransform.localScale = scale;
+        }
+        text.text = curValue.ToString();
     }
 
     private void Start()
     {
         int curScore = PlayerPrefs.GetInt("currentScore");
-        Debug.Log("CurrentScore2:" + curScore);
-        if (curScore < 100f)
-        {
-            Transform fillTransform = happinessFill.GetComponent<Transform>();
-            Vector3 scale = fillTransform.localScale;
-            scale.x = curScore / 100f;
-            fillTransform.localScale = scale;
-        }
+        //Debug.Log("CurrentScore2:" + curScore);
+        ChangeGraphicAndText(curScore, happinessFill.GetComponent<Transform>(), happinessText);
+        //if (curScore < 100f)
+        //{
+        //    Transform fillTransform = happinessFill.GetComponent<Transform>();
+        //    Vector3 scale = fillTransform.localScale;
+        //    scale.x = curScore / 100f;
+        //    fillTransform.localScale = scale;
+        //}
 
-        happinessSlider.value = curScore / 100f;
-        happinessText.text = curScore.ToString();
+        //happinessSlider.value = curScore / 100f;
+        //happinessText.text = curScore.ToString();
 
 
         int stateBudget = PlayerPrefs.GetInt("currentStatebudget");
-        if (stateBudget < 100f)
-        {
-            Transform fillTransform = statebudgetFill.GetComponent<Transform>();
-            Vector3 scale = fillTransform.localScale;
-            scale.x = stateBudget / 100f;
-            fillTransform.localScale = scale;
-        }
-
-        statebudgetText.text = stateBudget.ToString();
+        ChangeGraphicAndText(stateBudget, statebudgetFill.GetComponent<Transform>(), statebudgetText);
+        //if (stateBudget < 100f)
+        //{
+        //    Transform fillTransform = statebudgetFill.GetComponent<Transform>();
+        //    Vector3 scale = fillTransform.localScale;
+        //    scale.x = stateBudget / 100f;
+        //    fillTransform.localScale = scale;
+        //}
+        //statebudgetText.text = stateBudget.ToString();
 
         int opposition = PlayerPrefs.GetInt("currentOpposition");
-        if (opposition < 100f)
-        {
-            Transform fillTransform = oppositionFill.GetComponent<Transform>();
-            Vector3 scale = fillTransform.localScale;
-            scale.x = opposition / 100f;
-            fillTransform.localScale = scale;
-        }
-
-        oppositionText.text = opposition.ToString();
+        ChangeGraphicAndText(opposition, oppositionFill.GetComponent<Transform>(), oppositionText);
+        //if (opposition < 100f)
+        //{
+        //    Transform fillTransform = oppositionFill.GetComponent<Transform>();
+        //    Vector3 scale = fillTransform.localScale;
+        //    scale.x = opposition / 100f;
+        //    fillTransform.localScale = scale;
+        //}
+        //oppositionText.text = opposition.ToString();
 
         int functionality = PlayerPrefs.GetInt("currentFunctionality");
-        if (functionality < 100f)
-        {
-            Transform fillTransform = oppositionFill.GetComponent<Transform>();
-            Vector3 scale = fillTransform.localScale;
-            scale.x = functionality / 100f;
-            fillTransform.localScale = scale;
-        }
-
-        functionalityText.text = functionality.ToString();
+        ChangeGraphicAndText(functionality, functionalityFill.GetComponent<Transform>(), functionalityText);
+        //if (functionality < 100f)
+        //{
+        //    Transform fillTransform = oppositionFill.GetComponent<Transform>();
+        //    Vector3 scale = fillTransform.localScale;
+        //    scale.x = functionality / 100f;
+        //    fillTransform.localScale = scale;
+        //}
+        //functionalityText.text = functionality.ToString();
 
         //staatsfreundlichkeitText.text = PlayerPrefs.GetInt("staatsfriendliness").ToString();
 
@@ -137,9 +158,13 @@ public class SekretaerSceneScript : MonoBehaviour
         //}
 
 
+        LoadQuestionsToUI();
+    }
+
+    private void LoadQuestionsToUI()
+    {
         id = PlayerPrefs.GetInt("CurrentID");
 
-        //Debug.Log(PlayerPrefs.GetInt("CurrentID"));
         if (!PlayerPrefs.HasKey("CurrentID"))
         {
             PlayerPrefs.SetInt("CurrentID", 0);
@@ -158,16 +183,13 @@ public class SekretaerSceneScript : MonoBehaviour
                 PlayerPrefs.SetInt("addOpposition" + i, allQuestions[id].opposition[i]);
                 PlayerPrefs.SetInt("addFunctionality" + i, allQuestions[id].functionality[i]);
             }
-
-
-
             Questiontxt.text = PlayerPrefs.GetString("CurrentQuestion");
         }
         else
         {
             Debug.Log("No more questions");
             Questiontxt.text = "You are out of questions";
-            AnswerButton.enabled=false;
+            AnswerButton.enabled = false;
         }
     }
 
