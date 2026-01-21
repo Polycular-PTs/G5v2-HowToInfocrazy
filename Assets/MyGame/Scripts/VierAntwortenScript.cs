@@ -38,15 +38,7 @@ public class VierAntwortenScript: MonoBehaviour
     {
         int correctAnswerID = PlayerPrefs.GetInt(correctAnswerIDPlayerPrefName);
         GameObject clicked = EventSystem.current.currentSelectedGameObject;
-        //int clickedButtonID=0;
         int clickedButtonID = System.Array.IndexOf(answer, clicked);
-        //for (int i=0; i<4; i++)
-        //{
-        //    if (clicked.name == answer[i].name)
-        //    {
-        //        clickedButtonID = i;
-        //    }
-        //}
 
         PlayerPrefs.SetInt(clickedButtonIDPlayerPrefName, clickedButtonID);
 
@@ -63,50 +55,9 @@ public class VierAntwortenScript: MonoBehaviour
     private void Start()
     {
         UpdateStatBar(scorePlayerPrefName, happinessFill, happinessText);
-
-        //int curScore = PlayerPrefs.GetInt(scorePlayerPrefName);
-        //if (curScore / 100f <= 1)
-        //{
-        //    Transform fillTransform = happinessFill.GetComponent<Transform>();
-        //    Vector3 scale = fillTransform.localScale;
-        //    scale.x = curScore / 100f;
-        //    fillTransform.localScale = scale;
-        //}
-        //happinessText.text = curScore.ToString();
-
         UpdateStatBar(budgetPlayerPrefName, statebudgetFill, statebudgetText);
-        //int stateBudget = PlayerPrefs.GetInt(budgetPlayerPrefName);
-        //if (stateBudget < 100f)
-        //{
-        //    Transform fillTransform = statebudgetFill.GetComponent<Transform>();
-        //    Vector3 scale = fillTransform.localScale;
-        //    scale.x = stateBudget / 100f;
-        //    fillTransform.localScale = scale;
-        //}
-        //statebudgetText.text = stateBudget.ToString();
-
         UpdateStatBar(oppositionPlayerPrefName, oppositionFill, oppositionText);
-        //int opposition = PlayerPrefs.GetInt(oppositionPlayerPrefName);
-        //if (opposition < 100f)
-        //{
-        //    Transform fillTransform = oppositionFill.GetComponent<Transform>();
-        //    Vector3 scale = fillTransform.localScale;
-        //    scale.x = opposition / 100f;
-        //    fillTransform.localScale = scale;
-        //}
-        //oppositionText.text = opposition.ToString();
-
         UpdateStatBar(functionalityPlayerPrefName, functionalityFill, functionalityText);
-        //int functionality = PlayerPrefs.GetInt(functionalityPlayerPrefName);
-        //if (functionality < 100f)
-        //{
-        //    Transform fillTransform = functionalityFill.GetComponent<Transform>();
-        //    Vector3 scale = fillTransform.localScale;
-        //    scale.x = functionality / 100f;
-        //    fillTransform.localScale = scale;
-        //}
-        //functionalityText.text = functionality.ToString();
-
 
         for (int i = 0; i < 4; i++)
         {
