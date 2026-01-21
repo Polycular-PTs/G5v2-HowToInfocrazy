@@ -4,6 +4,9 @@ using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEngine.WSA;
+//using static System.IO.Enumeration.FileSystemEnumerable<TResult>;
+//using static System.IO.Enumeration.FileSystemEnumerable<TResult>;
 
 public enum Stufe { stufe1, stufe2, stufe3}
 
@@ -152,8 +155,7 @@ public class LeakEventManager : MonoBehaviour
 
         for(int b=1; b < 4; b++)
         {
-            
-            if (stufe == b)
+            if (stufe == b) //Abfrage, welche Stufe es ist
             {
                 if (!PlayerPrefs.HasKey("CurrentLeakID" + stufe))
                 {
@@ -168,23 +170,8 @@ public class LeakEventManager : MonoBehaviour
                 }
 
                 LeakData[] currentLeakData = GetLeaksForStufe(stufe); //bei der aktuellen Stufe wird dem currentLeakData das richtige Array der richtigen Stufe zugewiesen und unten mit der jeweiligen ID den aktuellen Leak abgefragt.
-                //if (stufe == 1) //bei Stufe 1 wird dem currentLeakData die richtige Stufe zugewiesen und unten mit der jeweiligen ID den aktuellen Leak abgefragt.
-                //{
-                //    currentLeakData = allLeaksStufe1; //alle Leaks der Stufe 1 werden hier dem currentLeakData zugewiesen
-                //    Debug.Log("AllLeakStufe1");
-                //}
-                //if (stufe == 2)
-                //{
-                //    currentLeakData = allLeaksStufe2;
-                //    Debug.Log("AllLeakStufe2");
-                //}
-                //if (stufe == 3)
-                //{
-                //    currentLeakData = allLeaksStufe3;
-                //    Debug.Log("AllLeakStufe3");
-                //}
 
-                //if (allLeaks.Length > id) //besetzen des Leakfensters mit Werten, nur wenn die ID von der bestimmten Stufe unter der Länge von 1 ist, weil wir nicht meht als 1 Scriptable Object haben. AllLeaks hat als Inhalt die aktuelle Menge an Leaks zur bestimmten Stufe.
+                //if (allLeaks.Length > id) //besetzen des Leakfensters mit Werten, nur wenn die ID von der bestimmten Stufe unter der Länge von 1 ist, weil wir nicht mehr als 1 Scriptable Object haben. AllLeaks hat als Inhalt die aktuelle Menge an Leaks zur bestimmten Stufe.
                 if (id <= currentLeakData.Length)
                 {
                     titleText.text = currentLeakData[id].inhalt;
@@ -214,85 +201,41 @@ public class LeakEventManager : MonoBehaviour
         else
         {
             //Updaten, was bei PlayerDecision gesetzt wird
-            int curScore = PlayerPrefs.GetInt("currentScore");
-            int addition = happinessValueOfThisLeak;
-            curScore += addition;
-            PlayerPrefs.SetInt("currentScore", curScore);
 
-            int curStatebudget = PlayerPrefs.GetInt("currentStatebudget");
-            int addition2 = budgetValueOfThisLeak;
-            curStatebudget += addition2;
-            PlayerPrefs.SetInt("currentStatebudget", curStatebudget);
-
-            int curOpposition = PlayerPrefs.GetInt("currentOpposition");
-            int addition3 = oppositionValueOfThisLeak;
-            curOpposition -= addition3;
-            PlayerPrefs.SetInt("currentOpposition", curOpposition);
-            Debug.Log("currentOppositionValue" + curOpposition);
-
-            int curFunctionality = PlayerPrefs.GetInt("currentFunctionality");
-            int addition4 = functionalityValueOfThisLeak;
-            curFunctionality += addition4;
-            PlayerPrefs.SetInt("currentFunctionality", curFunctionality);
-            Debug.Log("CurrentFunctionalityValue" + curFunctionality);
+            WertUpdaten2("currentScore", true, happinessValueOfThisLeak, happinessText, happinessFill);
+            WertUpdaten2("currentStatebudget", true, budgetValueOfThisLeak, statebudgetText, statebudgetFill);
+            WertUpdaten2("currentOpposition", false, oppositionValueOfThisLeak, oppositionText, oppositionFill);
+            WertUpdaten2("currentFunctionality", true, functionalityValueOfThisLeak, functionalityText, functionalityFill);
 
             leakActive = false;
-
-            if (curScore < 100f)
-            {
-                Transform fillTransform = happinessFill.GetComponent<Transform>();
-                Vector3 scale = fillTransform.localScale;
-                scale.x = curScore / 100f;
-                fillTransform.localScale = scale;
-            }
-            happinessText.text = curScore.ToString();
-
-            if (curScore <= 0)
-            {
-                SceneManager.LoadScene("Defeat");
-            }
-
-
-            if (curStatebudget < 100f)
-            {
-                Transform fillTransform = statebudgetFill.GetComponent<Transform>();
-                Vector3 scale = fillTransform.localScale;
-                scale.x = curStatebudget / 100f;
-                fillTransform.localScale = scale;
-            }
-            statebudgetText.text = curStatebudget.ToString();
-
-            if (curStatebudget <= 0)
-            {
-                Debug.Log("CurState ist Null");
-                SceneManager.LoadScene("Defeat");
-            }
-
-
-            if (curOpposition < 100f) //bei mehr wie 100 darf sich die Grafik nicht verändern
-            {
-                Transform fillTransform = oppositionFill.GetComponent<Transform>();
-                Vector3 scale = fillTransform.localScale;
-                scale.x = curOpposition / 100f;
-                fillTransform.localScale = scale;
-            }
-            oppositionText.text = curOpposition.ToString();
-            //GameOver für Opposition und Funktionalität fehlt noch
-
-
-            if (curFunctionality < 100f)
-            {
-                Transform fillTransform = functionalityFill.GetComponent<Transform>();
-                Vector3 scale = fillTransform.localScale;
-                scale.x = curFunctionality / 100f;
-                fillTransform.localScale = scale;
-            }
-            functionalityText.text = curFunctionality.ToString();
         }
+    }
 
-        //leakPanel.SetActive(false);
-        //id += 1; 
-        //PlayerPrefs.SetInt("CurrentLeakID"+stufe, id);
+    private void WertUpdaten2(string wert, bool addition, int formerValue, TextMeshProUGUI currentText, GameObject currentFill)
+    {
+        int curValue = PlayerPrefs.GetInt(wert);
+        if (addition == true)
+        {
+            curValue += formerValue;
+        }
+        else
+        {
+            curValue -= formerValue;
+        }
+        PlayerPrefs.SetInt(wert, curValue);
+        ChangeGraphic(curValue, currentFill.GetComponent<Transform>());
+        currentText.text = curValue.ToString();
+    }
+
+    private void ChangeGraphic(int curValue, Transform fillTransform)
+    {
+        if (curValue < 100f)
+        {
+            Vector3 scale = fillTransform.localScale;
+            scale.x = curValue / 100f;
+            fillTransform.localScale = scale;
+            Debug.Log("Graphic changed");
+        }
     }
 
     // Wird von Buttons aufgerufen
