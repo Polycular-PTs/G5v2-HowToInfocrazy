@@ -1,8 +1,11 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ScriptOnButton : MonoBehaviour
 {
+    public TutorialProgressTrack tutorialProgress;
+
     [Header("Reference to the: TutorialButtonManager")]
     [SerializeField] private TutorialManager tutorialManager;
 
@@ -22,38 +25,71 @@ public class ScriptOnButton : MonoBehaviour
 
     public bool alreadyDiscovered;
     private bool showing;
+    private float hideTimer;
 
-    private void Start()
-    {
-        StartHandler();
-    }
-    private void StartHandler()
+    private void Awake()
     {
         infoText.enabled = false;
         alreadyDiscovered = false;
+        textInButton.text = "Show Info";
 
         if (tutorialManager == null)
         {
-            FindGameObjectByName("TutorialButtonManager");
+            FindGameObjectByNameTutorialManager("TutorialButtonManager");
+        }
+
+        if (tutorialProgress == null) 
+        {
+            FindGameObjectByNameTutorialProgressTrack("TutorialButtonManager");
         }
     }
-    public void GiveInfoToTutorialManager()
-    {
-            tutorialManager.ShowInfo(infoText, textInButton, autoHideDelay, alreadyDiscovered);      
-    }
+
     private void Update()
     {
         if (attachToObject)
         {
-            AttachButtonToObject();
-        }
+            transform.position = attachmentTarget.position + attachmentOffset;
+        }  
+
     }
-    private void AttachButtonToObject()
+
+    public void OnButtonPressed()
     {
-        GetComponent<Transform>().position = attachmentTarget.position + attachmentOffset;
+        if (!showing) { Show(); }
+
+        if (showing) { Hide(); }   
     }
-    private void FindGameObjectByName(string nameOfTheObject)
+
+    private void Show()
+    {
+        Debug.Log("ShowButtonInfo");
+        infoText.enabled = true;
+        textInButton.text = "Hide Info";
+        showing = true;
+
+        if (!alreadyDiscovered)
+        {
+            alreadyDiscovered = true;
+            tutorialProgress.HintDiscovered();
+        }
+
+        Invoke("Hide", tutorialManager.timeToAutoDisableAButton + autoHideDelay);
+    }
+
+    private void Hide()
+    {
+        infoText.enabled = false;
+        textInButton.text = "Show Info";
+        showing = false;
+    }
+
+    private void FindGameObjectByNameTutorialManager(string nameOfTheObject)
     {
         tutorialManager = GameObject.Find(nameOfTheObject).GetComponent<TutorialManager>();
+    }
+
+    private void FindGameObjectByNameTutorialProgressTrack(string nameOfTheObject)
+    {
+        tutorialProgress = GameObject.Find(nameOfTheObject).GetComponent<TutorialProgressTrack>();
     }
 }

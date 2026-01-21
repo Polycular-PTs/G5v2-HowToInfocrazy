@@ -743,6 +743,8 @@ GameObject:
   - component: {fileID: 250050915}
   - component: {fileID: 250050918}
   - component: {fileID: 250050919}
+  - component: {fileID: 250050920}
+  - component: {fileID: 250050921}
   m_Layer: 0
   m_Name: TutorialButtonManager
   m_TagString: Untagged
@@ -801,6 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a66802b8e8f2547b696ea22e121cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialSceneController: {fileID: 250050920}
   timeToAutoDisableAButton: 5
   player: {fileID: 1447678769}
   placeOfSceneChange: {fileID: 9807740}
@@ -808,21 +811,47 @@ MonoBehaviour:
   keyForNextScene: 101
   keyForOneSceneBack: 113
   textGeneralSceneInfo: {fileID: 2061857310}
-  tutorialProgressSlider: {fileID: 383843696}
-  totalPointsForFullSlider: 3
-  currentSceneImage: {fileID: 658086551}
-  tutorialScenes:
-  - {fileID: 711357101}
-  - {fileID: 1446257867}
-  - {fileID: 81966586}
-  - {fileID: 679281422}
   sceneSpesificTextArray:
   - "In dieser Szene befindet sich dein B\xFCro."
   - Wenn du eine Aufgabe bekommst siehst du deine Kollegin, die dir das Problem mitteilt.
   - "Hier musst du dich f\xFCr die Antwort entscheiden, die dich an der Macht h\xE4lt."
   - "Im Falle eines Leaks werden geheime Daten \xFCber dich ver\xF6ffentlicht. Du
     hast nur sehr wenig Zeit um zu reagieren."
+--- !u!114 &250050920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250050914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5dc2269014e6741833645226b7ccad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialScenes:
+  - {fileID: 711357101}
+  - {fileID: 1446257867}
+  - {fileID: 81966586}
+  - {fileID: 679281422}
+  currentSceneImage: {fileID: 658086551}
+  currentSceneNumber: 3
+--- !u!114 &250050921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250050914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77023c32b8a5b7e4099ea7722ae7e661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialPoints: 0
   buttonForStartingTheGame: {fileID: 1651903744}
+  tutorialProgressSlider: {fileID: 383843696}
+  totalPointsForFullSlider: 3
 --- !u!1 &319249128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1690,11 +1719,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00543cd418581349b81195205c8987c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialProgress: {fileID: 250050921}
   tutorialManager: {fileID: 250050919}
   textInButton: {fileID: 1724338274}
   infoText: {fileID: 695947274}
   attachToObject: 0
-  attachmentTarget: {fileID: 695947273}
+  attachmentTarget: {fileID: 0}
   attachmentOffset: {x: 0, y: -1.5, z: 0}
   autoHideDelay: 5
   alreadyDiscovered: 0
@@ -1744,7 +1774,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 798056926}
         m_TargetAssemblyTypeName: ScriptOnButton, Assembly-CSharp
-        m_MethodName: GiveInfoToTutorialManager
+        m_MethodName: OnButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1956,6 +1986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00543cd418581349b81195205c8987c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialProgress: {fileID: 250050921}
   tutorialManager: {fileID: 250050919}
   textInButton: {fileID: 1473534975}
   infoText: {fileID: 338425064}
@@ -2010,7 +2041,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1051940468}
         m_TargetAssemblyTypeName: ScriptOnButton, Assembly-CSharp
-        m_MethodName: GiveInfoToTutorialManager
+        m_MethodName: OnButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3327,7 +3358,7 @@ PrefabInstance:
     - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
       propertyPath: tutorialManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 250050919}
     - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
       propertyPath: attachmentObject
       value: 
@@ -3337,12 +3368,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1447678773}
     - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
+      propertyPath: tutorialProgress
+      value: 
+      objectReference: {fileID: 250050921}
+    - target: {fileID: 796918493608969781, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
       propertyPath: isButtonAttachedToOtherObject
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1722011354514369679, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
       propertyPath: m_Name
       value: info_button_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4845636562364696738, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062938068272777187, guid: b92ee2849654d684894ddd385dcee1de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonPressed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
