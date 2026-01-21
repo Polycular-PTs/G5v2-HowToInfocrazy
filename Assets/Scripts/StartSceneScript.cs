@@ -13,6 +13,9 @@ public class StartSceneScript : MonoBehaviour
         PlayerPrefs.DeleteKey("currentStatebudget");
         PlayerPrefs.DeleteKey("currentOpposition");
         PlayerPrefs.DeleteKey("currentFunctionality");
+        PlayerPrefs.DeleteKey("CurrentLeakID1");
+        PlayerPrefs.DeleteKey("CurrentLeakID2");
+        PlayerPrefs.DeleteKey("CurrentLeakID3");
     }
 
     public void StartGame()

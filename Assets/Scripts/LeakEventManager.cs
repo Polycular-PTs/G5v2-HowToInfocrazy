@@ -117,6 +117,17 @@ public class LeakEventManager : MonoBehaviour
         }
     }
 
+    private LeakData[] GetLeaksForStufe(int stufe) //bei der aktuellen Stufe wird dem currentLeakData die richtige Stufe zugewiesen und unten mit der jeweiligen ID den aktuellen Leak abgefragt.
+    {
+        switch (stufe)
+        {
+            case 1: return allLeaksStufe1;
+            case 2: return allLeaksStufe2;
+            case 3: return allLeaksStufe3;
+            default: return allLeaksStufe1;
+        }
+    }
+
     // Wird von außen getriggert, z.B. durch Random-Event-System
     public void TriggerLeakEvent()
     {
@@ -156,24 +167,25 @@ public class LeakEventManager : MonoBehaviour
                     PlayerPrefs.DeleteKey("CurrentLeakID" + stufe);
                 }
 
-                LeakData[] currentLeakData = allLeaks;
-                if (stufe == 1) //bei Stufe 1 wird dem currentLeakData die richtige Stufe zugewiesen und unten mit der jeweiligen ID den aktuellen Leak abgefragt.
-                {
-                    currentLeakData = allLeaksStufe1; //alle Leaks der Stufe 1 werden hier dem currentLeakData zugewiesen
-                    Debug.Log("AllLeakStufe1");
-                }
-                if (stufe == 2)
-                {
-                    currentLeakData = allLeaksStufe2;
-                    Debug.Log("AllLeakStufe2");
-                }
-                if (stufe == 3)
-                {
-                    currentLeakData = allLeaksStufe3;
-                    Debug.Log("AllLeakStufe3");
-                }
+                LeakData[] currentLeakData = GetLeaksForStufe(stufe); //bei der aktuellen Stufe wird dem currentLeakData das richtige Array der richtigen Stufe zugewiesen und unten mit der jeweiligen ID den aktuellen Leak abgefragt.
+                //if (stufe == 1) //bei Stufe 1 wird dem currentLeakData die richtige Stufe zugewiesen und unten mit der jeweiligen ID den aktuellen Leak abgefragt.
+                //{
+                //    currentLeakData = allLeaksStufe1; //alle Leaks der Stufe 1 werden hier dem currentLeakData zugewiesen
+                //    Debug.Log("AllLeakStufe1");
+                //}
+                //if (stufe == 2)
+                //{
+                //    currentLeakData = allLeaksStufe2;
+                //    Debug.Log("AllLeakStufe2");
+                //}
+                //if (stufe == 3)
+                //{
+                //    currentLeakData = allLeaksStufe3;
+                //    Debug.Log("AllLeakStufe3");
+                //}
 
-                if (allLeaks.Length > id) //besetzen des Leakfensters mit Werten, nur wenn die ID von der bestimmten Stufe unter der Länge von 1 ist, weil wir nicht meht als 1 Scriptable Object haben. AllLeaks hat als Inhalt die aktuelle Menge an Leaks zur bestimmten Stufe.
+                //if (allLeaks.Length > id) //besetzen des Leakfensters mit Werten, nur wenn die ID von der bestimmten Stufe unter der Länge von 1 ist, weil wir nicht meht als 1 Scriptable Object haben. AllLeaks hat als Inhalt die aktuelle Menge an Leaks zur bestimmten Stufe.
+                if (id <= currentLeakData.Length)
                 {
                     titleText.text = currentLeakData[id].inhalt;
                     PlayerPrefs.SetInt("rightAnswerID", currentLeakData[id].idRightAnswer);
