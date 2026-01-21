@@ -35,33 +35,26 @@ public class TutorialManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("CurrentSceneNumber" + tutorialSceneController.currentSceneNumber);
-        float xPos = player.transform.position.x;
-        float yPos = player.transform.position.y;
-
-        float xPosCirc = placeOfSceneChange.transform.position.x;
-        float yPosCirc = placeOfSceneChange.transform.position.y;
-
-        if (xPos < xPosCirc +offsetOfPlayer && xPos > xPosCirc -offsetOfPlayer && yPos < yPosCirc +offsetOfPlayer && yPos > yPosCirc -offsetOfPlayer)
+        if (IsPlayerInTransitionArea())
         {
             Debug.Log("Player is in Box" + "Click E to next scene");
             if (Input.GetKeyDown(keyForNextScene))
             {
-                    tutorialSceneController.TransitionForwardInTutorialScene();
-                    tutorialSceneController.ObjectsForCurrentScene();
+                tutorialSceneController.TransitionForwardInTutorialScene();
+                tutorialSceneController.ObjectsForCurrentScene();
             }
             if (Input.GetKeyDown(keyForOneSceneBack))
             {
 
-                    tutorialSceneController.TransitionBackwardInTutorialScnen();
-                    tutorialSceneController.ObjectsForCurrentScene();
+                tutorialSceneController.TransitionBackwardInTutorialScnen();
+                tutorialSceneController.ObjectsForCurrentScene();
             }
             ShowInGeneralSceneInfo("Transition Scene with " + keyForOneSceneBack + " and " + keyForNextScene);
         }
         else
         {
             ShowInGeneralSceneInfo(" ");
-        }
+        }           
     }
 
     public void ShowInGeneralSceneInfo(string sceneInfoText)
@@ -73,7 +66,11 @@ public class TutorialManager : MonoBehaviour
         textGeneralSceneInfo.text = generalText + "\n" + "\n" + sceneSpesificText;
     }
 
-    
+    private bool IsPlayerInTransitionArea()
+    {
+        return Vector2.Distance(player.transform.position, placeOfSceneChange.transform.position)
+        <= offsetOfPlayer;
+    }
 
 
     
