@@ -31,6 +31,8 @@ public class VierAntwortenScript: MonoBehaviour
     string oppositionPlayerPrefName = "currentOpposition";
     string functionalityPlayerPrefName = "currentFunctionality";
     string correctAnswerIDPlayerPrefName = "CorrectRightAnswerID";
+    string currentAnswerPlayerPrefName = "CurrentAnswer";
+    string clickedButtonIDPlayerPrefName = "clickedButtonID";
     //string sekretarianSceneName = "SekretaerScene";
     //string defeatSceneName = "Defeat";
 
@@ -69,9 +71,7 @@ public class VierAntwortenScript: MonoBehaviour
             }
         }
 
-        PlayerPrefs.SetInt("clickedButtonID", clickedButtonID);
-
-
+        PlayerPrefs.SetInt(clickedButtonIDPlayerPrefName, clickedButtonID);
 
         if (correctAnswerID == clickedButtonID) //Noch einbauen, dass Bool true werden muss
         {
@@ -98,7 +98,7 @@ public class VierAntwortenScript: MonoBehaviour
 
     private void Start()
     {
-        int curScore = PlayerPrefs.GetInt("currentScore");
+        int curScore = PlayerPrefs.GetInt(scorePlayerPrefName);
         if (curScore / 100f <= 1)
         {
             Transform fillTransform = happinessFill.GetComponent<Transform>();
@@ -109,7 +109,7 @@ public class VierAntwortenScript: MonoBehaviour
         happinessSlider.value = curScore / 100f;
         happinessText.text = curScore.ToString();
 
-        int stateBudget = PlayerPrefs.GetInt("currentStatebudget");
+        int stateBudget = PlayerPrefs.GetInt(budgetPlayerPrefName);
         if (stateBudget < 100f)
         {
             Transform fillTransform = statebudgetFill.GetComponent<Transform>();
@@ -120,7 +120,7 @@ public class VierAntwortenScript: MonoBehaviour
 
         statebudgetText.text = stateBudget.ToString();
 
-        int opposition = PlayerPrefs.GetInt("currentOpposition");
+        int opposition = PlayerPrefs.GetInt(oppositionPlayerPrefName);
         if (opposition < 100f)
         {
             Transform fillTransform = oppositionFill.GetComponent<Transform>();
@@ -132,7 +132,7 @@ public class VierAntwortenScript: MonoBehaviour
         oppositionText.text = opposition.ToString();
 
 
-        int functionality = PlayerPrefs.GetInt("currentFunctionality");
+        int functionality = PlayerPrefs.GetInt(functionalityPlayerPrefName);
         if (functionality < 100f)
         {
             Transform fillTransform = functionalityFill.GetComponent<Transform>();
@@ -152,7 +152,7 @@ public class VierAntwortenScript: MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             //Debug.Log(answer[i].GetComponentInChildren<TextMeshProUGUI>().name);
-            answer[i].GetComponentInChildren<TextMeshProUGUI>().text = PlayerPrefs.GetString("CurrentAnswer" + i);
+            answer[i].GetComponentInChildren<TextMeshProUGUI>().text = PlayerPrefs.GetString(currentAnswerPlayerPrefName + i);
             
         }
     }
