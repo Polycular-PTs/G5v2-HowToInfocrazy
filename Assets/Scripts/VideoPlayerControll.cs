@@ -114,23 +114,14 @@ public class VideoPlayerControll : MonoBehaviour
 
     private void UpdatePlaybackUI()
     {
+        UpdatePlayPauseUI();
+
         if (videoPlayer.isPlaying && !isDragging)
         {
-            Debug.Log("A1");
             SetCurrentTimeUI();
             SetTotalTimeUI();
             PlayBarSlider();
             showEndscreen = false;
-        }
-        if (videoPlayer.isPlaying)
-        {
-            Debug.Log("A2");
-            PauseButton.SetActive(true);
-        }
-        if (videoPlayer.isPaused && currentTime < videoPlayer.clip.length)
-        {
-            Debug.Log("A3");
-            UpdatePlayPauseUI();
         }
     }
 
@@ -153,9 +144,10 @@ public class VideoPlayerControll : MonoBehaviour
 
     private void OnVideoEnd(VideoPlayer vp)
     {
-        Debug.Log("A4");
         UpdatePlayPauseUI();
         RestartButton.SetActive(true);
+        PlayButton.SetActive(false);
+        PauseButton.SetActive(false);
         showEndscreen = true;
     }
 
@@ -228,7 +220,6 @@ public class VideoPlayerControll : MonoBehaviour
             ShowPauseButton();
         }
     }
-
 
     private void ShowPlayButton()
     {

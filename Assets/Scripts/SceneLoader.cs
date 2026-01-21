@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class StartSceneScript : MonoBehaviour
+public class SceneLoader : MonoBehaviour
 {
     private const string SCENE_OFFICE = "Office";
     private const string SCENE_TUTORIAL_OFFICE = "Tutorial_Office";
