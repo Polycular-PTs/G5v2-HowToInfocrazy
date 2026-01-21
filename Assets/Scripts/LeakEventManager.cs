@@ -4,6 +4,9 @@ using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEngine.WSA;
+//using static System.IO.Enumeration.FileSystemEnumerable<TResult>;
+//using static System.IO.Enumeration.FileSystemEnumerable<TResult>;
 
 public enum Stufe { stufe1, stufe2, stufe3}
 
@@ -152,8 +155,7 @@ public class LeakEventManager : MonoBehaviour
 
         for(int b=1; b < 4; b++)
         {
-            
-            if (stufe == b)
+            if (stufe == b) //Abfrage, welche Stufe es ist
             {
                 if (!PlayerPrefs.HasKey("CurrentLeakID" + stufe))
                 {
@@ -168,23 +170,8 @@ public class LeakEventManager : MonoBehaviour
                 }
 
                 LeakData[] currentLeakData = GetLeaksForStufe(stufe); //bei der aktuellen Stufe wird dem currentLeakData das richtige Array der richtigen Stufe zugewiesen und unten mit der jeweiligen ID den aktuellen Leak abgefragt.
-                //if (stufe == 1) //bei Stufe 1 wird dem currentLeakData die richtige Stufe zugewiesen und unten mit der jeweiligen ID den aktuellen Leak abgefragt.
-                //{
-                //    currentLeakData = allLeaksStufe1; //alle Leaks der Stufe 1 werden hier dem currentLeakData zugewiesen
-                //    Debug.Log("AllLeakStufe1");
-                //}
-                //if (stufe == 2)
-                //{
-                //    currentLeakData = allLeaksStufe2;
-                //    Debug.Log("AllLeakStufe2");
-                //}
-                //if (stufe == 3)
-                //{
-                //    currentLeakData = allLeaksStufe3;
-                //    Debug.Log("AllLeakStufe3");
-                //}
 
-                //if (allLeaks.Length > id) //besetzen des Leakfensters mit Werten, nur wenn die ID von der bestimmten Stufe unter der Länge von 1 ist, weil wir nicht meht als 1 Scriptable Object haben. AllLeaks hat als Inhalt die aktuelle Menge an Leaks zur bestimmten Stufe.
+                //if (allLeaks.Length > id) //besetzen des Leakfensters mit Werten, nur wenn die ID von der bestimmten Stufe unter der Länge von 1 ist, weil wir nicht mehr als 1 Scriptable Object haben. AllLeaks hat als Inhalt die aktuelle Menge an Leaks zur bestimmten Stufe.
                 if (id <= currentLeakData.Length)
                 {
                     titleText.text = currentLeakData[id].inhalt;
@@ -214,86 +201,211 @@ public class LeakEventManager : MonoBehaviour
         else
         {
             //Updaten, was bei PlayerDecision gesetzt wird
-            int curScore = PlayerPrefs.GetInt("currentScore");
-            int addition = happinessValueOfThisLeak;
-            curScore += addition;
-            PlayerPrefs.SetInt("currentScore", curScore);
 
-            int curStatebudget = PlayerPrefs.GetInt("currentStatebudget");
-            int addition2 = budgetValueOfThisLeak;
-            curStatebudget += addition2;
-            PlayerPrefs.SetInt("currentStatebudget", curStatebudget);
+            WertUpdaten2("currentScore", true, happinessValueOfThisLeak, happinessText, happinessFill);
+            WertUpdaten2("currentStatebudget", true, budgetValueOfThisLeak, statebudgetText, statebudgetFill);
+            WertUpdaten2("currentOpposition", false, oppositionValueOfThisLeak, oppositionText, oppositionFill);
+            WertUpdaten2("currentFunctionality", true, functionalityValueOfThisLeak, functionalityText, functionalityFill);
 
-            int curOpposition = PlayerPrefs.GetInt("currentOpposition");
-            int addition3 = oppositionValueOfThisLeak;
-            curOpposition -= addition3;
-            PlayerPrefs.SetInt("currentOpposition", curOpposition);
-            Debug.Log("currentOppositionValue" + curOpposition);
+            //int curScore = PlayerPrefs.GetInt("currentScore");
+            //int addition = happinessValueOfThisLeak;
+            //curScore += addition;
+            //PlayerPrefs.SetInt("currentScore", curScore);
 
-            int curFunctionality = PlayerPrefs.GetInt("currentFunctionality");
-            int addition4 = functionalityValueOfThisLeak;
-            curFunctionality += addition4;
-            PlayerPrefs.SetInt("currentFunctionality", curFunctionality);
-            Debug.Log("CurrentFunctionalityValue" + curFunctionality);
+            //int curStatebudget = PlayerPrefs.GetInt("currentStatebudget");
+            //int addition2 = budgetValueOfThisLeak;
+            //curStatebudget += addition2;
+            //PlayerPrefs.SetInt("currentStatebudget", curStatebudget);
+
+            //int curOpposition = PlayerPrefs.GetInt("currentOpposition");
+            //int addition3 = oppositionValueOfThisLeak;
+            //curOpposition -= addition3;
+            //PlayerPrefs.SetInt("currentOpposition", curOpposition);
+            //Debug.Log("currentOppositionValue" + curOpposition);
+
+            //int curFunctionality = PlayerPrefs.GetInt("currentFunctionality");
+            //int addition4 = functionalityValueOfThisLeak;
+            //curFunctionality += addition4;
+            //PlayerPrefs.SetInt("currentFunctionality", curFunctionality);
+            //Debug.Log("CurrentFunctionalityValue" + curFunctionality);
 
             leakActive = false;
 
-            if (curScore < 100f)
-            {
-                Transform fillTransform = happinessFill.GetComponent<Transform>();
-                Vector3 scale = fillTransform.localScale;
-                scale.x = curScore / 100f;
-                fillTransform.localScale = scale;
-            }
-            happinessText.text = curScore.ToString();
+            //if (curScore < 100f)
+            //{
+            //    Transform fillTransform = happinessFill.GetComponent<Transform>();
+            //    Vector3 scale = fillTransform.localScale;
+            //    scale.x = curScore / 100f;
+            //    fillTransform.localScale = scale;
+            //}
+            //happinessText.text = curScore.ToString();
 
-            if (curScore <= 0)
-            {
-                SceneManager.LoadScene("Defeat");
-            }
-
-
-            if (curStatebudget < 100f)
-            {
-                Transform fillTransform = statebudgetFill.GetComponent<Transform>();
-                Vector3 scale = fillTransform.localScale;
-                scale.x = curStatebudget / 100f;
-                fillTransform.localScale = scale;
-            }
-            statebudgetText.text = curStatebudget.ToString();
-
-            if (curStatebudget <= 0)
-            {
-                Debug.Log("CurState ist Null");
-                SceneManager.LoadScene("Defeat");
-            }
+            //if (curScore <= 0)
+            //{
+            //    SceneManager.LoadScene("Defeat");
+            //}
 
 
-            if (curOpposition < 100f) //bei mehr wie 100 darf sich die Grafik nicht verändern
-            {
-                Transform fillTransform = oppositionFill.GetComponent<Transform>();
-                Vector3 scale = fillTransform.localScale;
-                scale.x = curOpposition / 100f;
-                fillTransform.localScale = scale;
-            }
-            oppositionText.text = curOpposition.ToString();
-            //GameOver für Opposition und Funktionalität fehlt noch
+            //if (curStatebudget < 100f)
+            //{
+            //    Transform fillTransform = statebudgetFill.GetComponent<Transform>();
+            //    Vector3 scale = fillTransform.localScale;
+            //    scale.x = curStatebudget / 100f;
+            //    fillTransform.localScale = scale;
+            //}
+            //statebudgetText.text = curStatebudget.ToString();
+
+            //if (curStatebudget <= 0)
+            //{
+            //    Debug.Log("CurState ist Null");
+            //    SceneManager.LoadScene("Defeat");
+            //}
 
 
-            if (curFunctionality < 100f)
-            {
-                Transform fillTransform = functionalityFill.GetComponent<Transform>();
-                Vector3 scale = fillTransform.localScale;
-                scale.x = curFunctionality / 100f;
-                fillTransform.localScale = scale;
-            }
-            functionalityText.text = curFunctionality.ToString();
+            //if (curOpposition < 100f) //bei mehr wie 100 darf sich die Grafik nicht verändern
+            //{
+            //    Transform fillTransform = oppositionFill.GetComponent<Transform>();
+            //    Vector3 scale = fillTransform.localScale;
+            //    scale.x = curOpposition / 100f;
+            //    fillTransform.localScale = scale;
+            //}
+            //oppositionText.text = curOpposition.ToString();
+
+            //if (curOpposition <= 0)
+            //{
+            //    Debug.Log("CurOpposition ist Null");
+            //    SceneManager.LoadScene("Defeat");
+            //}
+
+
+            //if (curFunctionality < 100f)
+            //{
+            //    Transform fillTransform = functionalityFill.GetComponent<Transform>();
+            //    Vector3 scale = fillTransform.localScale;
+            //    scale.x = curFunctionality / 100f;
+            //    fillTransform.localScale = scale;
+            //}
+            //functionalityText.text = curFunctionality.ToString();
+
+            //if (curFunctionality <= 0)
+            //{
+            //    Debug.Log("CurFunc ist Null");
+            //    SceneManager.LoadScene("Defeat");
+            //}
         }
-
-        //leakPanel.SetActive(false);
-        //id += 1; 
-        //PlayerPrefs.SetInt("CurrentLeakID"+stufe, id);
     }
+
+    private void WertUpdaten2(string wert, bool addition, int formerValue, TextMeshProUGUI currentText, GameObject currentFill)
+    {
+        int curValue = PlayerPrefs.GetInt(wert);
+        int addition2 = formerValue;
+        if (addition == true)
+        {
+            curValue += formerValue;
+        }
+        else
+        {
+            curValue -= formerValue;
+        }
+        PlayerPrefs.SetInt(wert, curValue);
+        ChangeGraphic(curValue, currentFill.GetComponent<Transform>());
+        currentText.text = curValue.ToString();
+    }
+
+    //private void WertUpdaten(string wert, bool addition)
+    //{
+    //    int curValue = 0;
+    //    int formerValue = 0;
+    //    //bool valueNull = false;
+    //    //bool changeGraphic = false;
+    //    //bool valueBeneath100 = curValue < 100f;
+
+    //    //Transform fillTransform = happinessFill.GetComponent<Transform>();
+    //    switch (wert)
+    //    {
+    //        default: Debug.Log("No fitting case"); break;
+    //        case "currentScore": curValue = PlayerPrefs.GetInt("currentScore"); formerValue = happinessValueOfThisLeak; happinessText.text = curValue.ToString(); ChangeGraphic(curValue, happinessFill.GetComponent<Transform>()); break;
+    //        //if (valueBeneath100 == true)
+    //        //{
+    //        //    fillTransform = happinessFill.GetComponent<Transform>();
+    //        //    changeGraphic = true;
+    //        //};
+
+    //        case "currentStatebudget": curValue = PlayerPrefs.GetInt("currentStatebudget"); formerValue = budgetValueOfThisLeak; statebudgetText.text = curValue.ToString(); ChangeGraphic(curValue, statebudgetFill.GetComponent<Transform>()); break;
+    //        //if (valueBeneath100 == true)
+    //        //{
+    //        //    fillTransform = statebudgetFill.GetComponent<Transform>();
+    //        //    changeGraphic = true;
+    //        //}
+
+    //        case "currentOpposition": curValue = PlayerPrefs.GetInt("currentOpposition"); formerValue = oppositionValueOfThisLeak; oppositionText.text = curValue.ToString(); ChangeGraphic(curValue, oppositionFill.GetComponent<Transform>()); break;
+    //        //if (valueBeneath100 == true) //bei mehr wie 100 darf sich die Grafik nicht verändern
+    //        //{
+    //        //    fillTransform = oppositionFill.GetComponent<Transform>();
+    //        //    changeGraphic = true;
+    //        //};
+    //        case "currentFunctionality": curValue = PlayerPrefs.GetInt("currentFunctionality"); formerValue = functionalityValueOfThisLeak; functionalityText.text = curValue.ToString(); ChangeGraphic(curValue, functionalityText.GetComponent<Transform>()); break;
+    //            //if (valueBeneath100 == true)
+    //            //{
+    //            //    fillTransform = functionalityFill.GetComponent<Transform>();
+    //            //    changeGraphic = true;
+    //            //};
+    //            //default: ;
+    //    }
+    //    //if (changeGraphic == true) //&& valueNull == true)
+    //    //{
+    //    //    Vector3 scale = fillTransform.localScale;
+    //    //    scale.x = curValue / 100f;
+    //    //    fillTransform.localScale = scale;
+    //    //}
+    //    Debug.Log("CurrentValue:" + curValue);
+    //    if (curValue <= 0) { SceneManager.LoadScene("Defeat"); }
+
+    //    if (addition == true)
+    //    {
+    //        curValue += formerValue;
+    //    }
+    //    else
+    //    {
+    //        curValue -= formerValue;
+    //    }
+    //    PlayerPrefs.SetInt(wert, curValue);
+    //    //int curValue = PlayerPrefs.GetInt("currentScore");
+    //    //int addition = happinessValueOfThisLeak;
+    //    //curScore += addition;
+    //    //PlayerPrefs.SetInt("currentScore", curScore);
+    //}
+
+    private void ChangeGraphic(int curValue, Transform fillTransform)
+    {
+        if (curValue < 100f)
+        {
+            Vector3 scale = fillTransform.localScale;
+            scale.x = curValue / 100f;
+            fillTransform.localScale = scale;
+            Debug.Log("Graphic changed");
+        }
+    }
+
+    //private void changeGraphic(int curValue, string wert)
+    //{
+    //    if (curValue < 100)
+    //    {
+    //        Transform fillTransform;
+    //        GameObject currentType;
+    //        switch (wert)
+    //        {
+    //            case "zufriedenheit": fillTransform = happinessFill.GetComponent<Transform>(); break;
+    //            case "budget": fillTransform = statebudgetFill.GetComponent<Transform>(); break;
+    //            case "opposition": fillTransform = oppositionFill.GetComponent<Transform>(); break;
+    //            case "functionality": fillTransform = functionalityFill.GetComponent<Transform>(); break;
+    //        }
+            
+    //        Vector3 scale = fillTransform.localScale;
+    //        scale.x = curValue / 100f;
+    //        fillTransform.localScale = scale;
+    //    }
+    //}
 
     // Wird von Buttons aufgerufen
     public void PlayerDecision(int buttonID)
