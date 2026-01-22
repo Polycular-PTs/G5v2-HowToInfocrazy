@@ -5,7 +5,6 @@ using UnityEngine.Video;
 public class AnswerRightScript : MonoBehaviour
 {
     public VideoPlayer a;
-    
 
     public void NextScene()
     {
@@ -13,38 +12,29 @@ public class AnswerRightScript : MonoBehaviour
     }
     private void Start()
     {
-        if (PlayerPrefs.GetString("firstAnswerBoolean") == "true")
+        if (PlayerPrefs.GetInt("firstAnswerBoolean") == 1)
         {
-            int curScore = PlayerPrefs.GetInt("currentScore");
-            int addition = PlayerPrefs.GetInt("CurrentHappiness" + PlayerPrefs.GetInt("clickedButtonID"));
-            curScore += addition;
-            PlayerPrefs.SetInt("currentScore", curScore);
-
-            int statebudget = PlayerPrefs.GetInt("currentStatebudget");
-            int addition2 = PlayerPrefs.GetInt("CurrentBudget" + PlayerPrefs.GetInt("clickedButtonID"));
-            statebudget += addition2;
-            PlayerPrefs.SetInt("currentStatebudget", statebudget);
-
-            int opposition = PlayerPrefs.GetInt("currentOpposition");
-            int addition3 = PlayerPrefs.GetInt("addOpposition" + PlayerPrefs.GetInt("clickedButtonID"));
-            opposition += addition3;
-            PlayerPrefs.SetInt("currentOpposition", opposition);
-
-            int functionality = PlayerPrefs.GetInt("currentFunctionality");
-            int addition4 = PlayerPrefs.GetInt("addFunctionality" + PlayerPrefs.GetInt("clickedButtonID"));
-            functionality += addition4; 
-            PlayerPrefs.SetInt("currentFunctionality", functionality);
+            ChangeValues("currentScore", "CurrentHappiness");
+            ChangeValues("currentStatebudget", "CurrentBudget");
+            ChangeValues("currentOpposition", "addOpposition");
+            ChangeValues("currentFunctionality", "addFunctionality");
 
             int id = PlayerPrefs.GetInt("CurrentID");
             QuestionsWithAnswers CurrentQ = Resources.Load<QuestionsWithAnswers>("Data/Frage" + id);
             a.clip = Resources.Load<VideoClip>(CurrentQ.video);
         }
-        if (PlayerPrefs.GetString("firstAnswerBoolean") == "false")
+        if (PlayerPrefs.GetInt("firstAnswerBoolean") == 0)
         {
-            PlayerPrefs.SetString("firstAnswerBoolean", "true");
+            PlayerPrefs.SetInt("firstAnswerBoolean", 1);
         }
 
     }
 
-   
+    private void ChangeValues(string playerPrefName, string playerPrefName2)
+    {
+        int curValue = PlayerPrefs.GetInt(playerPrefName);
+        int addition = PlayerPrefs.GetInt(playerPrefName2 + PlayerPrefs.GetInt("clickedButtonID"));
+        curValue += addition;
+        PlayerPrefs.SetInt(playerPrefName, curValue);
+    }
 }

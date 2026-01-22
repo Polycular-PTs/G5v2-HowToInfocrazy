@@ -16,10 +16,11 @@ Umsetzung: Permanente Prüfung der Metriken nach jeder Entscheidung; bei <= 0 Ga
 Beim Spielende (Sieg) bekommt der/die Spieler:in einen reflektierenden Endscreen: 
 Zusammenfassung aller wichtigen Entscheidungen, die man selbst getroffen hat und die zeigen, dass wir bereits anfangen im Stil der Infokratie zu denken 
 Umsetzung: Die jeweiligen Antworten abspeichern und die, die Antworten einer Infokratie entsprechen, am Ende auswerten und als Grafiken/Text darstellen. 
-4) Leak-Event im Internet: Schnellentscheidung (1–10) innerhalb 10 Sekunden
-Ein Leak-Event wird zufällig ausgelöst. Etwas über dich oder deine Regierung wurde geleaked. Je schneller und besser du reagierst, desto weniger bekommen etwas davon mit und desto besser wirst du dastehen. Das Leak hat eine Gewichtung von 1–10 und der Spieler muss innerhalb von 10 Sekunden reagieren (z. B. Optionen: „Leugnen“, „Ablenken“, „Unterdrücken“, „Transparenz“). Nur die infokratische Reaktion hat den gewünschten Effekt. Auswirkungen sind viel stärker, bei Wertveränderung.  
-Umsetzung: Event-Coroutine erzeugt das Leak-Problem (1–10), zeigt Countdown-UI (10s). Bei Timeout gilt: keine Aktion → stärkster Negativeffekt.  
-
+4) Leak-Event im Internet: Es gibt 3 Stufen, jede Stufe hat eine unterschiedliche Intensität (Stufe 1: 30s Gedenkzeit, am wenigsten Auswirkungen; Stufe 3: 10s Gedenkzeit, am meisten Auswirkungen, bei Ablauf der Zeit hat man fast immer verloren,...)
+Ein Leak-Event wird zufällig ausgelöst. Etwas über dich oder deine Regierung wurde geleaked. Je schneller und besser du reagierst, desto weniger bekommen etwas davon mit und desto besser wirst du dastehen. Das Leak hat eine Gewichtung von 1–3 und der Spieler muss innerhalb von 10/20/30 Sekunden reagieren (z. B. Optionen: „Leugnen“, „Ablenken“, „Unterdrücken“, „Transparenz“). Nur die infokratische Reaktion hat den gewünschten Effekt. Auswirkungen sind viel stärker, bei Wertveränderung. Bei Timeout gilt: keine Aktion → stärkster Negativeffekt.
+LeakEvent vom grafischen, über den Inhalt, bis zur Einbindung in die aktuelle Office-Szene wurde von mir gemacht.
+Aufbau durch Scriptable Objects, kann nach belieben erweitert werden
+---------
 Paul:
 5. Fixen des Scores und hinzufügen von 2 neuen Werten.
 Bestehende Werte
@@ -28,13 +29,15 @@ HAPPIENESS) Dieser zeigt dem Spieler wie glücklich die Bevölkerung ist
 Neue Werte
 OPPOSITION) Opposition beschreibt wie populär die Opposition ist, und wie viel politischen Druck dein Charakter aushalten muss. Functionalität) zeigt wie gut dein Land Funktioniert. Infrastruktur, Gesundheitssystem, Kriminalitätsrate etc.
 Dises Werte werden mit jeder Frage und Leakevent bearbeitet und verändert(je nachdem wie sich der Spieler entscheidet). 
-
+---------
 Jakob:
 1) Die komplette Tutorialszene
 2) Buttons die mit verschiedenen Hintergrundbildern aktiviert und deaktiviert werden und so das Spiel erklären klönnen
 3) Der Playercharactr wird eingebunden und kann in den Tutorial bewegt werden um den User beser zu unterhalten
 4) Einfaches erweitern, kürzen und verändern des Tutorials durch den Gamedesigner
 5) Nach abschließen eine direkte Verbindung zum restlichen Spiel
+
+---------
 
 A:
 Unser Projekt versucht auf spielerischer Weise auf reale Probleme aufmerksam zu machen. Als Inspiration für unsere interaktive Anwendung dient zu einem großen Teil das Buch „Infokratie“ von Byung-Chul Han. In dem Buch beschreibt er wie man mit der Kontrolle von Informationen die Kontrolle über die Menschen gewinnt und somit den Willen der Menschen beeinflussen und missbrauchen kann. Wir greifen diese Thematik auf und wollen sie mit einem interaktiven Medium einem breiteren Publikum näherbringen.

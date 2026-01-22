@@ -26,44 +26,21 @@ public class VierAntwortenScript: MonoBehaviour
     public GameObject functionalityFill;
     public TextMeshProUGUI functionalityText;
 
-    // Answer_Right Build Index: 3
-    // Answer_Wrong Build Index: 4
-
-    //public void ShowQuestion()
-    //{
-    //    PlayerPrefs.GetString("CurrentQuestion", allQuestions[id].question);
-    //    Debug.Log(allQuestions[id].question);
-    //    id += 1;
-    //    if (allQuestions.Length > id)
-    //    {
-    //        PlayerPrefs.SetString("CurrentQuestion", allQuestions[id].question);
-    //        Debug.Log("Next question loaded");
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("No more questions");
-    //    }
-    //}
+    string scorePlayerPrefName = "currentScore";
+    string budgetPlayerPrefName = "currentStatebudget";
+    string oppositionPlayerPrefName = "currentOpposition";
+    string functionalityPlayerPrefName = "currentFunctionality";
+    string correctAnswerIDPlayerPrefName = "CorrectRightAnswerID";
+    string currentAnswerPlayerPrefName = "CurrentAnswer";
+    string clickedButtonIDPlayerPrefName = "clickedButtonID";
 
     public void AnswerButton()
     {
-        int correctAnswerID = PlayerPrefs.GetInt("CorrectRightAnswerID");
-        //Debug.Log(correctAnswerID);
+        int correctAnswerID = PlayerPrefs.GetInt(correctAnswerIDPlayerPrefName);
         GameObject clicked = EventSystem.current.currentSelectedGameObject;
-        //Debug.Log(clicked.name);
-        int clickedButtonID=0;
-        for(int i=0; i<4; i++)
-        {
-            if (clicked.name == answer[i].name)
-            {
-                clickedButtonID = i;
-                //Debug.Log("NewClickedButtonID");
-            }
-        }
+        int clickedButtonID = System.Array.IndexOf(answer, clicked);
 
-        PlayerPrefs.SetInt("clickedButtonID", clickedButtonID);
-
-
+        PlayerPrefs.SetInt(clickedButtonIDPlayerPrefName, clickedButtonID);
 
         if (correctAnswerID == clickedButtonID) //Noch einbauen, dass Bool true werden muss
         {
@@ -73,106 +50,32 @@ public class VierAntwortenScript: MonoBehaviour
         {
             SceneManager.LoadScene(Answer_wrong_Scene);
         }
-
-        //PlayerPrefs.GetString("CurrentQuestion", allQuestions[id].question);
-        //Debug.Log(allQuestions[id].question);
-        //id += 1;
-        //if (allQuestions.Length > id)
-        //{
-        //    PlayerPrefs.SetString("CurrentQuestion", allQuestions[id].question);
-        //    Debug.Log("Next question loaded");
-        //}
-        //else
-        //{
-        //    Debug.Log("No more questions");
-        //}
     }
 
     private void Start()
     {
-        int curScore = PlayerPrefs.GetInt("currentScore");
-        if (curScore / 100f <= 1)
-        {
-            Transform fillTransform = happinessFill.GetComponent<Transform>();
-            Vector3 scale = fillTransform.localScale;
-            scale.x = curScore / 100f;
-            fillTransform.localScale = scale;
-        }
-        happinessSlider.value = curScore / 100f;
-        happinessText.text = curScore.ToString();
+        UpdateStatBar(scorePlayerPrefName, happinessFill, happinessText);
+        UpdateStatBar(budgetPlayerPrefName, statebudgetFill, statebudgetText);
+        UpdateStatBar(oppositionPlayerPrefName, oppositionFill, oppositionText);
+        UpdateStatBar(functionalityPlayerPrefName, functionalityFill, functionalityText);
 
-        int stateBudget = PlayerPrefs.GetInt("currentStatebudget");
-        if (stateBudget < 100f)
-        {
-            Transform fillTransform = statebudgetFill.GetComponent<Transform>();
-            Vector3 scale = fillTransform.localScale;
-            scale.x = stateBudget / 100f;
-            fillTransform.localScale = scale;
-        }
-
-        statebudgetText.text = stateBudget.ToString();
-
-        int opposition = PlayerPrefs.GetInt("currentOpposition");
-        if (opposition < 100f)
-        {
-            Transform fillTransform = oppositionFill.GetComponent<Transform>();
-            Vector3 scale = fillTransform.localScale;
-            scale.x = opposition / 100f;
-            fillTransform.localScale = scale;
-        }
-
-        oppositionText.text = opposition.ToString();
-
-
-        int functionality = PlayerPrefs.GetInt("currentFunctionality");
-        if (functionality < 100f)
-        {
-            Transform fillTransform = functionalityFill.GetComponent<Transform>();
-            Vector3 scale = fillTransform.localScale;
-            scale.x = functionality / 100f;
-            fillTransform.localScale = scale;
-        }
-
-        functionalityText.text = functionality.ToString();
-
-
-
-        //Debug.Log(PlayerPrefs.GetInt("CurrentID"));
-        //int id2 = PlayerPrefs.GetInt("CurrentID");
-        //string currentQuestion = PlayerPrefs.GetString("CurrentQuestion");
-        //Debug.Log(currentQuestion);
         for (int i = 0; i < 4; i++)
         {
-            //Debug.Log(answer[i].GetComponentInChildren<TextMeshProUGUI>().name);
-            answer[i].GetComponentInChildren<TextMeshProUGUI>().text = PlayerPrefs.GetString("CurrentAnswer" + i);
+            answer[i].GetComponentInChildren<TextMeshProUGUI>().text = PlayerPrefs.GetString(currentAnswerPlayerPrefName + i);
             
         }
     }
 
-    //void Awake()
-    //{
-    //    LoadAllVideos();
-    //}
-
-    //void LoadAllVideos()
-    //{
-    //    allQuestions = Resources.LoadAll<QuestionsWithAnswers>("Data");
-    //    Debug.Log($"Geladene Fragen: {allQuestions.Length}");
-    //}
-
-
-    //public void GoToQuestions()
-    //{
-    //    SceneManager.LoadScene(AnswersName);
-    //}
-
-    //public void ShowAnswers()
-    //{
-    //    Debug.Log(x[id].answers);
-    //    for(int x=0; x>4; x++)
-    //    {
-            
-    //    }
-    //    id += 1;
-    //}
+    private void UpdateStatBar(string prefKey, GameObject fill, TextMeshProUGUI textObj)
+    {
+        int curValue = PlayerPrefs.GetInt(prefKey);
+        if (curValue <= 100f)
+        {
+            Transform fillTransform = fill.GetComponent<Transform>();
+            Vector3 scale = fillTransform.localScale;
+            scale.x = curValue / 100f;
+            fillTransform.localScale = scale;
+        }
+        textObj.text = curValue.ToString();
+    }
 }

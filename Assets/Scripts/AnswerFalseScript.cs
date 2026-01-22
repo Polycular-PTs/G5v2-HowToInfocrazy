@@ -12,31 +12,24 @@ public class AnswerFalseScript : MonoBehaviour
         PlayerPrefs.SetInt("CurrentID", id);
         SceneManager.LoadScene("SekretaerScene");
     }
-    private void Start()
+    private void Start() //0 ist false und 1 ist true
     {
-        if (PlayerPrefs.GetString("firstAnswerBoolean") == "true")
+        if (PlayerPrefs.GetInt("firstAnswerBoolean") == 1)
         {
-            int curScore = PlayerPrefs.GetInt("currentScore");
-            int addition = PlayerPrefs.GetInt("CurrentHappiness" + PlayerPrefs.GetInt("clickedButtonID"));
-            curScore += addition;
-            PlayerPrefs.SetInt("currentScore", curScore);
-
-            int statebudget = PlayerPrefs.GetInt("currentStatebudget");
-            int addition2 = PlayerPrefs.GetInt("CurrentBudget" + PlayerPrefs.GetInt("clickedButtonID"));
-            statebudget += addition2;
-            PlayerPrefs.SetInt("currentStatebudget", statebudget);
-            PlayerPrefs.SetString("firstAnswerBoolean","false");
-
-            int opposition = PlayerPrefs.GetInt("currentOpposition");
-            int addition3 = PlayerPrefs.GetInt("addOpposition" + PlayerPrefs.GetInt("clickedButtonID"));
-            opposition += addition3;
-            PlayerPrefs.SetInt("currentOpposition", opposition);
-
-            int functionality = PlayerPrefs.GetInt("currentFunctionality");
-            int addition4 = PlayerPrefs.GetInt("addFunctionality" + PlayerPrefs.GetInt("clickedButtonID"));
-            functionality += addition4;
-            PlayerPrefs.SetInt("currentFunctionality", functionality);
+            PlayerPrefs.SetInt("firstAnswerBoolean", 0);
+            ChangeValues("currentScore", "CurrentHappiness");
+            ChangeValues("currentStatebudget", "CurrentBudget");
+            ChangeValues("currentOpposition", "addOpposition");
+            ChangeValues("currentFunctionality", "addFunctionality");
         }
+    }
+
+    private void ChangeValues(string playerPrefName, string playerPrefName2)
+    {
+        int curValue = PlayerPrefs.GetInt(playerPrefName);
+        int addition = PlayerPrefs.GetInt(playerPrefName2 + PlayerPrefs.GetInt("clickedButtonID"));
+        curValue += addition;
+        PlayerPrefs.SetInt(playerPrefName, curValue);
     }
 
 }
