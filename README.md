@@ -35,10 +35,10 @@ Dises Werte werden mit jeder Frage und Leakevent bearbeitet und verändert(je na
 ---------
 Jakob:
 1) Die komplette Tutorialszene
-2) Buttons die mit verschiedenen Hintergrundbildern aktiviert und deaktiviert werden und so das Spiel erklären klönnen
-3) Der Playercharactr wird eingebunden und kann in den Tutorial bewegt werden um den User beser zu unterhalten
-4) Einfaches erweitern, kürzen und verändern des Tutorials durch den Gamedesigner
-5) Nach abschließen eine direkte Verbindung zum restlichen Spiel
+2) Buttons die mit verschiedenen Hintergrundbildern aktiviert und deaktiviert werden und so das Spiel erklären
+3) Der Playercharactr wird eingebunden und kann im Tutorial bewegt werden um den User ein besseres Erlebnis zu bieten
+4) Einfaches erweitern, kürzen und verändern des Tutorials durch den Gamedesigner ist möglich
+5) Am Anfang und Nach dem Abschließen eine direkte Verbindung zum restlichen Spiel
 
 ---------
 
