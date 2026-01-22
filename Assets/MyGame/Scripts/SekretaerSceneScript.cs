@@ -59,7 +59,7 @@ public class SekretaerSceneScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("No more questions");
+            //Debug.Log("No more questions");
         }
 
     }
@@ -67,7 +67,7 @@ public class SekretaerSceneScript : MonoBehaviour
     public void IDNullStellen()
     {
         PlayerPrefs.SetInt(currentIDPlayerPrefName, 0);
-        Debug.Log("ID wurde auf 0 gestellt");
+        //Debug.Log("ID wurde auf 0 gestellt");
     }
 
     public void Reset()
@@ -144,7 +144,7 @@ public class SekretaerSceneScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("No more questions");
+            //Debug.Log("No more questions");
             Questiontxt.text = whenOutOfQuestion;
             answerButton.enabled = false;
         }
@@ -161,6 +161,6 @@ public class SekretaerSceneScript : MonoBehaviour
     void LoadAllVideos()
     {
         allQuestions = Resources.LoadAll<QuestionsWithAnswers>("Data");
-        Debug.Log($"Geladene Fragen: {allQuestions.Length}");
+        //Debug.Log($"Geladene Fragen: {allQuestions.Length}");
     }
 }

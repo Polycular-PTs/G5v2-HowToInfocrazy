@@ -5,7 +5,6 @@ using UnityEngine.Video;
 public class AnswerRightScript : MonoBehaviour
 {
     public VideoPlayer a;
-    
 
     public void NextScene()
     {
@@ -38,6 +37,4 @@ public class AnswerRightScript : MonoBehaviour
         curValue += addition;
         PlayerPrefs.SetInt(playerPrefName, curValue);
     }
-
-
 }

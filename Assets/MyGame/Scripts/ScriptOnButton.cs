@@ -67,7 +67,7 @@ public class ScriptOnButton : MonoBehaviour
 
     private void Show()
     {
-        Debug.Log("ShowButtonInfo");
+        //Debug.Log("ShowButtonInfo");
         infoText.enabled = true;
         textInButton.text = "Hide Info";
         showing = true;

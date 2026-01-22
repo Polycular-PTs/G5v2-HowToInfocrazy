@@ -24,7 +24,7 @@ public class TutorialManager : MonoBehaviour
     {
         if (IsPlayerInTransitionArea())
         {
-            Debug.Log("Player is in Box" + "Click E to next scene");
+            //Debug.Log("Player is in Box" + "Click E to next scene");
             if (Input.GetKeyDown(keyForNextScene))
             {
                 tutorialSceneController.TransitionForwardInTutorialScene();
@@ -58,9 +58,4 @@ public class TutorialManager : MonoBehaviour
         return Vector2.Distance(player.transform.position, placeOfSceneTransition.transform.position)
         <= offsetOfPlayer;
     }
-
-
-    
-
-
 }

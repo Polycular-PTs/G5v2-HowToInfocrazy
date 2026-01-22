@@ -96,18 +96,18 @@ public class VideoPlayerControll : MonoBehaviour
     {
         if (showEndscreen == true)
         {
-            Debug.Log("1");
+            //Debug.Log("1");
             //string happiness = PlayerPrefs.GetInt("currentScore").ToString();
             string happinessAdded = PlayerPrefs.GetInt("CurrentHappiness" + PlayerPrefs.GetInt("clickedButtonID")).ToString();
             //string budget = PlayerPrefs.GetInt("currentStatebudget").ToString();
             string budgetAdded = PlayerPrefs.GetInt("CurrentBudget" + PlayerPrefs.GetInt("clickedButtonID")).ToString();
-            Debug.Log(happinessAdded + budgetAdded);
+            //Debug.Log(happinessAdded + budgetAdded);
             budgetUndZufriedenheitText.text = "Du verlierst " + happinessAdded + "% an Zufriedenheit der Bevölkerung und " + budgetAdded + "% vom Budget";
-            Debug.Log(budgetUndZufriedenheitText);
+            //Debug.Log(budgetUndZufriedenheitText);
             budgetUndZufriedenheitText.gameObject.SetActive(true);
-            Debug.Log("2");
+            //Debug.Log("2");
             Background.SetActive(true);
-            Debug.Log("3");
+            //Debug.Log("3");
 
         }
     }
@@ -116,7 +116,7 @@ public class VideoPlayerControll : MonoBehaviour
     {
         if (videoPlayer.isPlaying && !isDragging)
         {
-            Debug.Log("A1");
+            //Debug.Log("A1");
             SetCurrentTimeUI();
             SetTotalTimeUI();
             PlayBarSlider();
@@ -124,12 +124,12 @@ public class VideoPlayerControll : MonoBehaviour
         }
         if (videoPlayer.isPlaying)
         {
-            Debug.Log("A2");
+            //Debug.Log("A2");
             PauseButton.SetActive(true);
         }
         if (videoPlayer.isPaused && currentTime < videoPlayer.clip.length)
         {
-            Debug.Log("A3");
+            //Debug.Log("A3");
             UpdatePlayPauseUI();
         }
     }
@@ -153,7 +153,7 @@ public class VideoPlayerControll : MonoBehaviour
 
     private void OnVideoEnd(VideoPlayer vp)
     {
-        Debug.Log("A4");
+        //Debug.Log("A4");
         UpdatePlayPauseUI();
         RestartButton.SetActive(true);
         showEndscreen = true;
@@ -163,7 +163,7 @@ public class VideoPlayerControll : MonoBehaviour
     {
         RestartButton.SetActive(false);
         videoPlayer.Play();
-        Debug.Log("B1");
+        //Debug.Log("B1");
         showEndscreen = false;
     }
 
@@ -183,7 +183,7 @@ public class VideoPlayerControll : MonoBehaviour
     {
         if (videoPlayer.time > jumpBackSeconds)
         {
-            Debug.Log("forward 5");
+            //Debug.Log("forward 5");
             double newTime = videoPlayer.time - jumpBackSeconds;
             videoPlayer.time = Mathf.Max(0, (float)newTime);
 
