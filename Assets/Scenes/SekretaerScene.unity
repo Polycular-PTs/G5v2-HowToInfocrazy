@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 147913418}
-  - component: {fileID: 147913419}
+  - component: {fileID: 147913420}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -151,7 +151,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &147913419
+--- !u!114 &147913420
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,9 +166,8 @@ MonoBehaviour:
   Questiontxt: {fileID: 420764124}
   allQuestions: []
   id: 0
-  AnswerButton: {fileID: 663836519}
+  answerButton: {fileID: 663836519}
   staatsfreundlichkeitText: {fileID: 327064895}
-  happinessSlider: {fileID: 327064894}
   happinessFill: {fileID: 327064896}
   happinessText: {fileID: 327064895}
   statebudgetFill: {fileID: 327064898}
@@ -251,17 +250,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1253657704668978526, guid: be48de609b0544bff982ab46dc123370, type: 3}
   m_PrefabInstance: {fileID: 327064892}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &327064894 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2975464388030823841, guid: be48de609b0544bff982ab46dc123370, type: 3}
-  m_PrefabInstance: {fileID: 327064892}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &327064895 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8989288425251280603, guid: be48de609b0544bff982ab46dc123370, type: 3}
@@ -824,7 +812,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 147913419}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SekretaerSceneScript, Assembly-CSharp
         m_MethodName: ShowQuestion
         m_Mode: 1
@@ -957,7 +945,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 147913419}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SekretaerSceneScript, Assembly-CSharp
         m_MethodName: Reset
         m_Mode: 1
@@ -2020,7 +2008,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 147913419}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SekretaerSceneScript, Assembly-CSharp
         m_MethodName: IDNullStellen
         m_Mode: 1

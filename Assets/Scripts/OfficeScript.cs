@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class OfficeScript : MonoBehaviour
+public class OfficeSceneScript : MonoBehaviour
 {
     public int score = 100;
     public GameObject happinessFill;
