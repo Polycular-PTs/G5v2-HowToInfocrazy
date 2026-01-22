@@ -43,13 +43,18 @@ public class SekretaerScript : MonoBehaviour
     private const string currentFunctionalityForQuestionPlayerPrefName = "addFunctionality";
     private const string currentRightAnswerForQuestionPlayerPrefName = "CorrectRightAnswerID";
 
+    private void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void ShowAnswerOptions()
     {
         id = PlayerPrefs.GetInt("CurrentID");
         if (allQuestions.Length > id)
         {
             PlayerPrefs.SetString(currentQuestionPlayerPrefName, allQuestions[id].question);
-            SceneManager.LoadScene(vierAntwortenSzene);
+            LoadScene(vierAntwortenSzene);
             id += 1;
             PlayerPrefs.SetInt(currentIDPlayerPrefName, id);
         }

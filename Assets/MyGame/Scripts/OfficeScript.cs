@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class OfficeSceneScript : MonoBehaviour
+public class OfficeScript : MonoBehaviour
 {
     public int score = 100;
     public GameObject happinessFill;
@@ -14,6 +14,7 @@ public class OfficeSceneScript : MonoBehaviour
     string oppositionPlayerPrefName = "currentOpposition";
     string functionalityPlayerPrefName = "currentFunctionality";
     string firstAnswerBoolName = "firstAnswerBoolean";
+
     string sekretarianSceneName = "SekretaerScene";
     string defeatSceneName = "Defeat";
 
@@ -28,11 +29,16 @@ public class OfficeSceneScript : MonoBehaviour
     public GameObject functionalityFill;
     public TextMeshProUGUI functionalityText;
 
+    private void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     private void LoadDefeatScene(int whenThisNumberIsZero)
     {
         if (whenThisNumberIsZero <= 0)
         {
-            SceneManager.LoadScene(defeatSceneName);
+            LoadScene(defeatSceneName);
         }
     }
 
@@ -107,6 +113,7 @@ public class OfficeSceneScript : MonoBehaviour
 
     public void ChangeScene()
     {
-        SceneManager.LoadScene(sekretarianSceneName);
+        LoadScene(sekretarianSceneName);
+        //SceneManager.LoadScene(sekretarianSceneName);
     }
 }

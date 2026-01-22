@@ -6,13 +6,19 @@ using UnityEngine.SceneManagement;
 public class AnswerFalseScript : MonoBehaviour
 {
     public ScoreServiceForAnswer scoreService;
+    string sekretaerSceneName = "SekretaerScene";
+
+    private void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 
     public void NextScene()
     {
         int id = PlayerPrefs.GetInt("CurrentID");
         id -= 1;
         PlayerPrefs.SetInt("CurrentID", id);
-        SceneManager.LoadScene("SekretaerScene");
+        LoadScene(sekretaerSceneName);
     }
     private void Start() //0 ist false und 1 ist true
     {
@@ -25,11 +31,4 @@ public class AnswerFalseScript : MonoBehaviour
             scoreService.ChangeValues("currentFunctionality", "addFunctionality");
         }
     }
-    //private void ChangeValues(string playerPrefName, string playerPrefName2)
-    //{
-    //    int curValue = PlayerPrefs.GetInt(playerPrefName);
-    //    int addition = PlayerPrefs.GetInt(playerPrefName2 + PlayerPrefs.GetInt("clickedButtonID"));
-    //    curValue += addition;
-    //    PlayerPrefs.SetInt(playerPrefName, curValue);
-    //}
 }

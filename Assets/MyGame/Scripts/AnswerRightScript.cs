@@ -6,11 +6,18 @@ public class AnswerRightScript : MonoBehaviour
 {
     public VideoPlayer a;
     public ScoreServiceForAnswer scoreService;
+    string officeSceneName = "Office";
 
     public void NextScene()
     {
-        SceneManager.LoadScene("Office");   
+        LoadScene(officeSceneName);   
     }
+
+    private void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     private void Start()
     {
         if (PlayerPrefs.GetInt("firstAnswerBoolean") == 1)
@@ -30,11 +37,4 @@ public class AnswerRightScript : MonoBehaviour
         }
 
     }
-    //private void ChangeValues(string playerPrefName, string playerPrefName2)
-    //{
-    //    int curValue = PlayerPrefs.GetInt(playerPrefName);
-    //    int addition = PlayerPrefs.GetInt(playerPrefName2 + PlayerPrefs.GetInt("clickedButtonID"));
-    //    curValue += addition;
-    //    PlayerPrefs.SetInt(playerPrefName, curValue);
-    //}
 }
