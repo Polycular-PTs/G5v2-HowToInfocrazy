@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class SekretaerSceneScript : MonoBehaviour
+public class SekretaerScript : MonoBehaviour
 {
     //public int score = 100;
     public TextMeshProUGUI Questiontxt;
@@ -43,7 +43,7 @@ public class SekretaerSceneScript : MonoBehaviour
     private const string currentFunctionalityForQuestionPlayerPrefName = "addFunctionality";
     private const string currentRightAnswerForQuestionPlayerPrefName = "CorrectRightAnswerID";
 
-    public void ShowQuestion()
+    public void ShowAnswerOptions()
     {
         id = PlayerPrefs.GetInt("CurrentID");
         if (allQuestions.Length > id)

@@ -812,9 +812,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SekretaerSceneScript, Assembly-CSharp
-        m_MethodName: ShowQuestion
+      - m_Target: {fileID: 147913420}
+        m_TargetAssemblyTypeName: SekretaerScript, Assembly-CSharp
+        m_MethodName: ShowAnswerOptions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

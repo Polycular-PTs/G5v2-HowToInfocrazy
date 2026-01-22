@@ -5,6 +5,7 @@ using UnityEngine.Video;
 public class AnswerRightScript : MonoBehaviour
 {
     public VideoPlayer a;
+    public ScoreServiceForAnswer scoreService;
 
     public void NextScene()
     {
@@ -14,10 +15,10 @@ public class AnswerRightScript : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("firstAnswerBoolean") == 1)
         {
-            ChangeValues("currentScore", "CurrentHappiness");
-            ChangeValues("currentStatebudget", "CurrentBudget");
-            ChangeValues("currentOpposition", "addOpposition");
-            ChangeValues("currentFunctionality", "addFunctionality");
+            scoreService.ChangeValues("currentScore", "CurrentHappiness");
+            scoreService.ChangeValues("currentStatebudget", "CurrentBudget");
+            scoreService.ChangeValues("currentOpposition", "addOpposition");
+            scoreService.ChangeValues("currentFunctionality", "addFunctionality");
 
             int id = PlayerPrefs.GetInt("CurrentID");
             QuestionsWithAnswers CurrentQ = Resources.Load<QuestionsWithAnswers>("Data/Frage" + id);
@@ -29,12 +30,11 @@ public class AnswerRightScript : MonoBehaviour
         }
 
     }
-
-    private void ChangeValues(string playerPrefName, string playerPrefName2)
-    {
-        int curValue = PlayerPrefs.GetInt(playerPrefName);
-        int addition = PlayerPrefs.GetInt(playerPrefName2 + PlayerPrefs.GetInt("clickedButtonID"));
-        curValue += addition;
-        PlayerPrefs.SetInt(playerPrefName, curValue);
-    }
+    //private void ChangeValues(string playerPrefName, string playerPrefName2)
+    //{
+    //    int curValue = PlayerPrefs.GetInt(playerPrefName);
+    //    int addition = PlayerPrefs.GetInt(playerPrefName2 + PlayerPrefs.GetInt("clickedButtonID"));
+    //    curValue += addition;
+    //    PlayerPrefs.SetInt(playerPrefName, curValue);
+    //}
 }

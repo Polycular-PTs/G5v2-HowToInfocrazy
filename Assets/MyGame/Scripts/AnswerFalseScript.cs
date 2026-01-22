@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class AnswerFalseScript : MonoBehaviour
 {
+    public ScoreServiceForAnswer scoreService;
+
     public void NextScene()
     {
         int id = PlayerPrefs.GetInt("CurrentID");
@@ -17,19 +19,17 @@ public class AnswerFalseScript : MonoBehaviour
         if (PlayerPrefs.GetInt("firstAnswerBoolean") == 1)
         {
             PlayerPrefs.SetInt("firstAnswerBoolean", 0);
-            ChangeValues("currentScore", "CurrentHappiness");
-            ChangeValues("currentStatebudget", "CurrentBudget");
-            ChangeValues("currentOpposition", "addOpposition");
-            ChangeValues("currentFunctionality", "addFunctionality");
+            scoreService.ChangeValues("currentScore", "CurrentHappiness");
+            scoreService.ChangeValues("currentStatebudget", "CurrentBudget");
+            scoreService.ChangeValues("currentOpposition", "addOpposition");
+            scoreService.ChangeValues("currentFunctionality", "addFunctionality");
         }
     }
-
-    private void ChangeValues(string playerPrefName, string playerPrefName2)
-    {
-        int curValue = PlayerPrefs.GetInt(playerPrefName);
-        int addition = PlayerPrefs.GetInt(playerPrefName2 + PlayerPrefs.GetInt("clickedButtonID"));
-        curValue += addition;
-        PlayerPrefs.SetInt(playerPrefName, curValue);
-    }
-
+    //private void ChangeValues(string playerPrefName, string playerPrefName2)
+    //{
+    //    int curValue = PlayerPrefs.GetInt(playerPrefName);
+    //    int addition = PlayerPrefs.GetInt(playerPrefName2 + PlayerPrefs.GetInt("clickedButtonID"));
+    //    curValue += addition;
+    //    PlayerPrefs.SetInt(playerPrefName, curValue);
+    //}
 }
