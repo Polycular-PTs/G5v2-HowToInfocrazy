@@ -11,13 +11,16 @@ Tom:
 1) Es sollen nur die ersten Antworten bei den Sekretärproblemen zählen
 2) Verlustbedingung: „Wenn ein Wert 0 erreicht, bist du verloren“
 Wenn einer der zentralen Werte (z. B. Bevölkerungszufriedenheit, Budget, Funktionalität, Opposition) auf 0 fällt, endet das Spiel sofort mit einer Niederlage. 
-Umsetzung: Permanente Prüfung der Metriken nach jeder Entscheidung; bei <= 0 GameOver auslösen und Endscreen zeigen. 
-3) IN PROGRESS: Sieg & Reflektion: Endbildschirm über die eigenen infokratischen Entscheidungen
+Umsetzung: Permanente Prüfung der Metriken nach jeder Entscheidung; bei <= 0 GameOver auslösen und Endscreen zeigen.
+-> Defeat Scene
+4) IN PROGRESS: Sieg & Reflektion: Endbildschirm über die eigenen infokratischen Entscheidungen
 Beim Spielende (Sieg) bekommt der/die Spieler:in einen reflektierenden Endscreen: 
 Zusammenfassung aller wichtigen Entscheidungen, die man selbst getroffen hat und die zeigen, dass wir bereits anfangen im Stil der Infokratie zu denken 
-Umsetzung: Die jeweiligen Antworten abspeichern und die, die Antworten einer Infokratie entsprechen, am Ende auswerten und als Grafiken/Text darstellen. 
-4) Leak-Event im Internet: Es gibt 3 Stufen, jede Stufe hat eine unterschiedliche Intensität (Stufe 1: 30s Gedenkzeit, am wenigsten Auswirkungen; Stufe 3: 10s Gedenkzeit, am meisten Auswirkungen, bei Ablauf der Zeit hat man fast immer verloren,...)
+Umsetzung: Die jeweiligen Antworten abspeichern und die, die Antworten einer Infokratie entsprechen, am Ende auswerten und als Grafiken/Text darstellen.
+-> Victory Scene
+5) Leak-Event im Internet: Es gibt 3 Stufen, jede Stufe hat eine unterschiedliche Intensität (Stufe 1: 30s Gedenkzeit, am wenigsten Auswirkungen; Stufe 3: 10s Gedenkzeit, am meisten Auswirkungen, bei Ablauf der Zeit hat man fast immer verloren,...)
 Ein Leak-Event wird zufällig ausgelöst. Etwas über dich oder deine Regierung wurde geleaked. Je schneller und besser du reagierst, desto weniger bekommen etwas davon mit und desto besser wirst du dastehen. Das Leak hat eine Gewichtung von 1–3 und der Spieler muss innerhalb von 10/20/30 Sekunden reagieren (z. B. Optionen: „Leugnen“, „Ablenken“, „Unterdrücken“, „Transparenz“). Nur die infokratische Reaktion hat den gewünschten Effekt. Auswirkungen sind viel stärker, bei Wertveränderung. Bei Timeout gilt: keine Aktion → stärkster Negativeffekt.
+-> Office Scene: LeakEvent, LeakManager
 LeakEvent vom grafischen, über den Inhalt, bis zur Einbindung in die aktuelle Office-Szene wurde von mir gemacht.
 Aufbau durch Scriptable Objects, kann nach belieben erweitert werden
 ---------
