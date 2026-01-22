@@ -46,16 +46,12 @@ public class SekretaerSceneScript : MonoBehaviour
     public void ShowQuestion()
     {
         id = PlayerPrefs.GetInt("CurrentID");
-        //Debug.Log(id);
         if (allQuestions.Length > id)
         {
             PlayerPrefs.SetString(currentQuestionPlayerPrefName, allQuestions[id].question);
-            //Debug.Log("Next question loaded");
             SceneManager.LoadScene(vierAntwortenSzene);
             id += 1;
-            //Debug.Log(id);
             PlayerPrefs.SetInt(currentIDPlayerPrefName, id);
-            //Debug.Log(PlayerPrefs.GetInt("CurrentID"));
         }
         else
         {
@@ -67,7 +63,6 @@ public class SekretaerSceneScript : MonoBehaviour
     public void IDNullStellen()
     {
         PlayerPrefs.SetInt(currentIDPlayerPrefName, 0);
-        //Debug.Log("ID wurde auf 0 gestellt");
     }
 
     public void Reset()
@@ -144,7 +139,6 @@ public class SekretaerSceneScript : MonoBehaviour
         }
         else
         {
-            //Debug.Log("No more questions");
             Questiontxt.text = whenOutOfQuestion;
             answerButton.enabled = false;
         }
@@ -155,12 +149,8 @@ public class SekretaerSceneScript : MonoBehaviour
         LoadAllVideos();
     }
 
-    //public string videoClipPath;
-    //public VideoClip LoadedVideoClip { get; private set; }
-
     void LoadAllVideos()
     {
         allQuestions = Resources.LoadAll<QuestionsWithAnswers>("Data");
-        //Debug.Log($"Geladene Fragen: {allQuestions.Length}");
     }
 }

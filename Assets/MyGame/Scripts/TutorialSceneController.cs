@@ -18,8 +18,6 @@ public class TutorialSceneController : MonoBehaviour
 
     public void TransitionBackwardInTutorialScnen()
     {
-        //Debug.Log("Transition to the Scene before");
-
         if (currentSceneNumber > 0)
         {
             currentSceneNumber--;
@@ -27,8 +25,6 @@ public class TutorialSceneController : MonoBehaviour
     }
     public void TransitionForwardInTutorialScene()
     {
-        //Debug.Log("Transition to next Scene");
-
         if (currentSceneNumber < tutorialScenes.Length - 1)
         {
             currentSceneNumber++;

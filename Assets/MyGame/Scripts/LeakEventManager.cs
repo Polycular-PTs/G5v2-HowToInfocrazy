@@ -80,14 +80,10 @@ public class LeakEventManager : MonoBehaviour
     {
         while (true)
         {
-            // Warte zufällige Zeit bevor geprüft wird
-            float wait = Random.Range(waitTimeMin, waitTimeMax);
+            float wait = Random.Range(waitTimeMin, waitTimeMax); //Warte zufällige Zeit bevor geprüft wird
             yield return new WaitForSeconds(wait);
-
-            // Wahrscheinlichkeit, dass jetzt ein Leak passiert
             
-            float randomValue = Random.value;
-            //Debug.Log(randomValue);
+            float randomValue = Random.value; //Wahrscheinlichkeit, dass jetzt ein Leak passiert
 
             if (randomValue < chance)
             {
@@ -170,14 +166,12 @@ public class LeakEventManager : MonoBehaviour
         // Timeout oder Spieler hat reagiert
         if (!inputReceived) //wenn kein Input kommt/Zeit abläuft
         {
-            //Debug.Log("Timeout → stärkster Negativeffekt!");
             ApplyEffects("Timeout");
             leakActive = false;
         }
         else
         {
             //Updaten, was bei PlayerDecision gesetzt wird
-
             WertUpdaten2("currentScore", true, happinessValueOfThisLeak, happinessText, happinessFill);
             WertUpdaten2("currentStatebudget", true, budgetValueOfThisLeak, statebudgetText, statebudgetFill);
             WertUpdaten2("currentOpposition", false, oppositionValueOfThisLeak, oppositionText, oppositionFill);
@@ -210,7 +204,6 @@ public class LeakEventManager : MonoBehaviour
             Vector3 scale = fillTransform.localScale;
             scale.x = curValue / 100f;
             fillTransform.localScale = scale;
-            //Debug.Log("Graphic changed");
         }
     }
 
@@ -220,22 +213,17 @@ public class LeakEventManager : MonoBehaviour
         if (inputReceived) return; // Nur 1x erlauben
         inputReceived = true;
 
-        //Debug.Log("Spieler wählte: " + buttonID);
-
-        if (buttonID == PlayerPrefs.GetInt("rightAnswerID") + 1)
+        if (buttonID == PlayerPrefs.GetInt("rightAnswerID") + 1) //richtig
         {
-            //Debug.Log("Richtig");
             happinessValueOfThisLeak = 0;
             budgetValueOfThisLeak = 0;
             oppositionValueOfThisLeak = 0;
             functionalityValueOfThisLeak = 0;
         }
-        else
+        else //richtig
         {
-            //Debug.Log("Falsch");
             if (stufe == 1)
             {
-                //Debug.Log(stufe);
                 for(int i = 1; i < 5; i++)
                 {
                     // wenn Button 1 geklickt, soll die Value von dem Leak von z.B. der Happiness vom Array auf Platz 0 bzw. 1/2/3 in den aktuellen Wert geladen werden.
@@ -288,10 +276,6 @@ public class LeakEventManager : MonoBehaviour
                 //Debug.Log("+50 bei Opposition");
                 //Debug.Log("100 bei Funktionalität");
             }
-            //Debug.Log(happinessValueOfThisLeak);
-            //Debug.Log(budgetValueOfThisLeak);
-            //Debug.Log(oppositionValueOfThisLeak);
-            //Debug.Log(functionalityValueOfThisLeak);
         }
 
         leakPanel.SetActive(false);
@@ -341,12 +325,10 @@ public class LeakEventManager : MonoBehaviour
             int curOpposition = PlayerPrefs.GetInt("currentOpposition");
             curOpposition += oppositionValueOfThisLeak;
             PlayerPrefs.SetInt("currentOpposition", curOpposition);
-            //Debug.Log("currentOppositionValue" + curOpposition);
 
             int curFunctionality = PlayerPrefs.GetInt("currentFunctionality");
             curFunctionality += functionalityValueOfThisLeak;
             PlayerPrefs.SetInt("currentFunctionality", curFunctionality);
-            //Debug.Log("CurrentFunctionalityValue" + curFunctionality);
 
             leakActive = false;
 
@@ -376,7 +358,6 @@ public class LeakEventManager : MonoBehaviour
 
             if (curStatebudget <= 0)
             {
-                //Debug.Log("CurState ist Null");
                 SceneManager.LoadScene("Defeat");
             }
 
