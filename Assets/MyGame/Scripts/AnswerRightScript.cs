@@ -29,7 +29,9 @@ public class AnswerRightScript : MonoBehaviour
 
             int id = PlayerPrefs.GetInt("CurrentID");
             QuestionsWithAnswers CurrentQ = Resources.Load<QuestionsWithAnswers>("Data/Frage" + id);
-            a.clip = Resources.Load<VideoClip>(CurrentQ.video);
+            //a.clip = Resources.Load<VideoClip>(CurrentQ.video);
+            a.url = System.IO.Path.Combine(Application.streamingAssetsPath, CurrentQ.video + ".mp4");
+            a.Play();
         }
         if (PlayerPrefs.GetInt("firstAnswerBoolean") == 0)
         {
