@@ -1140,11 +1140,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1253657704668978526, guid: be48de609b0544bff982ab46dc123370, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -410
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1253657704668978526, guid: be48de609b0544bff982ab46dc123370, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -45.705406
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1253657704668978526, guid: be48de609b0544bff982ab46dc123370, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1165,6 +1165,10 @@ PrefabInstance:
     - target: {fileID: 1253657704668978526, guid: be48de609b0544bff982ab46dc123370, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1253657704668978526, guid: be48de609b0544bff982ab46dc123370, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -546
       objectReference: {fileID: 0}
     - target: {fileID: 1253657704668978526, guid: be48de609b0544bff982ab46dc123370, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1334,8 +1338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &977103784 stripped
-Transform:
+--- !u!224 &977103784 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 1253657704668978526, guid: be48de609b0544bff982ab46dc123370, type: 3}
   m_PrefabInstance: {fileID: 977103782}
   m_PrefabAsset: {fileID: 0}
