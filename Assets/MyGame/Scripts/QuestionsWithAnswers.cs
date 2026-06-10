@@ -6,8 +6,8 @@ public class QuestionsWithAnswers : ScriptableObject
     public string question;
     public string[] answers;
     public int idRightAnswer;
-    public int[] happiness;
     public string video;
+    public int[] happiness;
     public int[] budget;
     public int[] opposition;
     public int[] functionality;

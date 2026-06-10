@@ -2,6 +2,7 @@ using System;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class HappinessManager : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class HappinessManager : MonoBehaviour
     public Fillbars[] fillbars;
 
     public static HappinessManager Instance;
+
+    [Header("Questions")]
+    public List<QuestionsWithAnswers> questions;
+    public QuestionsWithAnswers currentQuestion;
+    public int currentIndex;
 
     void Awake()
     {
