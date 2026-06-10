@@ -4,13 +4,13 @@ public class PlayerController2D : MonoBehaviour
 {
     public float movementSpeed = 5f;
 
-    private Rigidbody rb;
+    private Rigidbody2D rb;
 
     private Vector2 moveInput;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()

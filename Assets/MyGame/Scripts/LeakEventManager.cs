@@ -68,11 +68,16 @@ public class LeakEventManager : MonoBehaviour
         stufen[(int)Stufe.stufe3].InitiateStufeValues(10, 1000, 100, 100);
 
         leakPanel.SetActive(false);
-        StartCoroutine(LeakChecker());
+        InitializeLeackChecker();
         for(int a = 0; a<3; a++)
         {
             PlayerPrefs.DeleteKey("CurrentLeakID"+a+1);
         }
+    }
+
+    public void InitializeLeackChecker()
+    {
+        StartCoroutine(LeakChecker());
     }
 
     IEnumerator LeakChecker()
