@@ -32,7 +32,7 @@ public class SceneLoader : MonoBehaviour
         LoadScenes(SCENE_TUTORIAL_OFFICE);
     }
 
-    private void LoadScenes(string sceneName)
+    public void LoadScenes(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
