@@ -21,8 +21,8 @@ MonoBehaviour:
   - "Wir nehmen den F\xFChrern der Bewegung durch einen von uns ausgedachten Skandal
     die Glaubhaftigkeit und teilen diesen Skandal mit unseren Social Media Bots."
   idRightAnswer: 3
-  happiness: f6fffffffffffffffbffffff0a000000
   video: Frage_7_Antwort_D_02
+  happiness: f6fffffffffffffffbffffff0a000000
   budget: f8fffffffefffffffcfffffffbffffff
   opposition: 0a00000014000000f6fffffffdffffff
-  functionality: 0a000000ecffffffffffffffecffffff03000000
+  functionality: 0a000000ecffffffffffffffecffffff

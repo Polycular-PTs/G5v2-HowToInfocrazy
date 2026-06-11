@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: Assets/MyGame/Scenes/StartScene.unity
     guid: a27920b3dfe4a4c44a7d7744f14016be
   - enabled: 1
-    path: Assets/MyGame/Scenes/Office.unity
+    path: Assets/MyGame/Scenes/01_Office.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/MyGame/Scenes/SekretaerScene.unity
+    path: Assets/MyGame/Scenes/02_SekretaerScene.unity
     guid: a0e0e838954744a7fa82494326eca6f0
   - enabled: 1
-    path: Assets/MyGame/Scenes/4Antworten.unity
+    path: Assets/MyGame/Scenes/03_Quiz.unity
     guid: 1ec2f70052780ec47ab5ce18f4f610ec
   - enabled: 1
     path: Assets/MyGame/Scenes/Antwort_right.unity
