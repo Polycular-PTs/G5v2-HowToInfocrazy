@@ -178,6 +178,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 14ee33d5718224d7e825459a2c73970f, type: 2}
   currentQuestion: {fileID: 0}
   currentIndex: 0
+  sameAttempt: 0
 --- !u!1001 &7199474204329205661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -380,7 +381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8026453386098028006, guid: e8d7ee298e2d6c44294f506551d03ae7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8026453386098028006, guid: e8d7ee298e2d6c44294f506551d03ae7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

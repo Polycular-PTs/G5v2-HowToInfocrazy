@@ -167,6 +167,7 @@ MonoBehaviour:
   index: 0
   currentQuestion: {fileID: 0}
   info: {fileID: 420764124}
+  sameAttempt: 0
 --- !u!114 &147913420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,9 +237,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u201EHerr Pr\xE4sident, viele Journalisten stellen pl\xF6tzlich kritische
-    Fragen und schreiben \xFCber Missst\xE4nde: Das beeinflusst die Stimmung im Land!
-    Was sollen wir dagegen machen?\""
+  m_text: ........................................................................................................................................................................................................................................................................
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -265,11 +264,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.85
+  m_fontSize: 40
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 40
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -325,6 +324,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 903564846618636923, guid: 3791425c19c644049ab076af041dc1af, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1908743832673311554, guid: 3791425c19c644049ab076af041dc1af, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -21,6 +21,7 @@ public class HappinessManager : MonoBehaviour
     public List<QuestionsWithAnswers> questions;
     public QuestionsWithAnswers currentQuestion;
     public int currentIndex;
+    public bool sameAttempt = false;
 
     void Awake()
     {

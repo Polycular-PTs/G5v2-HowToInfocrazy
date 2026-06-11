@@ -19,7 +19,6 @@ public class Quiz : MonoBehaviour
     void Start()
     {
         currentQuestion = HappinessManager.Instance.currentQuestion;
-        HappinessManager.Instance.questions.Remove(currentQuestion);
 
         for (int i = 0; i < answerButtons.Length; i++)
         {
@@ -36,11 +35,14 @@ public class Quiz : MonoBehaviour
         if (index == rightAnswer)
         {
             Debug.Log("Right Answer!");
+            HappinessManager.Instance.questions.Remove(currentQuestion);
+            HappinessManager.Instance.sameAttempt = false;
             OnRightAnswer?.Invoke();
         }
         else
         {
             Debug.Log("Wrong Answer!");
+            HappinessManager.Instance.sameAttempt = true;
             OnWrongAnswer?.Invoke();
         }
     }

@@ -36,4 +36,26 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+    
+    public void CheckIfGameFinished(string sceneName)
+    {
+        if (HappinessManager.Instance.questions.Count == 0)
+        {
+            if (HappinessManager.Instance.happiness > 0 &&
+                HappinessManager.Instance.budget > 0 &&
+                HappinessManager.Instance.opposition > 0 &&
+                HappinessManager.Instance.functionality > 0)
+            {
+                SceneManager.LoadScene("Defeat");
+                Debug.Log("Defeat!");
+            }
+
+            SceneManager.LoadScene("Victory");
+            Debug.Log("Victory!");
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+    }
 }
