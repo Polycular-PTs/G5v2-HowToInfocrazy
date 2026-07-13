@@ -39,12 +39,17 @@ public class HappinessManager : MonoBehaviour
 
     void Update()
     {
-        UpdateValues();
+        UpdateValues(happiness,budget,opposition,functionality);
         UpdateFillbars();
     }
 
-    void UpdateValues()
+    public void UpdateValues(int h, int  b, int o, int f)
     {
+        happiness = h;
+        budget = b;
+        opposition = o;
+        functionality = f;
+
         fillbars[0].value = happiness;
         fillbars[1].value = budget;
         fillbars[2].value = opposition;
