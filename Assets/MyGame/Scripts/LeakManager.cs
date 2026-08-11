@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LeakManager : MonoBehaviour
 {
@@ -13,12 +15,15 @@ public class LeakManager : MonoBehaviour
     
     [Header("Debugging")]
     public LeakData currentLeak;
-    public float cooldown = 15;
-    public float timer = 30;
+    public float timeToNextLeak = 15;
+    public float timeToAnswer = 5;
+    public float elapsedTime;
 
     [Header("UI Elements")]
     public Button[] answerButtons;
     public TMP_Text leakQuestion;
+    public GameObject leakEventScreen;
+    public Image timeOutDisplay;
 
 
     void Start()
@@ -29,20 +34,50 @@ public class LeakManager : MonoBehaviour
            currentLeak = stageLeaks[Random.Range(0,stageLeaks.Count)];
            //stageLeaks.Remove(currentLeak);
         }
-        
-        SetUIElements();
-        
+
+        //SetUIElements();
+        leakEventScreen.SetActive(false);
+        StartCoroutine(CountdownToLeak());
     }
 
-    void Update()
+    private void OnEnable()
     {
-        timer -= Time.deltaTime;
+        HappinessManager.Instance.OnLost.AddListener(DropBelowZero);
+    }
 
-        if (timer <= 0)
+    private void OnDisable()
+    {
+        HappinessManager.Instance.OnLost.RemoveListener(DropBelowZero);
+    }
+
+    public void DropBelowZero()
+    {
+        SceneManager.LoadScene("Defeat");
+        StopAllCoroutines();
+    }
+
+    IEnumerator CountdownToLeak()
+    {
+        yield return new WaitForSeconds(timeToNextLeak);
+        leakEventScreen.SetActive(true);
+        SetUIElements();
+
+        elapsedTime = 0;
+
+        while (elapsedTime < timeToAnswer)
         {
-            TimeOut();
-            timer = 15;
+            elapsedTime += Time.unscaledDeltaTime;
+            float norm = Mathf.InverseLerp(timeToAnswer, 0, elapsedTime);
+            timeOutDisplay.fillAmount = norm;
+            timeOutDisplay.color = Color.Lerp(Color.red,Color.white,norm);
+            yield return null;
         }
+
+        //yield return new WaitForSeconds(timeToAnswer);
+        TimeOut();
+        ResetLeak();
+        
+
     }
 
     public void TimeOut()
@@ -52,6 +87,24 @@ public class LeakManager : MonoBehaviour
             leakstages[currentStage].budget,
             leakstages[currentStage].opposition,
             leakstages[currentStage].functionality);
+    }
+
+    public void ResetLeak()
+    {
+        StopAllCoroutines();
+        leakEventScreen.SetActive(false);
+        currentStage++;
+
+        if (leakstages.Count > 0 && currentStage < leakstages.Count)
+        {
+            stageLeaks = new List<LeakData>(leakstages[currentStage].leaks);
+            currentLeak = stageLeaks[Random.Range(0, stageLeaks.Count)];
+            //stageLeaks.Remove(currentLeak);
+
+            StartCoroutine(CountdownToLeak());
+        }
+        
+        
     }
 
     public void SetUIElements()
@@ -69,28 +122,28 @@ public class LeakManager : MonoBehaviour
         switch (index)
         {
             case 0:
-                HappinessManager.Instance.UpdateValues(
+                HappinessManager.Instance.AddValues(
                     currentLeak.happiness[0],
                     currentLeak.happiness[1],
                     currentLeak.happiness[2],
                     currentLeak.happiness[3]);
                 break;
             case 1:
-                HappinessManager.Instance.UpdateValues(
+                HappinessManager.Instance.AddValues(
                     currentLeak.budget[0],
                     currentLeak.budget[1],
                     currentLeak.budget[2],
                     currentLeak.budget[3]);
                 break;
             case 2:
-                HappinessManager.Instance.UpdateValues(
+                HappinessManager.Instance.AddValues(
                     currentLeak.opposition[0],
                     currentLeak.opposition[1],
                     currentLeak.opposition[2],
                     currentLeak.opposition[3]);
                 break;
             case 3:
-                HappinessManager.Instance.UpdateValues(
+                HappinessManager.Instance.AddValues(
                     currentLeak.functionality[0],
                     currentLeak.functionality[1],
                     currentLeak.functionality[2],
@@ -98,5 +151,7 @@ public class LeakManager : MonoBehaviour
                 break;
             
         }
+
+        ResetLeak();
     }
 }

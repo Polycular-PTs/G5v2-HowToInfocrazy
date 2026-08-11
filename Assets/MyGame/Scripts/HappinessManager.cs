@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class HappinessManager : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class HappinessManager : MonoBehaviour
     public int currentIndex;
     public bool sameAttempt = false;
 
+    [Header("Events")]
+    public UnityEvent OnLost;
+
     void Awake()
     {
         if (Instance == null)
@@ -35,12 +39,24 @@ public class HappinessManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+        UpdateValues(happiness, budget, opposition, functionality);
     }
 
     void Update()
     {
-        UpdateValues(happiness,budget,opposition,functionality);
+        //UpdateValues(happiness,budget,opposition,functionality);
         UpdateFillbars();
+    }
+
+    public void CheckValues()
+    {
+        if (happiness <= 0 ||
+            budget <= 0     ||
+            opposition <= 0 ||
+            functionality <= 0)
+        {
+            OnLost?.Invoke();
+        }
     }
 
     public void UpdateValues(int h, int  b, int o, int f)
@@ -54,6 +70,23 @@ public class HappinessManager : MonoBehaviour
         fillbars[1].value = budget;
         fillbars[2].value = opposition;
         fillbars[3].value = functionality;
+
+        CheckValues();
+    }
+
+    public void AddValues(int h, int b, int o, int f)
+    {
+        happiness += h;
+        budget += b;
+        opposition += o;
+        functionality += f;
+
+        fillbars[0].value = happiness;
+        fillbars[1].value = budget;
+        fillbars[2].value = opposition;
+        fillbars[3].value = functionality;
+
+        CheckValues();
     }
 
     void UpdateFillbars()
@@ -66,6 +99,8 @@ public class HappinessManager : MonoBehaviour
             fillbars[i].valueText.text = Mathf.Clamp(fillbars[i].value,0,100).ToString();
         }
     }
+
+
 }
 
 [Serializable]
