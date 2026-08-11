@@ -1900,7 +1900,7 @@ MonoBehaviour:
   stageLeaks: []
   currentLeak: {fileID: 0}
   timeToNextLeak: 3
-  timeToAnswer: 10
+  timeToAnswer: 5
   elapsedTime: 0
   answerButtons:
   - {fileID: 131144425}
@@ -1910,6 +1910,7 @@ MonoBehaviour:
   leakQuestion: {fileID: 1868594062}
   leakEventScreen: {fileID: 1885280733}
   timeOutDisplay: {fileID: 546825218}
+  levelDisplay: {fileID: 914229795}
 --- !u!1 &1428682991
 GameObject:
   m_ObjectHideFlags: 0
@@ -2837,13 +2838,25 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 1391720290579667015, guid: 231c55e22b148814b8d767c3958fab1c, type: 3}
+      propertyPath: movementSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1621039832198356612, guid: 231c55e22b148814b8d767c3958fab1c, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1701773090718849470, guid: 231c55e22b148814b8d767c3958fab1c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5970671865002656546, guid: 231c55e22b148814b8d767c3958fab1c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6900149471003025859, guid: 231c55e22b148814b8d767c3958fab1c, type: 3}
+      propertyPath: stateName
+      value: Idle
       objectReference: {fileID: 0}
     - target: {fileID: 7755362902008741615, guid: 231c55e22b148814b8d767c3958fab1c, type: 3}
       propertyPath: m_IsActive

@@ -32,6 +32,6 @@ public class PlayerController2D : MonoBehaviour
 
     private void Move()
     {
-        rb.linearVelocity = moveInput * movementSpeed;
+        rb.linearVelocity = moveInput * movementSpeed * Time.deltaTime * 100;
     }
 }

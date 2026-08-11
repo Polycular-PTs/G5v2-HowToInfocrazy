@@ -24,6 +24,7 @@ public class LeakManager : MonoBehaviour
     public TMP_Text leakQuestion;
     public GameObject leakEventScreen;
     public Image timeOutDisplay;
+    public TMP_Text levelDisplay;
 
 
     void Start()
@@ -47,13 +48,13 @@ public class LeakManager : MonoBehaviour
 
     private void OnDisable()
     {
-        HappinessManager.Instance.OnLost.RemoveListener(DropBelowZero);
+        HappinessManager.Instance?.OnLost.RemoveListener(DropBelowZero);
     }
 
     public void DropBelowZero()
     {
+        //StopAllCoroutines();
         SceneManager.LoadScene("Defeat");
-        StopAllCoroutines();
     }
 
     IEnumerator CountdownToLeak()
@@ -100,6 +101,7 @@ public class LeakManager : MonoBehaviour
             stageLeaks = new List<LeakData>(leakstages[currentStage].leaks);
             currentLeak = stageLeaks[Random.Range(0, stageLeaks.Count)];
             //stageLeaks.Remove(currentLeak);
+            levelDisplay.text = "STUFE " + (currentStage + 1);
 
             StartCoroutine(CountdownToLeak());
         }

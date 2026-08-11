@@ -56,15 +56,17 @@ public class HappinessManager : MonoBehaviour
             functionality <= 0)
         {
             OnLost?.Invoke();
+            HappinessManager.Instance = null;
+            Destroy(this.gameObject);
         }
     }
 
     public void UpdateValues(int h, int  b, int o, int f)
     {
-        happiness = h;
-        budget = b;
-        opposition = o;
-        functionality = f;
+        happiness = Mathf.Clamp(h,0,100);
+        budget = Mathf.Clamp(b, 0, 100);
+        opposition = Mathf.Clamp(o, 0, 100);
+        functionality = Mathf.Clamp(f, 0, 100);
 
         fillbars[0].value = happiness;
         fillbars[1].value = budget;
@@ -77,9 +79,13 @@ public class HappinessManager : MonoBehaviour
     public void AddValues(int h, int b, int o, int f)
     {
         happiness += h;
+        happiness = Mathf.Clamp(happiness, 0, 100);
         budget += b;
+        budget = Mathf.Clamp(budget, 0, 100);
         opposition += o;
+        opposition = Mathf.Clamp(opposition, 0, 100);
         functionality += f;
+        functionality = Mathf.Clamp(functionality, 0, 100);
 
         fillbars[0].value = happiness;
         fillbars[1].value = budget;
