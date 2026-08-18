@@ -84,6 +84,7 @@ public class LeakManager : MonoBehaviour
         else
         {
             StopAllCoroutines();
+            leakEventScreen.SetActive(false);
         }
     }
 
