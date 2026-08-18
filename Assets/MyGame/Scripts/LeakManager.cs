@@ -9,7 +9,7 @@ public class LeakManager : MonoBehaviour
 {
     public int currentStage = 0;
     public List<LeakDataStage> leakstages;
-
+    public bool activeLeaks;
 
     public List<LeakData> stageLeaks;
     
@@ -25,9 +25,9 @@ public class LeakManager : MonoBehaviour
     public GameObject leakEventScreen;
     public Image timeOutDisplay;
     public TMP_Text levelDisplay;
+    public Toggle toggle;
 
     public static LeakManager Instance;
-    private bool pause;
 
     private void Awake()
     {
@@ -61,12 +61,11 @@ public class LeakManager : MonoBehaviour
         HappinessManager.OnLost -= DropBelowZero;
         HappinessManager.OnReset -= Restart;
         Quiz.OnWrongAnswer -= Pause;
-        Quiz.OnRightAnswer += Pause;
+        Quiz.OnRightAnswer -= Pause;
     }
 
     public void Pause()
     {
-        Debug.Log("paused");
         StopAllCoroutines();
     }
 
@@ -75,20 +74,36 @@ public class LeakManager : MonoBehaviour
         Restart();
     }
 
+    public void ToggleActive()
+    {
+        activeLeaks = toggle.isOn;
+        if (activeLeaks)
+        {
+            Restart();
+        }
+        else
+        {
+            StopAllCoroutines();
+        }
+    }
 
     public void Restart()
     {
-        print("start");
-        if (leakstages.Count > 0)
+        StopAllCoroutines();
+        if (activeLeaks)
         {
-            stageLeaks = new List<LeakData>(leakstages[currentStage].leaks);
-            currentLeak = stageLeaks[Random.Range(0, stageLeaks.Count)];
-            //stageLeaks.Remove(currentLeak);
+            if (leakstages.Count > 0)
+            {
+                stageLeaks = new List<LeakData>(leakstages[currentStage].leaks);
+                currentLeak = stageLeaks[Random.Range(0, stageLeaks.Count)];
+                //stageLeaks.Remove(currentLeak);
+            }
+
+            //SetUIElements();
+            leakEventScreen.SetActive(false);
+            StartCoroutine(CountdownToLeak());
         }
 
-        //SetUIElements();
-        leakEventScreen.SetActive(false);
-        StartCoroutine(CountdownToLeak());
     }
 
     public void DropBelowZero()
@@ -99,28 +114,23 @@ public class LeakManager : MonoBehaviour
 
     IEnumerator CountdownToLeak()
     {
-        while (!pause)
+        yield return new WaitForSeconds(timeToNextLeak);
+        leakEventScreen.SetActive(true);
+        SetUIElements();
+
+        elapsedTime = 0;
+
+        while (elapsedTime < timeToAnswer)
         {
-            yield return new WaitWhile(() => pause);
-            print("running");
-            yield return new WaitForSeconds(timeToNextLeak);
-            leakEventScreen.SetActive(true);
-            SetUIElements();
-
-            elapsedTime = 0;
-
-            while (elapsedTime < timeToAnswer)
-            {
-                elapsedTime += Time.unscaledDeltaTime;
-                float norm = Mathf.InverseLerp(timeToAnswer, 0, elapsedTime);
-                timeOutDisplay.fillAmount = norm;
-                timeOutDisplay.color = Color.Lerp(Color.red, Color.white, norm);
-                yield return null;
-            }
-
-            bool notLost = TimeOut();
-            ResetLeak(notLost);
+            elapsedTime += Time.unscaledDeltaTime;
+            float norm = Mathf.InverseLerp(timeToAnswer, 0, elapsedTime);
+            timeOutDisplay.fillAmount = norm;
+            timeOutDisplay.color = Color.Lerp(Color.red, Color.white, norm);
+            yield return null;
         }
+
+        bool notLost = TimeOut();
+        ResetLeak(notLost);
    
     }
 

@@ -46,10 +46,12 @@ public class SceneLoader : MonoBehaviour
                 HappinessManager.Instance.opposition > 0 &&
                 HappinessManager.Instance.functionality > 0)
             {
+                LeakManager.Instance.Pause();
                 SceneManager.LoadScene("Defeat");
                 Debug.Log("Defeat!");
             }
 
+            LeakManager.Instance.Pause();
             SceneManager.LoadScene("Victory");
             Debug.Log("Victory!");
         }

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class HappinessManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class HappinessManager : MonoBehaviour
     public Fillbars[] fillbars;
 
     public static HappinessManager Instance;
+    public GameObject menu;
 
     [Header("Questions")]
     public List<QuestionsWithAnswers> questions;
@@ -47,6 +49,31 @@ public class HappinessManager : MonoBehaviour
     {
         //UpdateValues(happiness,budget,opposition,functionality);
         UpdateFillbars();
+
+        ToggleMenu();
+    }
+
+    public void ToggleMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            //print(menu.activeSelf);
+            if (menu.activeSelf)
+            {
+                menu.SetActive(false);
+                Time.timeScale = 1f;
+            }
+            else
+            {
+                menu.SetActive(true);
+                Time.timeScale = 0f;
+            }
+        }
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
     public bool CheckValues()
@@ -112,11 +139,16 @@ public class HappinessManager : MonoBehaviour
 
     public void Restart()
     {
+        if (SceneManager.GetActiveScene().ToString() != "01_Office")
+        {
+            SceneManager.LoadScene("01_Office");
+        }
         UpdateValues(100,100,100,100);
         OnReset?.Invoke();
 
         sameAttempt = false;
         currentIndex = 0;
+        Time.timeScale = 1;
     }
 }
 

@@ -33,6 +33,7 @@ public class Quiz : MonoBehaviour
 
     public void ChooseAnswer(int index)
     {
+        print(index);
         UpdateValue(index);
 
         if (index == rightAnswer)
@@ -49,39 +50,45 @@ public class Quiz : MonoBehaviour
             HappinessManager.Instance.sameAttempt = true;
             OnWrongAnswer?.Invoke();
             sceneLoader.LoadScenes("Antwort_wrong");
+
         }
     }
 
     void UpdateValue(int index)
     {
+        print(index);
         switch (index)
         {
             case 0:
-                HappinessManager.Instance.happiness += currentQuestion.happiness[0];
-                HappinessManager.Instance.budget += currentQuestion.happiness[1];
-                HappinessManager.Instance.opposition += currentQuestion.happiness[2];
-                HappinessManager.Instance.functionality += currentQuestion.happiness[3];
+                HappinessManager.Instance.AddValues(currentQuestion.happiness[0], currentQuestion.happiness[1], currentQuestion.happiness[2], currentQuestion.happiness[3]);
+                //HappinessManager.Instance.happiness += currentQuestion.happiness[0];
+                //HappinessManager.Instance.budget += currentQuestion.happiness[1];
+                //HappinessManager.Instance.opposition += currentQuestion.happiness[2];
+                //HappinessManager.Instance.functionality += currentQuestion.happiness[3];
                 break;
 
             case 1:
-                HappinessManager.Instance.happiness += currentQuestion.budget[0];
-                HappinessManager.Instance.budget += currentQuestion.budget[1];
-                HappinessManager.Instance.opposition += currentQuestion.budget[2];
-                HappinessManager.Instance.functionality += currentQuestion.budget[3];
+                HappinessManager.Instance.AddValues(currentQuestion.budget[0], currentQuestion.budget[1], currentQuestion.budget[2], currentQuestion.budget[3]);
+                //HappinessManager.Instance.happiness += currentQuestion.budget[0];
+                //HappinessManager.Instance.budget += currentQuestion.budget[1];
+                //HappinessManager.Instance.opposition += currentQuestion.budget[2];
+                //HappinessManager.Instance.functionality += currentQuestion.budget[3];
                 break;
             
             case 2:
-                HappinessManager.Instance.happiness += currentQuestion.opposition[0];
-                HappinessManager.Instance.budget += currentQuestion.opposition[1];
-                HappinessManager.Instance.opposition += currentQuestion.opposition[2];
-                HappinessManager.Instance.functionality += currentQuestion.opposition[3];
+                HappinessManager.Instance.AddValues(currentQuestion.opposition[0], currentQuestion.opposition[1], currentQuestion.opposition[2], currentQuestion.opposition[3]);
+                //HappinessManager.Instance.happiness += currentQuestion.opposition[0];
+                //HappinessManager.Instance.budget += currentQuestion.opposition[1];
+                //HappinessManager.Instance.opposition += currentQuestion.opposition[2];
+                //HappinessManager.Instance.functionality += currentQuestion.opposition[3];
                 break;
 
             case 3:
-                HappinessManager.Instance.happiness += currentQuestion.functionality[0];
-                HappinessManager.Instance.budget += currentQuestion.functionality[1];
-                HappinessManager.Instance.opposition += currentQuestion.functionality[2];
-                HappinessManager.Instance.functionality += currentQuestion.functionality[3];
+                HappinessManager.Instance.AddValues(currentQuestion.functionality[0], currentQuestion.functionality[1], currentQuestion.functionality[2], currentQuestion.functionality[3]);
+                //HappinessManager.Instance.happiness += currentQuestion.functionality[0];
+                //HappinessManager.Instance.budget += currentQuestion.functionality[1];
+                //HappinessManager.Instance.opposition += currentQuestion.functionality[2];
+                //HappinessManager.Instance.functionality += currentQuestion.functionality[3];
                 break;
         }
     }
