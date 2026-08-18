@@ -1899,8 +1899,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6910a6f650836d24789feb18f4972dbc, type: 2}
   stageLeaks: []
   currentLeak: {fileID: 0}
-  timeToNextLeak: 3
-  timeToAnswer: 5
+  timeToNextLeak: 30
+  timeToAnswer: 30
   elapsedTime: 0
   answerButtons:
   - {fileID: 131144425}

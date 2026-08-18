@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.Events;
+using System;
 
 public class Quiz : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class Quiz : MonoBehaviour
     public QuestionsWithAnswers currentQuestion;
     public Button[] answerButtons;
     public int rightAnswer;
+    public SceneLoader sceneLoader;
+
 
     [Header("Events")]
-    public UnityEvent OnRightAnswer;
-    public UnityEvent OnWrongAnswer;
+    public static Action OnRightAnswer;
+    public static Action OnWrongAnswer;
 
     void Start()
     {
@@ -38,12 +41,14 @@ public class Quiz : MonoBehaviour
             HappinessManager.Instance.questions.Remove(currentQuestion);
             HappinessManager.Instance.sameAttempt = false;
             OnRightAnswer?.Invoke();
+            sceneLoader.LoadScenes("Antwort_right");
         }
         else
         {
             Debug.Log("Wrong Answer!");
             HappinessManager.Instance.sameAttempt = true;
             OnWrongAnswer?.Invoke();
+            sceneLoader.LoadScenes("Antwort_wrong");
         }
     }
 

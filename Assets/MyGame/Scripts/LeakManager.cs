@@ -27,6 +27,7 @@ public class LeakManager : MonoBehaviour
     public TMP_Text levelDisplay;
 
     public static LeakManager Instance;
+    private bool pause;
 
     private void Awake()
     {
@@ -51,13 +52,29 @@ public class LeakManager : MonoBehaviour
     {
         HappinessManager.OnLost += DropBelowZero;
         HappinessManager.OnReset += Restart;
+        Quiz.OnWrongAnswer += Pause;
+        Quiz.OnRightAnswer += Pause;
     }
 
     private void OnDisable()
     {
         HappinessManager.OnLost -= DropBelowZero;
         HappinessManager.OnReset -= Restart;
+        Quiz.OnWrongAnswer -= Pause;
+        Quiz.OnRightAnswer += Pause;
     }
+
+    public void Pause()
+    {
+        Debug.Log("paused");
+        StopAllCoroutines();
+    }
+
+    public void Resume()
+    {
+        Restart();
+    }
+
 
     public void Restart()
     {
@@ -82,26 +99,29 @@ public class LeakManager : MonoBehaviour
 
     IEnumerator CountdownToLeak()
     {
-        print("countdown started!");
-        yield return new WaitForSeconds(timeToNextLeak);
-        leakEventScreen.SetActive(true);
-        SetUIElements();
-
-        elapsedTime = 0;
-
-        while (elapsedTime < timeToAnswer)
+        while (!pause)
         {
-            elapsedTime += Time.unscaledDeltaTime;
-            float norm = Mathf.InverseLerp(timeToAnswer, 0, elapsedTime);
-            timeOutDisplay.fillAmount = norm;
-            timeOutDisplay.color = Color.Lerp(Color.red,Color.white,norm);
-            yield return null;
-        }
+            yield return new WaitWhile(() => pause);
+            print("running");
+            yield return new WaitForSeconds(timeToNextLeak);
+            leakEventScreen.SetActive(true);
+            SetUIElements();
 
-        bool notLost = TimeOut();
-        ResetLeak(notLost);
-        
-        
+            elapsedTime = 0;
+
+            while (elapsedTime < timeToAnswer)
+            {
+                elapsedTime += Time.unscaledDeltaTime;
+                float norm = Mathf.InverseLerp(timeToAnswer, 0, elapsedTime);
+                timeOutDisplay.fillAmount = norm;
+                timeOutDisplay.color = Color.Lerp(Color.red, Color.white, norm);
+                yield return null;
+            }
+
+            bool notLost = TimeOut();
+            ResetLeak(notLost);
+        }
+   
     }
 
     public bool TimeOut()

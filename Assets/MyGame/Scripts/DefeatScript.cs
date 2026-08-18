@@ -10,4 +10,9 @@ public class DefeatScript : MonoBehaviour
     {
         HappinessManager.Instance.Restart();
     }
+
+    public void Resume()
+    {
+        LeakManager.Instance.Resume();
+    }
 }
