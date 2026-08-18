@@ -25,7 +25,8 @@ public class HappinessManager : MonoBehaviour
     public bool sameAttempt = false;
 
     [Header("Events")]
-    public UnityEvent OnLost;
+    public static Action OnLost;
+    public static Action OnReset;
 
     void Awake()
     {
@@ -48,7 +49,7 @@ public class HappinessManager : MonoBehaviour
         UpdateFillbars();
     }
 
-    public void CheckValues()
+    public bool CheckValues()
     {
         if (happiness <= 0 ||
             budget <= 0     ||
@@ -56,12 +57,15 @@ public class HappinessManager : MonoBehaviour
             functionality <= 0)
         {
             OnLost?.Invoke();
-            HappinessManager.Instance = null;
-            Destroy(this.gameObject);
+            return false;
+            //HappinessManager.Instance = null;
+            //Destroy(this.gameObject);
         }
+
+        return true;
     }
 
-    public void UpdateValues(int h, int  b, int o, int f)
+    public bool UpdateValues(int h, int  b, int o, int f)
     {
         happiness = Mathf.Clamp(h,0,100);
         budget = Mathf.Clamp(b, 0, 100);
@@ -73,10 +77,10 @@ public class HappinessManager : MonoBehaviour
         fillbars[2].value = opposition;
         fillbars[3].value = functionality;
 
-        CheckValues();
+        return CheckValues();
     }
 
-    public void AddValues(int h, int b, int o, int f)
+    public bool AddValues(int h, int b, int o, int f)
     {
         happiness += h;
         happiness = Mathf.Clamp(happiness, 0, 100);
@@ -92,7 +96,7 @@ public class HappinessManager : MonoBehaviour
         fillbars[2].value = opposition;
         fillbars[3].value = functionality;
 
-        CheckValues();
+        return CheckValues();
     }
 
     void UpdateFillbars()
@@ -106,7 +110,14 @@ public class HappinessManager : MonoBehaviour
         }
     }
 
+    public void Restart()
+    {
+        UpdateValues(100,100,100,100);
+        OnReset?.Invoke();
 
+        sameAttempt = false;
+        currentIndex = 0;
+    }
 }
 
 [Serializable]

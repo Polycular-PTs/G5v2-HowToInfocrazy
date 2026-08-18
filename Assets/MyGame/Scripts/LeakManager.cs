@@ -26,14 +26,47 @@ public class LeakManager : MonoBehaviour
     public Image timeOutDisplay;
     public TMP_Text levelDisplay;
 
+    public static LeakManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
+        Restart();
+    }
+
+    private void OnEnable()
+    {
+        HappinessManager.OnLost += DropBelowZero;
+        HappinessManager.OnReset += Restart;
+    }
+
+    private void OnDisable()
+    {
+        HappinessManager.OnLost -= DropBelowZero;
+        HappinessManager.OnReset -= Restart;
+    }
+
+    public void Restart()
+    {
+        print("start");
         if (leakstages.Count > 0)
         {
-           stageLeaks = new List<LeakData>(leakstages[currentStage].leaks);
-           currentLeak = stageLeaks[Random.Range(0,stageLeaks.Count)];
-           //stageLeaks.Remove(currentLeak);
+            stageLeaks = new List<LeakData>(leakstages[currentStage].leaks);
+            currentLeak = stageLeaks[Random.Range(0, stageLeaks.Count)];
+            //stageLeaks.Remove(currentLeak);
         }
 
         //SetUIElements();
@@ -41,24 +74,15 @@ public class LeakManager : MonoBehaviour
         StartCoroutine(CountdownToLeak());
     }
 
-    private void OnEnable()
-    {
-        HappinessManager.Instance.OnLost.AddListener(DropBelowZero);
-    }
-
-    private void OnDisable()
-    {
-        HappinessManager.Instance?.OnLost.RemoveListener(DropBelowZero);
-    }
-
     public void DropBelowZero()
     {
-        //StopAllCoroutines();
         SceneManager.LoadScene("Defeat");
     }
 
+
     IEnumerator CountdownToLeak()
     {
+        print("countdown started!");
         yield return new WaitForSeconds(timeToNextLeak);
         leakEventScreen.SetActive(true);
         SetUIElements();
@@ -74,39 +98,57 @@ public class LeakManager : MonoBehaviour
             yield return null;
         }
 
-        //yield return new WaitForSeconds(timeToAnswer);
-        TimeOut();
-        ResetLeak();
+        bool notLost = TimeOut();
+        ResetLeak(notLost);
         
-
+        
     }
 
-    public void TimeOut()
+    public bool TimeOut()
     {
-        HappinessManager.Instance.UpdateValues(
+            bool notZero = 
+            HappinessManager.Instance.UpdateValues(
             leakstages[currentStage].happiness,
             leakstages[currentStage].budget,
             leakstages[currentStage].opposition,
             leakstages[currentStage].functionality);
+
+        return notZero;
     }
 
-    public void ResetLeak()
+    public void ResetLeak(bool onContinue)
     {
         StopAllCoroutines();
         leakEventScreen.SetActive(false);
-        currentStage++;
 
-        if (leakstages.Count > 0 && currentStage < leakstages.Count)
+        if (onContinue)
         {
-            stageLeaks = new List<LeakData>(leakstages[currentStage].leaks);
-            currentLeak = stageLeaks[Random.Range(0, stageLeaks.Count)];
-            //stageLeaks.Remove(currentLeak);
-            levelDisplay.text = "STUFE " + (currentStage + 1);
+            currentStage++;
 
-            StartCoroutine(CountdownToLeak());
+            if (leakstages.Count > 0 && currentStage < leakstages.Count)
+            {
+                stageLeaks = new List<LeakData>(leakstages[currentStage].leaks);
+                currentLeak = stageLeaks[Random.Range(0, stageLeaks.Count)];
+                //stageLeaks.Remove(currentLeak);
+                levelDisplay.text = "STUFE " + (currentStage + 1);
+
+                StartCoroutine(CountdownToLeak());
+            }
         }
-        
-        
+        else
+        {
+            currentStage = 0;
+
+            if (leakstages.Count > 0 && currentStage < leakstages.Count)
+            {
+                stageLeaks = new List<LeakData>(leakstages[currentStage].leaks);
+                currentLeak = stageLeaks[Random.Range(0, stageLeaks.Count)];
+                levelDisplay.text = "STUFE " + (currentStage + 1);
+            }
+        }
+
+
+
     }
 
     public void SetUIElements()
@@ -154,6 +196,6 @@ public class LeakManager : MonoBehaviour
             
         }
 
-        ResetLeak();
+        ResetLeak(HappinessManager.Instance.CheckValues());
     }
 }
