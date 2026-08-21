@@ -22,6 +22,7 @@ public class HappinessManager : MonoBehaviour
 
     [Header("Questions")]
     public List<QuestionsWithAnswers> questions;
+    public List<QuestionsWithAnswers> backlogQuestions;
     public QuestionsWithAnswers currentQuestion;
     public int currentIndex;
     public bool sameAttempt = false;
@@ -43,6 +44,7 @@ public class HappinessManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         UpdateValues(happiness, budget, opposition, functionality);
+        backlogQuestions = new List<QuestionsWithAnswers>(questions);
     }
 
     void Update()
@@ -145,7 +147,7 @@ public class HappinessManager : MonoBehaviour
         }
         UpdateValues(100,100,100,100);
         OnReset?.Invoke();
-
+        questions = new List<QuestionsWithAnswers>(backlogQuestions);
         sameAttempt = false;
         currentIndex = 0;
         Time.timeScale = 1;
